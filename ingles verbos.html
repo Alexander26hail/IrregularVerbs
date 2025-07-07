@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrenador de Verbos Diarios</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .card-shadow {
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .input-field {
+            transition: all 0.3s ease-in-out;
+        }
+        .correct {
+            border-color: #22c55e; /* green-500 */
+            background-color: #f0fdf4; /* green-50 */
+        }
+        .incorrect {
+            border-color: #ef4444; /* red-500 */
+            background-color: #fef2f2; /* red-50 */
+        }
+        .correction-mode {
+            border-color: #3b82f6; /* blue-500 */
+            background-color: #eff6ff; /* blue-50 */
+        }
+        .btn-primary {
+            transition: all 0.2s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgb(0 0 0 / 0.2);
+        }
+        .btn-secondary {
+            transition: all 0.2s ease;
+            background-color: #e2e8f0; /* slate-200 */
+            color: #475569; /* slate-600 */
+        }
+        .btn-secondary:hover {
+            background-color: #cbd5e1; /* slate-300 */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgb(0 0 0 / 0.1);
+        }
+        #verb-image, #exit-modal {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        #verb-image-container {
+            height: 250px; 
+            background-color: #f1f5f9; /* slate-100 */
+        }
+        #verb-image {
+            max-height: 100%;
+            width: auto;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 flex items-center justify-center min-h-screen p-4">
+
+    <div id="app-container" class="w-full max-w-2xl mx-auto">
+        
+        <!-- Pantalla de Inicio -->
+        <div id="start-screen" class="text-center">
+             <div class="bg-white rounded-2xl card-shadow p-8">
+                <h1 class="text-3xl font-bold text-slate-800 mb-2">Entrenador de Verbos Diarios</h1>
+                <p class="text-slate-500 mb-6">Aprende 5 verbos nuevos cada día. ¿Listo para empezar?</p>
+                <p class="text-lg font-semibold text-indigo-600 mb-2">Verbos para la sesión de hoy:</p>
+                <p class="text-sm text-slate-500 mb-4">Infinitive - Past Simple - Past Participle - Español</p>
+                <ul id="daily-verbs-list" class="bg-slate-50 rounded-lg p-4 mb-6 text-slate-800 text-left space-y-2">
+                    <!-- La lista de verbos se insertará aquí -->
+                </ul>
+                <div class="space-y-4">
+                    <button id="start-session-btn" class="w-full bg-indigo-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 btn-primary text-lg">
+                        Comenzar Sesión (25 preguntas)
+                    </button>
+                    <button id="reset-verbs-btn" class="w-full font-bold py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 btn-secondary text-sm">
+                        Elegir Nuevos Verbos
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pantalla de Práctica -->
+        <div id="practice-screen" class="hidden">
+            <div class="bg-white rounded-2xl card-shadow overflow-hidden relative">
+                 <button id="exit-session-btn" title="Volver al inicio" class="absolute top-4 left-4 text-slate-400 hover:text-slate-600 transition-colors p-2 rounded-full hover:bg-slate-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                </button>
+                <button id="fullscreen-btn" title="Pantalla Completa" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition-colors p-2 rounded-full hover:bg-slate-100">
+                    <svg id="fullscreen-enter-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                    <svg id="fullscreen-exit-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/></svg>
+                </button>
+                <div class="p-6 sm:p-8">
+                    <div class="flex justify-between items-center mb-4">
+                        <h1 id="session-title" class="text-2xl sm:text-3xl font-bold text-slate-800 ml-12">Sesión Diaria</h1>
+                        <div id="progress-tracker" class="font-bold text-indigo-600 bg-indigo-100 rounded-full px-4 py-1 text-sm"></div>
+                    </div>
+                    
+                    <div id="verb-image-container" class="mb-4 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img id="verb-image" src="" alt="Representación visual del verbo" onerror="this.onerror=null;this.src='https://placehold.co/400x400/e2e8f0/475569?text=Imagen+no+disponible';">
+                    </div>
+
+                    <div id="verb-display" class="bg-slate-50 rounded-lg p-4 mb-6 text-center">
+                        <p class="text-lg text-slate-600">Verbo en español:</p>
+                        <p id="spanish-verb" class="text-3xl font-bold text-indigo-600"></p>
+                        <p id="verb-explanation" class="text-slate-500 text-sm mt-2 italic px-4"></p>
+                    </div>
+
+                    <div id="verb-inputs" class="space-y-4">
+                        <div>
+                            <label for="infinitive" class="block text-sm font-medium text-slate-700 mb-1">Infinitive (Infinitivo)</label>
+                            <input type="text" id="infinitive" class="input-field w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500" autocomplete="off" autocorrect="off" autocapitalize="none">
+                            <p id="correct-infinitive" class="text-sm text-green-600 mt-1 font-semibold hidden"></p>
+                        </div>
+                        <div>
+                            <label for="past-simple" class="block text-sm font-medium text-slate-700 mb-1">Past Simple (Pasado Simple)</label>
+                            <input type="text" id="past-simple" class="input-field w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500" autocomplete="off" autocorrect="off" autocapitalize="none">
+                            <p id="correct-past-simple" class="text-sm text-green-600 mt-1 font-semibold hidden"></p>
+                        </div>
+                        <div>
+                            <label for="past-participle" class="block text-sm font-medium text-slate-700 mb-1">Past Participle (Participio Pasado)</label>
+                            <input type="text" id="past-participle" class="input-field w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500" autocomplete="off" autocorrect="off" autocapitalize="none">
+                            <p id="correct-past-participle" class="text-sm text-green-600 mt-1 font-semibold hidden"></p>
+                        </div>
+                    </div>
+
+                    <div id="feedback-message" class="mt-6 text-center font-medium text-lg hidden p-3 rounded-lg"></div>
+
+                    <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <button id="check-btn" class="w-full bg-indigo-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-indigo-700 btn-primary">Revisar</button>
+                        <button id="next-btn" class="w-full bg-slate-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-slate-700 btn-primary" disabled>Siguiente</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pantalla de Resumen -->
+        <div id="summary-screen" class="hidden">
+            <div class="bg-white rounded-2xl card-shadow p-8 text-center">
+                <h1 class="text-3xl font-bold text-slate-800 mb-2">¡Sesión Completada!</h1>
+                <p class="text-slate-500 mb-6">Este es el resumen de tu rendimiento de hoy.</p>
+                
+                <div id="summary-stats" class="space-y-4">
+                    <!-- Las estadísticas se insertarán aquí -->
+                </div>
+                
+                <div id="summary-buttons" class="mt-8 space-y-4">
+                     <button id="reinforce-btn" class="w-full bg-amber-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 btn-primary text-lg hidden">
+                        Reforzar Verbos con Errores
+                    </button>
+                    <button id="go-to-start-btn" class="w-full bg-indigo-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 btn-primary text-lg">
+                        Volver al Inicio
+                    </button>
+                </div>
+                <p class="mt-4 text-slate-500 text-sm">¡Sigue así! Vuelve mañana para una nueva sesión de verbos.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmación de Salida -->
+    <div id="exit-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden z-50">
+        <div class="bg-white rounded-lg p-8 card-shadow max-w-sm w-full text-center">
+            <h3 class="text-lg font-bold text-slate-800 mb-2">¿Salir de la sesión?</h3>
+            <p class="text-slate-600 mb-6">Tu progreso en esta sesión se perderá.</p>
+            <div class="flex justify-center gap-4">
+                <button id="cancel-exit-btn" class="w-full font-bold py-2 px-4 rounded-lg btn-secondary">Cancelar</button>
+                <button id="confirm-exit-btn" class="w-full bg-red-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-red-700 btn-primary">Sí, Salir</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- Lista Completa de Verbos con Imágenes y Explicaciones ---
+        const ALL_VERBS = [
+            { infinitive: 'arise', pastSimple: 'arose', pastParticiple: 'arisen', spanish: 'surgir', explanation: 'Aparecer un problema o una oportunidad.', imageUrl: 'https://i.imgur.com/GvjYkQj.png' },
+            { infinitive: 'awake', pastSimple: 'awoke', pastParticiple: 'awoken', spanish: 'despertar(se)', explanation: 'Dejar de dormir o hacer que alguien lo haga.', imageUrl: 'https://i.imgur.com/6e8GV0g.png' },
+            { infinitive: 'be', pastSimple: 'was/were', pastParticiple: 'been', spanish: 'ser/estar', explanation: 'Indica existencia, estado o identidad.', imageUrl: 'https://i.imgur.com/041TSxr.png' },
+            { infinitive: 'bear', pastSimple: 'bore', pastParticiple: 'born/borne', spanish: 'soportar', explanation: 'Aguantar algo pesado o difícil; dar a luz.', imageUrl: 'https://i.imgur.com/7zprI00.png' },
+            { infinitive: 'beat', pastSimple: 'beat', pastParticiple: 'beaten', spanish: 'golpear', explanation: 'Ganarle a alguien; golpear rítmicamente (un tambor).', imageUrl: 'https://i.imgur.com/qQQb5RQ.png' },
+            { infinitive: 'become', pastSimple: 'became', pastParticiple: 'become', spanish: 'convertirse en', explanation: 'Llegar a ser algo diferente; transformarse.', imageUrl: 'https://i.imgur.com/4u5p2qT.png' },
+            { infinitive: 'begin', pastSimple: 'began', pastParticiple: 'begun', spanish: 'empezar', explanation: 'Iniciar o comenzar una acción.', imageUrl: 'https://i.imgur.com/Q3ZDHjz.png' },
+            { infinitive: 'bend', pastSimple: 'bent', pastParticiple: 'bent', spanish: 'doblar(se)', explanation: 'Curvar algo recto o a sí mismo.', imageUrl: 'https://www.yogaclassplan.com/wp-content/uploads/2021/06/standing-half-forward-bend.jpg' },
+            { infinitive: 'bet', pastSimple: 'bet', pastParticiple: 'bet', spanish: 'apostar', explanation: 'Arriesgar dinero en el resultado de algo.', imageUrl: 'https://i.imgur.com/Q6D6aOK.png' },
+            { infinitive: 'bind', pastSimple: 'bound', pastParticiple: 'bound', spanish: 'atar', explanation: 'Unir o sujetar algo con cuerdas; encuadernar.', imageUrl: 'https://i.imgur.com/UUxnTFh.png' },
+            { infinitive: 'bite', pastSimple: 'bit', pastParticiple: 'bitten', spanish: 'morder', explanation: 'Usar los dientes para cortar algo.', imageUrl: 'https://i.imgur.com/B2x2Mse.png' },
+            { infinitive: 'bleed', pastSimple: 'bled', pastParticiple: 'bled', spanish: 'sangrar', explanation: 'Perder sangre por una herida.', imageUrl: 'https://i.imgur.com/T0X8T1q.png' },
+            { infinitive: 'blow', pastSimple: 'blew', pastParticiple: 'blown', spanish: 'soplar', explanation: 'Mover el aire con la boca (velas, un globo).', imageUrl: 'https://i.imgur.com/v6LZ5lo.png' },
+            { infinitive: 'break', pastSimple: 'broke', pastParticiple: 'broken', spanish: 'romper', explanation: 'Hacer que algo se separe en pedazos.', imageUrl: 'https://i.imgur.com/gltSzEK.png' },
+            { infinitive: 'breed', pastSimple: 'bred', pastParticiple: 'bred', spanish: 'criar', explanation: 'Cuidar animales para que se reproduzcan.', imageUrl: 'https://i.imgur.com/EVUOMIl.png' },
+            { infinitive: 'bring', pastSimple: 'brought', pastParticiple: 'brought', spanish: 'traer', explanation: 'Llevar algo o a alguien a un lugar.', imageUrl: 'https://i.imgur.com/yIfEhrk.png' },
+            { infinitive: 'broadcast', pastSimple: 'broadcast', pastParticiple: 'broadcast', spanish: 'transmitir', explanation: 'Emitir un programa de radio o televisión.', imageUrl: 'https://i.imgur.com/cbBlz59.png' },
+            { infinitive: 'build', pastSimple: 'built', pastParticiple: 'built', spanish: 'construir', explanation: 'Crear una estructura como una casa o un edificio.', imageUrl: 'https://i.imgur.com/io1nz1P.png' },
+            { infinitive: 'burn', pastSimple: 'burnt/burned', pastParticiple: 'burnt/burned', spanish: 'quemar', explanation: 'Dañar algo con fuego o calor.', imageUrl: 'https://i.imgur.com/rTRFrdc.png' },
+            { infinitive: 'burst', pastSimple: 'burst', pastParticiple: 'burst', spanish: 'reventar', explanation: 'Romperse o explotar de repente.', imageUrl: 'https://i.imgur.com/2XfIFqR.png' },
+            { infinitive: 'buy', pastSimple: 'bought', pastParticiple: 'bought', spanish: 'comprar', explanation: 'Obtener algo a cambio de dinero.', imageUrl: 'https://i.imgur.com/lAQTFfM.png' },
+            { infinitive: 'cast', pastSimple: 'cast', pastParticiple: 'cast', spanish: 'lanzar', explanation: 'Tirar algo con fuerza; seleccionar actores.', imageUrl: 'https://i.imgur.com/BeMrCHV.png' },
+            { infinitive: 'catch', pastSimple: 'caught', pastParticiple: 'caught', spanish: 'atrapar', explanation: 'Agarrar algo que se mueve, como una pelota.', imageUrl: 'https://i.imgur.com/YsSDGel.png' },
+            { infinitive: 'choose', pastSimple: 'chose', pastParticiple: 'chosen', spanish: 'elegir', explanation: 'Seleccionar una opción entre varias.', imageUrl: 'https://i.imgur.com/umc87Pv.png' },
+            { infinitive: 'cling', pastSimple: 'clung', pastParticiple: 'clung', spanish: 'aferrarse', explanation: 'Sujetarse a algo o alguien con fuerza.', imageUrl: 'https://i.imgur.com/oVzNF1S.png' },
+            { infinitive: 'come', pastSimple: 'came', pastParticiple: 'come', spanish: 'venir', explanation: 'Moverse hacia el lugar donde está el hablante.', imageUrl: 'https://i.imgur.com/sBYpwGH.png' },
+            { infinitive: 'cost', pastSimple: 'cost', pastParticiple: 'cost', spanish: 'costar', explanation: 'Tener un precio determinado.', imageUrl: 'https://i.imgur.com/L3Lx1jo.png' },
+            // { infinitive: 'creep', pastSimple: 'crept', pastParticiple: 'crept', spanish: 'arrastrarse', explanation: 'Moverse sigilosamente y en silencio.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'cut', pastSimple: 'cut', pastParticiple: 'cut', spanish: 'cortar', explanation: 'Dividir algo usando un objeto afilado.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'deal', pastSimple: 'dealt', pastParticiple: 'dealt', spanish: 'tratar', explanation: 'Ocuparse de un problema; repartir cartas.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'dig', pastSimple: 'dug', pastParticiple: 'dug', spanish: 'cavar', explanation: 'Hacer un hoyo en la tierra.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'do', pastSimple: 'did', pastParticiple: 'done', spanish: 'hacer', explanation: 'Realizar una actividad o tarea.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'draw', pastSimple: 'drew', pastParticiple: 'drawn', spanish: 'dibujar', explanation: 'Crear una imagen con lápices o bolígrafos.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'dream', pastSimple: 'dreamt/dreamed', pastParticiple: 'dreamt/dreamed', spanish: 'soñar', explanation: 'Experimentar imágenes o historias al dormir.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'drink', pastSimple: 'drank', pastParticiple: 'drunk', spanish: 'beber', explanation: 'Ingerir un líquido.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'drive', pastSimple: 'drove', pastParticiple: 'driven', spanish: 'conducir', explanation: 'Manejar un vehículo como un coche.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'eat', pastSimple: 'ate', pastParticiple: 'eaten', spanish: 'comer', explanation: 'Ingerir alimentos sólidos.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'fall', pastSimple: 'fell', pastParticiple: 'fallen', spanish: 'caer', explanation: 'Moverse hacia abajo por la gravedad.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'feed', pastSimple: 'fed', pastParticiple: 'fed', spanish: 'alimentar', explanation: 'Dar comida a una persona o animal.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'feel', pastSimple: 'felt', pastParticiple: 'felt', spanish: 'sentir', explanation: 'Experimentar una emoción o sensación física.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'fight', pastSimple: 'fought', pastParticiple: 'fought', spanish: 'pelear', explanation: 'Luchar físicamente o discutir fuertemente.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'find', pastSimple: 'found', pastParticiple: 'found', spanish: 'encontrar', explanation: 'Descubrir algo o a alguien que buscabas.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'flee', pastSimple: 'fled', pastParticiple: 'fled', spanish: 'huir', explanation: 'Escapar de un lugar o situación de peligro.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'fly', pastSimple: 'flew', pastParticiple: 'flown', spanish: 'volar', explanation: 'Moverse por el aire, como un pájaro o un avión.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'forbid', pastSimple: 'forbade', pastParticiple: 'forbidden', spanish: 'prohibir', explanation: 'Ordenar que algo no se haga.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'forget', pastSimple: 'forgot', pastParticiple: 'forgotten', spanish: 'olvidar', explanation: 'No poder recordar algo.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'forgive', pastSimple: 'forgave', pastParticiple: 'forgiven', spanish: 'perdonar', explanation: 'Dejar de sentir enojo hacia alguien por un error.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'freeze', pastSimple: 'froze', pastParticiple: 'frozen', spanish: 'congelar', explanation: 'Convertir un líquido en sólido por el frío.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'get', pastSimple: 'got', pastParticiple: 'got/gotten', spanish: 'conseguir', explanation: 'Obtener, recibir o llegar a un lugar.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'give', pastSimple: 'gave', pastParticiple: 'given', spanish: 'dar', explanation: 'Entregar algo a alguien.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'go', pastSimple: 'went', pastParticiple: 'gone', spanish: 'ir', explanation: 'Moverse de un lugar a otro.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'grind', pastSimple: 'ground', pastParticiple: 'ground', spanish: 'moler', explanation: 'Reducir algo a polvo, como el café.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'grow', pastSimple: 'grew', pastParticiple: 'grown', spanish: 'crecer', explanation: 'Aumentar de tamaño; cultivar plantas.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'hang', pastSimple: 'hung', pastParticiple: 'hung', spanish: 'colgar', explanation: 'Suspender algo desde un punto.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'have', pastSimple: 'had', pastParticiple: 'had', spanish: 'tener', explanation: 'Poseer algo; también se usa como verbo auxiliar.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'hear', pastSimple: 'heard', pastParticiple: 'heard', spanish: 'oír', explanation: 'Percibir sonidos con el oído.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'hide', pastSimple: 'hid', pastParticiple: 'hidden', spanish: 'esconder(se)', explanation: 'Poner algo o a uno mismo donde no se pueda ver.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'hit', pastSimple: 'hit', pastParticiple: 'hit', spanish: 'golpear', explanation: 'Impactar algo o a alguien.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'hold', pastSimple: 'held', pastParticiple: 'held', spanish: 'sostener', explanation: 'Mantener algo con las manos.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'hurt', pastSimple: 'hurt', pastParticiple: 'hurt', spanish: 'herir', explanation: 'Causar dolor físico o emocional.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'keep', pastSimple: 'kept', pastParticiple: 'kept', spanish: 'mantener', explanation: 'Continuar teniendo o haciendo algo; guardar.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'kneel', pastSimple: 'knelt', pastParticiple: 'knelt', spanish: 'arrodillarse', explanation: 'Ponerse de rodillas.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'know', pastSimple: 'knew', pastParticiple: 'known', spanish: 'saber/conocer', explanation: 'Tener información o familiaridad con alguien.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'lay', pastSimple: 'laid', pastParticiple: 'laid', spanish: 'poner, colocar', explanation: 'Poner algo en una superficie, usualmente con cuidado.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'lead', pastSimple: 'led', pastParticiple: 'led', spanish: 'liderar', explanation: 'Guiar a un grupo; estar al frente.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'lean', pastSimple: 'leant/leaned', pastParticiple: 'leant/leaned', spanish: 'apoyarse', explanation: 'Inclinarse o descansar sobre algo.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'leap', pastSimple: 'leapt/leaped', pastParticiple: 'leapt/leaped', spanish: 'saltar', explanation: 'Dar un gran salto.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'learn', pastSimple: 'learnt/learned', pastParticiple: 'learnt/learned', spanish: 'aprender', explanation: 'Adquirir conocimiento o una habilidad.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'leave', pastSimple: 'left', pastParticiple: 'left', spanish: 'dejar/irse', explanation: 'Salir de un lugar; abandonar algo.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'lend', pastSimple: 'lent', pastParticiple: 'lent', spanish: 'prestar', explanation: 'Dar algo a alguien temporalmente.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'let', pastSimple: 'let', pastParticiple: 'let', spanish: 'permitir', explanation: 'Dejar que alguien haga algo.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'lie', pastSimple: 'lay', pastParticiple: 'lain', spanish: 'yacer, tumbarse', explanation: 'Estar en una posición horizontal.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'light', pastSimple: 'lit', pastParticiple: 'lit', spanish: 'encender', explanation: 'Hacer que algo empiece a arder o a dar luz.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'lose', pastSimple: 'lost', pastParticiple: 'lost', spanish: 'perder', explanation: 'No poder encontrar algo; no ganar un juego.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'make', pastSimple: 'made', pastParticiple: 'made', spanish: 'hacer/fabricar', explanation: 'Crear o producir algo.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'mean', pastSimple: 'meant', pastParticiple: 'meant', spanish: 'significar', explanation: 'Tener un significado o querer decir algo.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'meet', pastSimple: 'met', pastParticiple: 'met', spanish: 'conocer/reunirse', explanation: 'Encontrarse con alguien por primera vez o con un propósito.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'mow', pastSimple: 'mowed', pastParticiple: 'mown/mowed', spanish: 'segar, cortar', explanation: 'Cortar el césped.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'pay', pastSimple: 'paid', pastParticiple: 'paid', spanish: 'pagar', explanation: 'Dar dinero por un producto o servicio.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'put', pastSimple: 'put', pastParticiple: 'put', spanish: 'poner', explanation: 'Colocar algo en un lugar.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'read', pastSimple: 'read', pastParticiple: 'read', spanish: 'leer', explanation: 'Mirar y entender texto escrito.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'ride', pastSimple: 'rode', pastParticiple: 'ridden', spanish: 'montar', explanation: 'Viajar en un vehículo como bicicleta, moto o a caballo.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'ring', pastSimple: 'rang', pastParticiple: 'rung', spanish: 'sonar, llamar', explanation: 'Hacer que un teléfono o timbre suene.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'rise', pastSimple: 'rose', pastParticiple: 'risen', spanish: 'elevarse', explanation: 'Moverse hacia arriba; el sol lo hace cada mañana.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'run', pastSimple: 'ran', pastParticiple: 'run', spanish: 'correr', explanation: 'Moverse rápidamente con los pies.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'saw', pastSimple: 'sawed', pastParticiple: 'sawn/sawed', spanish: 'serrar', explanation: 'Cortar madera con una sierra.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'say', pastSimple: 'said', pastParticiple: 'said', spanish: 'decir', explanation: 'Expresar algo con palabras.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'see', pastSimple: 'saw', pastParticiple: 'seen', spanish: 'ver', explanation: 'Percibir con los ojos.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'seek', pastSimple: 'sought', pastParticiple: 'sought', spanish: 'buscar', explanation: 'Intentar encontrar o conseguir algo (más formal).', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'sell', pastSimple: 'sold', pastParticiple: 'sold', spanish: 'vender', explanation: 'Dar algo a cambio de dinero.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'send', pastSimple: 'sent', pastParticiple: 'sent', spanish: 'enviar', explanation: 'Hacer que algo llegue a otro lugar (una carta, un email).', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'set', pastSimple: 'set', pastParticiple: 'set', spanish: 'establecer', explanation: 'Poner algo en un lugar; configurar (una alarma).', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'sew', pastSimple: 'sewed', pastParticiple: 'sewn/sewed', spanish: 'coser', explanation: 'Unir tela con hilo y aguja.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'shake', pastSimple: 'shook', pastParticiple: 'shaken', spanish: 'agitar', explanation: 'Mover algo rápidamente de un lado a otro.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'shed', pastSimple: 'shed', pastParticiple: 'shed', spanish: 'derramar', explanation: 'Dejar caer (lágrimas, hojas de un árbol).', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'shine', pastSimple: 'shone', pastParticiple: 'shone', spanish: 'brillar', explanation: 'Producir o reflejar luz.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'shoot', pastSimple: 'shot', pastParticiple: 'shot', spanish: 'disparar', explanation: 'Lanzar una bala desde un arma; sacar una foto.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'show', pastSimple: 'showed', pastParticiple: 'shown', spanish: 'mostrar', explanation: 'Dejar que alguien vea algo.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'shrink', pastSimple: 'shrank', pastParticiple: 'shrunk', spanish: 'encoger(se)', explanation: 'Hacerse más pequeño.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'shut', pastSimple: 'shut', pastParticiple: 'shut', spanish: 'cerrar', explanation: 'Mover algo para cubrir una abertura (una puerta, los ojos).', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'sing', pastSimple: 'sang', pastParticiple: 'sung', spanish: 'cantar', explanation: 'Producir música con la voz.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'sink', pastSimple: 'sank', pastParticiple: 'sunk', spanish: 'hundir(se)', explanation: 'Irse hacia el fondo del agua.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'sit', pastSimple: 'sat', pastParticiple: 'sat', spanish: 'sentarse', explanation: 'Poner el cuerpo en una silla o en el suelo.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'sleep', pastSimple: 'slept', pastParticiple: 'slept', spanish: 'dormir', explanation: 'Descansar con los ojos cerrados.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'slide', pastSimple: 'slid', pastParticiple: 'slid', spanish: 'deslizar(se)', explanation: 'Moverse suavemente sobre una superficie.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'smell', pastSimple: 'smelt/smelled', pastParticiple: 'smelt/smelled', spanish: 'oler', explanation: 'Percibir un aroma con la nariz.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'sow', pastSimple: 'sowed', pastParticiple: 'sown/sowed', spanish: 'sembrar', explanation: 'Plantar semillas en la tierra.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'speak', pastSimple: 'spoke', pastParticiple: 'spoken', spanish: 'hablar', explanation: 'Decir palabras; conversar.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'speed', pastSimple: 'sped', pastParticiple: 'sped', spanish: 'acelerar', explanation: 'Ir muy rápido.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'spell', pastSimple: 'spelt/spelled', pastParticiple: 'spelt/spelled', spanish: 'deletrear', explanation: 'Decir las letras de una palabra en orden.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'spend', pastSimple: 'spent', pastParticiple: 'spent', spanish: 'gastar/pasar', explanation: 'Usar dinero para comprar; pasar el tiempo.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'spill', pastSimple: 'spilt/spilled', pastParticiple: 'spilt/spilled', spanish: 'derramar', explanation: 'Dejar caer un líquido por accidente.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'spin', pastSimple: 'spun', pastParticiple: 'spun', spanish: 'girar', explanation: 'Rotar sobre un eje rápidamente.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'spit', pastSimple: 'spat', pastParticiple: 'spat', spanish: 'escupir', explanation: 'Expulsar saliva de la boca.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'split', pastSimple: 'split', pastParticiple: 'split', spanish: 'dividir', explanation: 'Separar algo en dos o más partes.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'spoil', pastSimple: 'spoilt/spoiled', pastParticiple: 'spoilt/spoiled', spanish: 'estropear', explanation: 'Arruinar algo; malcriar a un niño.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'spread', pastSimple: 'spread', pastParticiple: 'spread', spanish: 'extender(se)', explanation: 'Cubrir una superficie; difundir (noticias).', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'spring', pastSimple: 'sprang', pastParticiple: 'sprung', spanish: 'saltar', explanation: 'Moverse hacia arriba o adelante de repente.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'stand', pastSimple: 'stood', pastParticiple: 'stood', spanish: 'estar de pie', explanation: 'Sostenerse sobre los propios pies.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'steal', pastSimple: 'stole', pastParticiple: 'stolen', spanish: 'robar', explanation: 'Tomar algo que no es tuyo sin permiso.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'stick', pastSimple: 'stuck', pastParticiple: 'stuck', spanish: 'pegar, atascarse', explanation: 'Adherir con pegamento; quedarse inmóvil.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'sting', pastSimple: 'stung', pastParticiple: 'stung', spanish: 'picar', explanation: 'Causar dolor con un aguijón (abeja, escorpión).', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'stink', pastSimple: 'stank', pastParticiple: 'stunk', spanish: 'apestar', explanation: 'Tener un olor muy malo.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'strike', pastSimple: 'struck', pastParticiple: 'struck', spanish: 'golpear', explanation: 'Impactar con fuerza; hacer una huelga.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'swear', pastSimple: 'swore', pastParticiple: 'sworn', spanish: 'jurar', explanation: 'Hacer una promesa solemne; decir groserías.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'sweep', pastSimple: 'swept', pastParticiple: 'swept', spanish: 'barrer', explanation: 'Limpiar el suelo con una escoba.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'swell', pastSimple: 'swelled', pastParticiple: 'swollen', spanish: 'hinchar(se)', explanation: 'Aumentar de tamaño por acumulación de líquido.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'swim', pastSimple: 'swam', pastParticiple: 'swum', spanish: 'nadar', explanation: 'Moverse en el agua usando brazos y piernas.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'swing', pastSimple: 'swung', pastParticiple: 'swung', spanish: 'balancear(se)', explanation: 'Moverse hacia adelante y atrás desde un punto fijo.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'take', pastSimple: 'took', pastParticiple: 'taken', spanish: 'tomar/coger', explanation: 'Agarrar algo; llevar algo contigo.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'teach', pastSimple: 'taught', pastParticiple: 'taught', spanish: 'enseñar', explanation: 'Dar conocimiento o habilidades a alguien.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'tear', pastSimple: 'tore', pastParticiple: 'torn', spanish: 'rasgar', explanation: 'Romper papel, tela, etc., tirando de él.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'tell', pastSimple: 'told', pastParticiple: 'told', spanish: 'decir/contar', explanation: 'Comunicar información a alguien.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'think', pastSimple: 'thought', pastParticiple: 'thought', spanish: 'pensar', explanation: 'Usar la mente para considerar algo o tener una idea.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'throw', pastSimple: 'threw', pastParticiple: 'thrown', spanish: 'lanzar/tirar', explanation: 'Impulsar algo por el aire con la mano.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'thrust', pastSimple: 'thrust', pastParticiple: 'thrust', spanish: 'empujar', explanation: 'Empujar algo con fuerza y de repente.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'tread', pastSimple: 'trod', pastParticiple: 'trodden', spanish: 'pisar', explanation: 'Poner el pie sobre algo.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'understand', pastSimple: 'understood', pastParticiple: 'understood', spanish: 'entender', explanation: 'Comprender el significado de algo.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'wake', pastSimple: 'woke', pastParticiple: 'woken', spanish: 'despertar', explanation: 'Dejar de dormir.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'wear', pastSimple: 'wore', pastParticiple: 'worn', spanish: 'llevar puesto', explanation: 'Tener ropa, joyas, etc., en el cuerpo.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'weave', pastSimple: 'wove', pastParticiple: 'woven', spanish: 'tejer', explanation: 'Entrelazar hilos para hacer tela.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'weep', pastSimple: 'wept', pastParticiple: 'wept', spanish: 'llorar', explanation: 'Derramar lágrimas por tristeza.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'win', pastSimple: 'won', pastParticiple: 'won', spanish: 'ganar', explanation: 'Ser el mejor en una competición o juego.', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'wind', pastSimple: 'wound', pastParticiple: 'wound', spanish: 'dar cuerda', explanation: 'Girar una llave para hacer funcionar un mecanismo (reloj).', imageUrl: 'URL_AQUÍ' },
+            // { infinitive: 'write', pastSimple: 'wrote', pastParticiple: 'written', spanish: 'escribir', explanation: 'Formar letras o palabras en una superficie.', imageUrl: 'URL_AQUÍ' }
+        ];
+        
+        // --- Constantes de la Sesión ---
+        const VERBS_PER_DAY = 5;
+        const ATTEMPTS_PER_VERB = 5;
+        const REINFORCE_ATTEMPTS_RED = 4;
+        const REINFORCE_ATTEMPTS_YELLOW = 2;
+
+        // --- Elementos del DOM ---
+        const startScreen = document.getElementById('start-screen');
+        const practiceScreen = document.getElementById('practice-screen');
+        const summaryScreen = document.getElementById('summary-screen');
+        const startSessionBtn = document.getElementById('start-session-btn');
+        const resetVerbsBtn = document.getElementById('reset-verbs-btn');
+        const goToStartBtn = document.getElementById('go-to-start-btn');
+        const reinforceBtn = document.getElementById('reinforce-btn');
+        const dailyVerbsListEl = document.getElementById('daily-verbs-list');
+        
+        const sessionTitleEl = document.getElementById('session-title');
+        const progressTrackerEl = document.getElementById('progress-tracker');
+        const verbImageEl = document.getElementById('verb-image');
+        const spanishVerbEl = document.getElementById('spanish-verb');
+        const verbExplanationEl = document.getElementById('verb-explanation');
+        const infinitiveInput = document.getElementById('infinitive');
+        const pastSimpleInput = document.getElementById('past-simple');
+        const pastParticipleInput = document.getElementById('past-participle');
+        const checkBtn = document.getElementById('check-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const feedbackMessageEl = document.getElementById('feedback-message');
+        
+        const correctInfinitiveEl = document.getElementById('correct-infinitive');
+        const correctPastSimpleEl = document.getElementById('correct-past-simple');
+        const correctPastParticipleEl = document.getElementById('correct-past-participle');
+        const summaryStatsEl = document.getElementById('summary-stats');
+        
+        const exitSessionBtn = document.getElementById('exit-session-btn');
+        const exitModal = document.getElementById('exit-modal');
+        const confirmExitBtn = document.getElementById('confirm-exit-btn');
+        const cancelExitBtn = document.getElementById('cancel-exit-btn');
+        const fullscreenBtn = document.getElementById('fullscreen-btn');
+        const fullscreenEnterIcon = document.getElementById('fullscreen-enter-icon');
+        const fullscreenExitIcon = document.getElementById('fullscreen-exit-icon');
+
+        const inputs = [infinitiveInput, pastSimpleInput, pastParticipleInput];
+
+        // --- Estado de la Aplicación ---
+        let dailyVerbs = [];
+        let sessionStats = {};
+        let currentVerb = null;
+        let isCorrectionMode = false;
+        let questionDeck = [];
+        let currentQuestionIndex = 0;
+        let isReinforcementSession = false;
+
+
+        // --- Lógica Principal ---
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function setupDailyVerbs(forceReset = false) {
+            const today = new Date().toISOString().split('T')[0];
+            const storageKey = `dailyVerbs-${today}`;
+
+            if (forceReset) {
+                localStorage.removeItem(storageKey);
+            }
+
+            let storedVerbs = localStorage.getItem(storageKey);
+
+            if (storedVerbs) {
+                dailyVerbs = JSON.parse(storedVerbs);
+            } else {
+                const activeVerbs = ALL_VERBS.filter(verb => verb.imageUrl && !verb.imageUrl.includes('URL_AQUÍ'));
+                const shuffled = [...activeVerbs].sort(() => 0.5 - Math.random());
+                dailyVerbs = shuffled.slice(0, VERBS_PER_DAY);
+                localStorage.setItem(storageKey, JSON.stringify(dailyVerbs));
+            }
+
+            dailyVerbsListEl.innerHTML = '';
+            dailyVerbs.forEach(verb => {
+                const li = document.createElement('li');
+                li.innerHTML = `<span class="font-semibold">${verb.infinitive}</span> - ${verb.pastSimple} - ${verb.pastParticiple} - <span class="text-slate-600">${verb.spanish}</span>`;
+                dailyVerbsListEl.appendChild(li);
+            });
+        }
+        
+        function createQuestionDeck(verbs, attemptsPer) {
+            const deck = [];
+            verbs.forEach(verb => {
+                for (let i = 0; i < attemptsPer; i++) {
+                    deck.push(verb);
+                }
+            });
+            shuffleArray(deck);
+            return deck;
+        }
+
+        function startMainSession() {
+            isReinforcementSession = false;
+            sessionStats = {};
+            dailyVerbs.forEach(verb => {
+                sessionStats[verb.infinitive] = { ...verb, errors: 0, attempts: 0 };
+            });
+            questionDeck = createQuestionDeck(dailyVerbs, ATTEMPTS_PER_VERB);
+            currentQuestionIndex = 0;
+            
+            sessionTitleEl.textContent = "Sesión Diaria";
+            startScreen.classList.add('hidden');
+            summaryScreen.classList.add('hidden');
+            practiceScreen.classList.remove('hidden');
+
+            setupNextQuestion();
+        }
+        
+        function startReinforcementSession() {
+            isReinforcementSession = true;
+            
+            const redZoneVerbs = Object.values(sessionStats).filter(stat => {
+                const percentage = stat.attempts > 0 ? 100 - Math.round((stat.errors / stat.attempts) * 100) : 100;
+                return percentage <= 50;
+            });
+
+            const yellowZoneVerbs = Object.values(sessionStats).filter(stat => {
+                const percentage = stat.attempts > 0 ? 100 - Math.round((stat.errors / stat.attempts) * 100) : 100;
+                return percentage > 50 && percentage <= 80;
+            });
+
+            const redDeck = createQuestionDeck(redZoneVerbs, REINFORCE_ATTEMPTS_RED);
+            const yellowDeck = createQuestionDeck(yellowZoneVerbs, REINFORCE_ATTEMPTS_YELLOW);
+            
+            questionDeck = [...redDeck, ...yellowDeck];
+            shuffleArray(questionDeck);
+
+            currentQuestionIndex = 0;
+            
+            sessionTitleEl.textContent = "Sesión de Refuerzo";
+            summaryScreen.classList.add('hidden');
+            practiceScreen.classList.remove('hidden');
+
+            setupNextQuestion();
+        }
+        
+        function goToStartScreen() {
+            summaryScreen.classList.add('hidden');
+            practiceScreen.classList.add('hidden');
+            startScreen.classList.remove('hidden');
+            setupDailyVerbs();
+        }
+
+        function setupNextQuestion() {
+            if (currentQuestionIndex >= questionDeck.length) {
+                if(isReinforcementSession) {
+                    goToStartScreen();
+                } else {
+                    showSummary();
+                }
+                return;
+            }
+            
+            currentVerb = questionDeck[currentQuestionIndex];
+            currentQuestionIndex++;
+
+            // Reset UI
+            progressTrackerEl.textContent = `Pregunta ${currentQuestionIndex} / ${questionDeck.length}`;
+            verbImageEl.src = currentVerb.imageUrl || '';
+            verbImageEl.style.animation = 'none';
+            verbImageEl.offsetHeight;
+            verbImageEl.style.animation = null;
+            
+            spanishVerbEl.textContent = currentVerb.spanish;
+            verbExplanationEl.textContent = currentVerb.explanation;
+            feedbackMessageEl.classList.add('hidden');
+            checkBtn.textContent = 'Revisar';
+            checkBtn.disabled = false;
+            nextBtn.disabled = true;
+
+            inputs.forEach(input => {
+                input.value = '';
+                input.disabled = false;
+                input.classList.remove('correct', 'incorrect', 'correction-mode');
+            });
+            
+            [correctInfinitiveEl, correctPastSimpleEl, correctPastParticipleEl].forEach(el => el.classList.add('hidden'));
+
+            infinitiveInput.focus();
+        }
+
+        function checkAnswer() {
+            if (isCorrectionMode) {
+                handleCorrection();
+                return;
+            }
+
+            const userInfinitive = infinitiveInput.value.trim().toLowerCase();
+            const userPastSimple = pastSimpleInput.value.trim().toLowerCase();
+            const userPastParticiple = pastParticipleInput.value.trim().toLowerCase();
+
+            let allCorrect = true;
+            
+            const isInfCorrect = userInfinitive === currentVerb.infinitive;
+            infinitiveInput.classList.toggle('correct', isInfCorrect);
+            infinitiveInput.classList.toggle('incorrect', !isInfCorrect);
+            if (!isInfCorrect) allCorrect = false;
+
+            const correctPastSimples = currentVerb.pastSimple.split('/');
+            const isPastCorrect = correctPastSimples.includes(userPastSimple);
+            pastSimpleInput.classList.toggle('correct', isPastCorrect);
+            pastSimpleInput.classList.toggle('incorrect', !isPastCorrect);
+            if (!isPastCorrect) allCorrect = false;
+
+            const isParticipleCorrect = currentVerb.pastParticiple.split('/').includes(userPastParticiple);
+            pastParticipleInput.classList.toggle('correct', isParticipleCorrect);
+            pastParticipleInput.classList.toggle('incorrect', !isParticipleCorrect);
+            if (!isParticipleCorrect) allCorrect = false;
+            
+            if (!isReinforcementSession) {
+                const statEntry = sessionStats[currentVerb.infinitive];
+                statEntry.attempts++;
+                 if (!allCorrect) {
+                    statEntry.errors++;
+                }
+            }
+           
+            if (allCorrect) {
+                handleCorrectAnswer();
+            } else {
+                handleIncorrectAnswer();
+            }
+        }
+
+        function handleCorrectAnswer() {
+            feedbackMessageEl.textContent = '¡Correcto!';
+            feedbackMessageEl.classList.remove('hidden', 'bg-red-100', 'text-red-700', 'bg-blue-100', 'text-blue-700');
+            feedbackMessageEl.classList.add('bg-green-100', 'text-green-700');
+            checkBtn.disabled = true;
+            nextBtn.disabled = false;
+            inputs.forEach(input => input.disabled = true);
+            nextBtn.focus();
+        }
+
+        function handleIncorrectAnswer() {
+            isCorrectionMode = true;
+            feedbackMessageEl.textContent = 'Incorrecto. Escribe las formas correctas para continuar.';
+            feedbackMessageEl.classList.remove('hidden', 'bg-green-100', 'text-green-700');
+            feedbackMessageEl.classList.add('bg-red-100', 'text-red-700');
+            
+            checkBtn.textContent = 'Confirmar Corrección';
+            
+            correctInfinitiveEl.textContent = `Correcto: ${currentVerb.infinitive}`;
+            correctPastSimpleEl.textContent = `Correcto: ${currentVerb.pastSimple}`;
+            correctPastParticipleEl.textContent = `Correcto: ${currentVerb.pastParticiple}`;
+
+            if (!infinitiveInput.classList.contains('correct')) {
+                correctInfinitiveEl.classList.remove('hidden');
+                infinitiveInput.value = '';
+                infinitiveInput.classList.add('correction-mode');
+                infinitiveInput.focus();
+            }
+            if (!pastSimpleInput.classList.contains('correct')) {
+                correctPastSimpleEl.classList.remove('hidden');
+                pastSimpleInput.value = '';
+                pastSimpleInput.classList.add('correction-mode');
+            }
+            if (!pastParticipleInput.classList.contains('correct')) {
+                correctPastParticipleEl.classList.remove('hidden');
+                pastParticipleInput.value = '';
+                pastParticipleInput.classList.add('correction-mode');
+            }
+        }
+        
+        function handleCorrection() {
+            let correctionComplete = true;
+            if (infinitiveInput.classList.contains('correction-mode') && infinitiveInput.value.trim().toLowerCase() !== currentVerb.infinitive) correctionComplete = false;
+            
+            const correctPastSimples = currentVerb.pastSimple.split('/');
+            if (pastSimpleInput.classList.contains('correction-mode') && !correctPastSimples.includes(pastSimpleInput.value.trim().toLowerCase())) correctionComplete = false;
+            
+            const correctPastParticiples = currentVerb.pastParticiple.split('/');
+            if (pastParticipleInput.classList.contains('correction-mode') && !correctPastParticiples.includes(pastParticipleInput.value.trim().toLowerCase())) correctionComplete = false;
+
+            if(correctionComplete) {
+                feedbackMessageEl.textContent = '¡Muy bien! Error corregido.';
+                feedbackMessageEl.classList.remove('bg-red-100', 'text-red-700');
+                feedbackMessageEl.classList.add('bg-blue-100', 'text-blue-700');
+                isCorrectionMode = false;
+                checkBtn.disabled = true;
+                checkBtn.textContent = 'Revisar';
+                nextBtn.disabled = false;
+                inputs.forEach(input => input.disabled = true);
+                nextBtn.focus();
+            } else {
+                 feedbackMessageEl.textContent = 'Aún no es correcto. Cópialo exactamente como se muestra.';
+            }
+        }
+
+        function showSummary() {
+            practiceScreen.classList.add('hidden');
+            summaryScreen.classList.remove('hidden');
+            
+            summaryStatsEl.innerHTML = '';
+            
+            const sortedStats = Object.values(sessionStats).sort((a, b) => {
+                const percentageA = a.attempts > 0 ? 100 - Math.round((a.errors / a.attempts) * 100) : 100;
+                const percentageB = b.attempts > 0 ? 100 - Math.round((b.errors / b.attempts) * 100) : 100;
+                return percentageA - percentageB;
+            });
+
+            const failedVerbs = sortedStats.filter(stat => {
+                const percentage = stat.attempts > 0 ? 100 - Math.round((stat.errors / stat.attempts) * 100) : 100;
+                return percentage <= 80;
+            });
+
+            if (failedVerbs.length > 0) {
+                reinforceBtn.classList.remove('hidden');
+            } else {
+                reinforceBtn.classList.add('hidden');
+            }
+
+            const title = document.createElement('h2');
+            title.className = 'text-xl font-bold text-slate-700 mb-4 border-b pb-2';
+            title.textContent = 'Resultados del Examen';
+            summaryStatsEl.appendChild(title);
+
+            sortedStats.forEach(stat => {
+                const percentage = stat.attempts > 0 ? 100 - Math.round((stat.errors / stat.attempts) * 100) : 100;
+                let bgColor = '';
+                if (percentage <= 50) {
+                    bgColor = 'bg-red-50';
+                } else if (percentage <= 80) {
+                    bgColor = 'bg-amber-50';
+                }
+
+                const statDiv = document.createElement('div');
+                statDiv.className = `flex justify-between items-center p-3 rounded-lg ${bgColor}`;
+                statDiv.innerHTML = `
+                    <div class="text-left">
+                        <p class="font-bold text-lg text-slate-800">${stat.infinitive} / ${stat.pastSimple} / ${stat.pastParticiple}</p>
+                        <p class="text-sm text-slate-500">${stat.errors} ${stat.errors === 1 ? 'error' : 'errores'} de ${stat.attempts} intentos</p>
+                    </div>
+                    <div class="font-bold text-xl ${percentage <= 80 ? 'text-red-500' : 'text-green-500'}">
+                        ${percentage}%
+                    </div>
+                `;
+                summaryStatsEl.appendChild(statDiv);
+            });
+        }
+        
+        function toggleFullScreen() {
+            const doc = window.document;
+            const docEl = document.documentElement;
+
+            const requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullscreen || docEl.msRequestFullscreen;
+            const cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+            if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+                requestFullScreen.call(docEl);
+                fullscreenEnterIcon.classList.add('hidden');
+                fullscreenExitIcon.classList.remove('hidden');
+            }
+            else {
+                cancelFullScreen.call(doc);
+                fullscreenEnterIcon.classList.remove('hidden');
+                fullscreenExitIcon.classList.add('hidden');
+            }
+        }
+
+        // --- Event Listeners ---
+        startSessionBtn.addEventListener('click', startMainSession);
+        reinforceBtn.addEventListener('click', startReinforcementSession);
+        resetVerbsBtn.addEventListener('click', () => setupDailyVerbs(true));
+        goToStartBtn.addEventListener('click', goToStartScreen);
+        checkBtn.addEventListener('click', checkAnswer);
+        nextBtn.addEventListener('click', setupNextQuestion);
+        
+        exitSessionBtn.addEventListener('click', () => exitModal.classList.remove('hidden'));
+        cancelExitBtn.addEventListener('click', () => exitModal.classList.add('hidden'));
+        confirmExitBtn.addEventListener('click', () => {
+            exitModal.classList.add('hidden');
+            goToStartScreen();
+        });
+        
+        fullscreenBtn.addEventListener('click', toggleFullScreen);
+
+        inputs.forEach(input => {
+            input.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    if (!checkBtn.disabled) {
+                        checkBtn.click();
+                    } else if (!nextBtn.disabled) {
+                        nextBtn.click();
+                    }
+                }
+            });
+        });
+
+        // --- Inicialización ---
+        window.onload = function() {
+            setupDailyVerbs();
+        };
+    </script>
+</body>
+</html>
