@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrenador de Verbos Diarios</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-slate-100 flex items-center justify-center min-h-screen p-4">
+
+    <div id="app-container" class="w-full max-w-2xl mx-auto">
+        <button id="fullscreen-btn" title="Pantalla Completa" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition-colors p-2 rounded-full hover:bg-slate-100">
+            <svg id="fullscreen-enter-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+            <svg id="fullscreen-exit-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/></svg>
+        </button>
+        <!-- Pantalla de Inicio -->
+        <div id="start-screen" class="text-center">
+             <div class="bg-white rounded-2xl card-shadow p-8">
+                
+                <h1 class="text-3xl font-bold text-slate-800 mb-2">Entrenador de Verbos Diarios</h1>
+                <p class="text-slate-500 mb-6">Aprende 5 verbos nuevos cada día. ¿Listo para empezar?</p>
+                <p class="text-lg font-semibold text-indigo-600 mb-2">Verbos para la sesión de hoy:</p>
+                <p class="text-sm text-slate-500 mb-4">Infinitive - Past Simple - Past Participle - Español</p>
+                <ul id="daily-verbs-list" class="bg-slate-50 rounded-lg p-4 mb-6 text-slate-800 text-left space-y-2">
+                    <!-- La lista de verbos se insertará aquí -->
+                </ul>
+                <div class="space-y-4">
+                    <button id="start-session-btn" class="w-full bg-indigo-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 btn-primary text-lg">
+                        Comenzar Sesión (20 preguntas)
+                    </button>
+                   
+                    <button id="refresh-verbs-btn" class="flex-1 bg-emerald-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 text-sm">
+                        🔄 Refrescar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pantalla de Práctica -->
+        <div id="practice-screen" class="hidden">
+            <div class="bg-white rounded-2xl card-shadow overflow-hidden relative">
+                 <button id="exit-session-btn" title="Volver al inicio" class="absolute top-4 left-4 text-slate-400 hover:text-slate-600 transition-colors p-2 rounded-full hover:bg-slate-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                </button>
+                
+                <div class="p-6 sm:p-8">
+                    <div class="flex justify-between items-center mb-4">
+                        <h1 id="session-title" class="text-2xl sm:text-3xl font-bold text-slate-800 ml-12">Sesión Diaria</h1>
+                        <div id="progress-tracker" class="font-bold text-indigo-600 bg-indigo-100 rounded-full px-4 py-1 text-sm"></div>
+                    </div>
+                    
+                    <div id="verb-image-container" class="mb-4 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img id="verb-image" src="" alt="Representación visual del verbo" onerror="this.onerror=null;this.src='https://placehold.co/400x400/e2e8f0/475569?text=Imagen+no+disponible';">
+                    </div>
+
+                    <div id="verb-display" class="bg-slate-50 rounded-lg p-4 mb-6 text-center">
+                        <p class="text-lg text-slate-600">Verbo en español:</p>
+                        <p id="spanish-verb" class="text-3xl font-bold text-indigo-600"></p>
+                        <p id="verb-explanation" class="text-slate-500 text-sm mt-2 italic px-4"></p>
+                    </div>
+
+                    <div id="verb-inputs" class="space-y-4">
+                        <div>
+                            <label for="infinitive" class="block text-sm font-medium text-slate-700 mb-1">Infinitive (Infinitivo)</label>
+                            <input type="text" id="infinitive" class="input-field w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500" autocomplete="off" autocorrect="off" autocapitalize="none">
+                            <p id="correct-infinitive" class="text-sm text-green-600 mt-1 font-semibold hidden"></p>
+                        </div>
+                        <div>
+                            <label for="past-simple" class="block text-sm font-medium text-slate-700 mb-1">Past Simple (Pasado Simple)</label>
+                            <input type="text" id="past-simple" class="input-field w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500" autocomplete="off" autocorrect="off" autocapitalize="none">
+                            <p id="correct-past-simple" class="text-sm text-green-600 mt-1 font-semibold hidden"></p>
+                        </div>
+                        <div>
+                            <label for="past-participle" class="block text-sm font-medium text-slate-700 mb-1">Past Participle (Participio Pasado)</label>
+                            <input type="text" id="past-participle" class="input-field w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500" autocomplete="off" autocorrect="off" autocapitalize="none">
+                            <p id="correct-past-participle" class="text-sm text-green-600 mt-1 font-semibold hidden"></p>
+                        </div>
+                    </div>
+
+                    <div id="feedback-message" class="mt-6 text-center font-medium text-lg hidden p-3 rounded-lg"></div>
+
+                    <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <button id="check-btn" class="w-full bg-indigo-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-indigo-700 btn-primary">Revisar</button>
+                        <button id="next-btn" class="w-full bg-slate-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-slate-700 btn-primary" disabled>Siguiente</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pantalla de Resumen -->
+        <div id="summary-screen" class="hidden">
+            <div class="bg-white rounded-2xl card-shadow p-8 text-center">
+                <h1 class="text-3xl font-bold text-slate-800 mb-2">¡Sesión Completada!</h1>
+                <p class="text-slate-500 mb-6">Este es el resumen de tu rendimiento de hoy.</p>
+                
+                <div id="summary-stats" class="space-y-4">
+                    <!-- Las estadísticas se insertarán aquí -->
+                </div>
+                
+                <div id="summary-buttons" class="mt-8 space-y-4">
+                     <button id="reinforce-btn" class="w-full bg-amber-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 btn-primary text-lg hidden">
+                        Reforzar Verbos con Errores
+                    </button>
+                    <button id="go-to-start-btn" class="w-full bg-indigo-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 btn-primary text-lg">
+                        Volver al Inicio
+                    </button>
+                </div>
+                <p class="mt-4 text-slate-500 text-sm">¡Sigue así! Vuelve mañana para una nueva sesión de verbos.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmación de Salida -->
+    <div id="exit-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden z-50">
+        <div class="bg-white rounded-lg p-8 card-shadow max-w-sm w-full text-center">
+            <h3 class="text-lg font-bold text-slate-800 mb-2">¿Salir de la sesión?</h3>
+            <p class="text-slate-600 mb-6">Tu progreso en esta sesión se perderá.</p>
+            <div class="flex justify-center gap-4">
+                <button id="cancel-exit-btn" class="w-full font-bold py-2 px-4 rounded-lg btn-secondary">Cancelar</button>
+                <button id="confirm-exit-btn" class="w-full bg-red-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-red-700 btn-primary">Sí, Salir</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/app.js"></script></body>
+</html>

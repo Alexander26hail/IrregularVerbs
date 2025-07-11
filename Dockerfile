@@ -3,7 +3,7 @@
 FROM nginx:alpine
 
 # Copiar nuestro archivo HTML al directorio que sirve nginx
-COPY "InglesVerbs.html" /usr/share/nginx/html/index.html
+COPY src/ /usr/share/nginx/html/
 
 # Copiar configuración personalizada de nginx (opcional)
 COPY nginx.conf /etc/nginx/nginx.conf
