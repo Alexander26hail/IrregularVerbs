@@ -145,38 +145,86 @@ const ALL_VERBS = [
     // { infinitive: 'wind', pastSimple: 'wound', pastParticiple: 'wound', spanish: 'dar cuerda', explanation: 'Girar una llave para hacer funcionar un mecanismo (reloj).', imageUrl: 'URL_AQUÍ' },
     // { infinitive: 'write', pastSimple: 'wrote', pastParticiple: 'written', spanish: 'escribir', explanation: 'Formar letras o palabras en una superficie.', imageUrl: 'URL_AQUÍ' }
 ]
-function generateDailyVerbs(forceReset = false) {
+// --- Generador de números pseudoaleatorios con semilla ---
+function createSeededRandom(seed) {
+    let hash = 0;
+    for (let i = 0; i < seed.length; i++) {
+        const char = seed.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash;
+    }
+    
+    let current = Math.abs(hash);
+    return function() {
+        current = (current * 1664525 + 1013904223) % Math.pow(2, 32);
+        return current / Math.pow(2, 32);
+    };
+}
+
+// --- Función determinista para mezclar array ---
+function deterministicShuffle(array, seed) {
+    const seededRandom = createSeededRandom(seed);
+    const result = [...array];
+    
+    for (let i = result.length - 1; i > 0; i--) {
+        const j = Math.floor(seededRandom() * (i + 1));
+        [result[i], result[j]] = [result[j], result[i]];
+    }
+    
+    return result;
+}
+function getCurrentVerbDay() {
     const today = new Date().toISOString().split('T')[0];
-    const storageKey = `dailyVerbs-${today}`;
-
-    // Si se fuerza reset, eliminar datos guardados
+    
+    // Verificar si hay un override manual para hoy
+    const manualOverride = localStorage.getItem(`verbDay-${today}`);
+    if (manualOverride) {
+        return manualOverride;
+    }
+    
+    // Si no hay override, usar la fecha actual
+    return today;
+}
+function forceNewVerbDay() {
+    const today = new Date().toISOString().split('T')[0];
+    const timestamp = Date.now().toString();
+    
+    // Crear un "día artificial" con timestamp
+    const artificialDay = `${today}-${timestamp}`;
+    
+    // Guardarlo para este día específico
+    localStorage.setItem(`verbDay-${today}`, artificialDay);
+    
+    console.log('🔄 Forzando nuevo día de verbos:', artificialDay);
+    
+    return artificialDay;
+}
+// --- Función principal para generar verbos diarios ---
+function generateDailyVerbs(forceReset = false) {
+    let verbDay;
+    
     if (forceReset) {
-        localStorage.removeItem(storageKey);
-    }
-
-    // Intentar obtener verbos guardados del día
-    let storedVerbs = localStorage.getItem(storageKey);
-
-    if (storedVerbs) {
-        // Si ya existen verbos para hoy, usarlos
-        return JSON.parse(storedVerbs);
+        verbDay = forceNewVerbDay();
     } else {
-        // Limpiar verbos de días anteriores
-        cleanOldDailyVerbs();
-        
-        
-        // Mezclar y seleccionar 5 verbos aleatorios
-        const shuffled = [...ALL_VERBS].sort(() => 0.5 - Math.random());
-        const newDailyVerbs = shuffled.slice(0, 5);
-        
-        // Guardar en localStorage
-        localStorage.setItem(storageKey, JSON.stringify(newDailyVerbs));
-        
-        // Guardar también metadata
-        localStorage.setItem('lastDailyVerbsUpdate', today);
-        
-        return newDailyVerbs;
+        verbDay = getCurrentVerbDay();
     }
+    
+    console.log('📅 Día de verbos:', verbDay);
+    
+    // Filtrar verbos activos
+    const activeVerbs = ALL_VERBS.filter(verb => 
+        verb.imageUrl && !verb.imageUrl.includes('URL_AQUÍ')
+    );
+    
+    // Mezclar con la semilla del día de verbos
+    const shuffledVerbs = deterministicShuffle(activeVerbs, verbDay);
+    
+    // Tomar los primeros 5
+    const dailyVerbs = shuffledVerbs.slice(0, 5);
+    
+    console.log('📚 Verbos generados:', dailyVerbs.map(v => v.infinitive));
+    
+    return dailyVerbs;
 }
 // --- Función para limpiar verbos de días anteriores ---
 function cleanOldDailyVerbs() {
@@ -184,23 +232,43 @@ function cleanOldDailyVerbs() {
     const today = new Date().toISOString().split('T')[0];
     
     keys.forEach(key => {
-        if (key.startsWith('dailyVerbs-') && !key.includes(today)) {
+        if (key.startsWith('dailyVerbs-') || 
+            (key.startsWith('verbDay-') && !key.includes(today))) {
             localStorage.removeItem(key);
+            console.log('🧹 Limpiando:', key);
         }
     });
 }
-// --- Función para verificar si necesita actualización automática ---
+// --- Función para verificar cambio de día ---
 function checkDailyUpdate() {
     const today = new Date().toISOString().split('T')[0];
-    const lastUpdate = localStorage.getItem('lastDailyVerbsUpdate');
+    const lastCheck = localStorage.getItem('lastDailyCheck');
     
-    if (lastUpdate !== today) {
-        // Es un nuevo día, generar nuevos verbos
-        return generateDailyVerbs(true);
+    if (lastCheck !== today) {
+        // Nuevo día natural - limpiar overrides del día anterior
+        const yesterday = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+        localStorage.removeItem(`verbDay-${yesterday}`);
+        localStorage.setItem('lastDailyCheck', today);
+        
+        console.log('🌅 Nuevo día detectado, limpiando datos antiguos...');
+        cleanOldDailyVerbs();
     }
     
     return generateDailyVerbs(false);
 }
+// --- Función para obtener info de debug ---
+function getDebugInfo() {
+    const today = new Date().toISOString().split('T')[0];
+    const verbDay = getCurrentVerbDay();
+    
+    return {
+        today,
+        verbDay,
+        isManualOverride: verbDay !== today,
+        lastCheck: localStorage.getItem('lastDailyCheck'),
+        verbs: generateDailyVerbs(false).map(v => v.infinitive)
+    };
+}
 // --- Generar DAILY_VERBS inicial ---
 const DAILY_VERBS = checkDailyUpdate();
-export { ALL_VERBS, DAILY_VERBS, generateDailyVerbs, checkDailyUpdate };
+export { ALL_VERBS, DAILY_VERBS, generateDailyVerbs, checkDailyUpdate, getDebugInfo };

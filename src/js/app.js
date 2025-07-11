@@ -1,4 +1,4 @@
-import {ALL_VERBS, DAILY_VERBS, generateDailyVerbs, checkDailyUpdate} from './verbs/verbs.js';
+import {ALL_VERBS, DAILY_VERBS, generateDailyVerbs, checkDailyUpdate,getDebugInfo} from './verbs/verbs.js';
 // --- Constantes de la Sesión ---
 const VERBS_PER_DAY = 5;
 const ATTEMPTS_PER_VERB = 4;
@@ -121,16 +121,14 @@ function showDayChangeNotification() {
 
 // --- Función para refrescar verbos manualmente ---
 function refreshDailyVerbs() {
-    // Mostrar confirmación
-    if (confirm('¿Estás seguro de que quieres generar nuevos verbos del día? Se perderá el progreso actual.')) {
+    if (confirm('¿Estás seguro de que quieres generar nuevos verbos del día? Esto se aplicará en TODOS los dispositivos.')) {
         dailyVerbs = generateDailyVerbs(true);
         displayDailyVerbs();
-        
-        // Reset de sesión si existe
         resetSessionStats();
-        
-        // Mostrar notificación
         showDayChangeNotification();
+        
+        // Mostrar debug info
+        console.log('🔍 Debug Info:', getDebugInfo());
     }
 }
 // --- Función para resetear estadísticas de sesión ---
@@ -644,6 +642,9 @@ document.addEventListener('touchend', function(event) {
 window.onload = function() {
     setupDailyVerbs();
     
+    // Mostrar info de debug en consola
+    console.log('🔍 Verbos Debug Info:', getDebugInfo());
+    
     // Verificar cambio de día cada 5 minutos
     setInterval(() => {
         const updatedVerbs = checkDailyUpdate();
@@ -651,6 +652,7 @@ window.onload = function() {
             dailyVerbs = [...updatedVerbs];
             displayDailyVerbs();
             showDayChangeNotification();
+            console.log('🔍 Verbos actualizados:', getDebugInfo());
         }
     }, 5 * 60 * 1000); // 5 minutos
 };
