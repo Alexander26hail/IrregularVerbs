@@ -1,0 +1,354 @@
+[
+    {
+        "infinitive": "arise",
+        "pastSimple": "arose", 
+        "pastParticiple": "arisen",
+        "spanish": "surgir",
+        "explanation": "Aparecer un problema o una oportunidad.",
+        "imageUrl": "https://i.imgur.com/GvjYkQj.png"
+    },
+    {
+        "infinitive": "awake",
+        "pastSimple": "awoke",
+        "pastParticiple": "awoken", 
+        "spanish": "despertar(se)",
+        "explanation": "Dejar de dormir o hacer que alguien lo haga.",
+        "imageUrl": "https://i.imgur.com/6e8GV0g.png"
+    },
+    {
+        "infinitive": "be",
+        "pastSimple": "was/were",
+        "pastParticiple": "been",
+        "spanish": "ser/estar", 
+        "explanation": "Indica existencia, estado o identidad.",
+        "imageUrl": "https://i.imgur.com/041TSxr.png"
+    },
+    {
+        "infinitive": "bear",
+        "pastSimple": "bore",
+        "pastParticiple": "born/borne",
+        "spanish": "soportar",
+        "explanation": "Aguantar algo pesado o difícil; dar a luz.",
+        "imageUrl": "https://i.imgur.com/7zprI00.png"
+    },
+    {
+        "infinitive": "beat",
+        "pastSimple": "beat", 
+        "pastParticiple": "beaten",
+        "spanish": "golpear",
+        "explanation": "Ganarle a alguien; golpear rítmicamente (un tambor).",
+        "imageUrl": "https://i.imgur.com/qQQb5RQ.png"
+    },
+    {
+        "infinitive": "become",
+        "pastSimple": "became",
+        "pastParticiple": "become",
+        "spanish": "convertirse en", 
+        "explanation": "Llegar a ser algo diferente; transformarse.",
+        "imageUrl": "https://i.imgur.com/4u5p2qT.png"
+    },
+    {
+        "infinitive": "begin",
+        "pastSimple": "began",
+        "pastParticiple": "begun",
+        "spanish": "empezar",
+        "explanation": "Iniciar o comenzar una acción.",
+        "imageUrl": "https://i.imgur.com/Q3ZDHjz.png"
+    },
+    {
+        "infinitive": "bend",
+        "pastSimple": "bent",
+        "pastParticiple": "bent", 
+        "spanish": "doblar(se)",
+        "explanation": "Curvar algo recto o a sí mismo.",
+        "imageUrl": "https://www.yogaclassplan.com/wp-content/uploads/2021/06/standing-half-forward-bend.jpg"
+    },
+    {
+        "infinitive": "bet",
+        "pastSimple": "bet",
+        "pastParticiple": "bet",
+        "spanish": "apostar",
+        "explanation": "Arriesgar dinero en el resultado de algo.",
+        "imageUrl": "https://i.imgur.com/Q6D6aOK.png"
+    },
+    {
+        "infinitive": "bind",
+        "pastSimple": "bound",
+        "pastParticiple": "bound",
+        "spanish": "atar",
+        "explanation": "Unir o sujetar algo con cuerdas; encuadernar.",
+        "imageUrl": "https://i.imgur.com/UUxnTFh.png"
+    },
+    {
+        "infinitive": "bite",
+        "pastSimple": "bit",
+        "pastParticiple": "bitten",
+        "spanish": "morder",
+        "explanation": "Usar los dientes para cortar algo.",
+        "imageUrl": "https://i.imgur.com/B2x2Mse.png"
+    },
+    {
+        "infinitive": "bleed",
+        "pastSimple": "bled", 
+        "pastParticiple": "bled",
+        "spanish": "sangrar",
+        "explanation": "Perder sangre por una herida.",
+        "imageUrl": "https://i.imgur.com/T0X8T1q.png"
+    },
+    {
+        "infinitive": "blow",
+        "pastSimple": "blew",
+        "pastParticiple": "blown",
+        "spanish": "soplar",
+        "explanation": "Mover el aire con la boca (velas, un globo).",
+        "imageUrl": "https://i.imgur.com/v6LZ5lo.png"
+    },
+    {
+        "infinitive": "break",
+        "pastSimple": "broke",
+        "pastParticiple": "broken",
+        "spanish": "romper",
+        "explanation": "Hacer que algo se separe en pedazos.",
+        "imageUrl": "https://i.imgur.com/gltSzEK.png"
+    },
+    {
+        "infinitive": "breed",
+        "pastSimple": "bred",
+        "pastParticiple": "bred",
+        "spanish": "criar",
+        "explanation": "Cuidar animales para que se reproduzcan.",
+        "imageUrl": "https://i.imgur.com/EVUOMIl.png"
+    },
+    {
+        "infinitive": "bring",
+        "pastSimple": "brought",
+        "pastParticiple": "brought",
+        "spanish": "traer",
+        "explanation": "Llevar algo o a alguien a un lugar.",
+        "imageUrl": "https://i.imgur.com/yIfEhrk.png"
+    },
+    {
+        "infinitive": "broadcast",
+        "pastSimple": "broadcast",
+        "pastParticiple": "broadcast",
+        "spanish": "transmitir",
+        "explanation": "Emitir un programa de radio o televisión.",
+        "imageUrl": "https://i.imgur.com/cbBlz59.png"
+    },
+    {
+        "infinitive": "build",
+        "pastSimple": "built",
+        "pastParticiple": "built",
+        "spanish": "construir",
+        "explanation": "Crear una estructura como una casa o un edificio.",
+        "imageUrl": "https://i.imgur.com/io1nz1P.png"
+    },
+    {
+        "infinitive": "burn", 
+        "pastSimple": "burnt/burned",
+        "pastParticiple": "burnt/burned",
+        "spanish": "quemar",
+        "explanation": "Dañar algo con fuego o calor.",
+        "imageUrl": "https://i.imgur.com/rTRFrdc.png"
+    },
+    {
+        "infinitive": "burst",
+        "pastSimple": "burst",
+        "pastParticiple": "burst",
+        "spanish": "reventar",
+        "explanation": "Romperse o explotar de repente.",
+        "imageUrl": "https://i.imgur.com/2XfIFqR.png"
+    },
+    {
+        "infinitive": "buy",
+        "pastSimple": "bought",
+        "pastParticiple": "bought",
+        "spanish": "comprar",
+        "explanation": "Obtener algo a cambio de dinero.",
+        "imageUrl": "https://i.imgur.com/lAQTFfM.png"
+    },
+    {
+        "infinitive": "cast",
+        "pastSimple": "cast",
+        "pastParticiple": "cast",
+        "spanish": "lanzar",
+        "explanation": "Tirar algo con fuerza; seleccionar actores.",
+        "imageUrl": "https://i.imgur.com/BeMrCHV.png"
+    },
+    {
+        "infinitive": "catch",
+        "pastSimple": "caught",
+        "pastParticiple": "caught",
+        "spanish": "atrapar",
+        "explanation": "Agarrar algo que se mueve, como una pelota.",
+        "imageUrl": "https://i.imgur.com/YsSDGel.png"
+    },
+    {
+        "infinitive": "choose",
+        "pastSimple": "chose",
+        "pastParticiple": "chosen",
+        "spanish": "elegir",
+        "explanation": "Seleccionar una opción entre varias.",
+        "imageUrl": "https://i.imgur.com/umc87Pv.png"
+    },
+    {
+        "infinitive": "cling",
+        "pastSimple": "clung",
+        "pastParticiple": "clung",
+        "spanish": "aferrarse",
+        "explanation": "Sujetarse a algo o alguien con fuerza.",
+        "imageUrl": "https://i.imgur.com/oVzNF1S.png"
+    },
+    {
+        "infinitive": "come",
+        "pastSimple": "came",
+        "pastParticiple": "come",
+        "spanish": "venir",
+        "explanation": "Moverse hacia el lugar donde está el hablante.",
+        "imageUrl": "https://i.imgur.com/sBYpwGH.png"
+    },
+    {
+        "infinitive": "cost",
+        "pastSimple": "cost",
+        "pastParticiple": "cost",
+        "spanish": "costar",
+        "explanation": "Tener un precio determinado.",
+        "imageUrl": "https://i.imgur.com/L3Lx1jo.png"
+    },
+    {
+        "infinitive": "creep",
+        "pastSimple": "crept",
+        "pastParticiple": "crept",
+        "spanish": "arrastrarse",
+        "explanation": "Moverse sigilosamente y en silencio.",
+        "imageUrl": "https://i.imgur.com/OVo2YgL.png"
+    },
+    {
+        "infinitive": "cut",
+        "pastSimple": "cut",
+        "pastParticiple": "cut",
+        "spanish": "cortar",
+        "explanation": "Dividir algo usando un objeto afilado.",
+        "imageUrl": "https://i.imgur.com/yuO7RLE.png"
+    },
+    {
+        "infinitive": "deal",
+        "pastSimple": "dealt",
+        "pastParticiple": "dealt",
+        "spanish": "tratar",
+        "explanation": "Ocuparse de un problema; repartir cartas.",
+        "imageUrl": "https://i.imgur.com/KJ7Fslr.png"
+    },
+    {
+        "infinitive": "dig",
+        "pastSimple": "dug",
+        "pastParticiple": "dug",
+        "spanish": "cavar",
+        "explanation": "Hacer un hoyo en la tierra.",
+        "imageUrl": "https://i.imgur.com/HKKcGay.png"
+    },
+    {
+        "infinitive": "do",
+        "pastSimple": "did",
+        "pastParticiple": "done",
+        "spanish": "hacer",
+        "explanation": "Realizar una actividad o tarea.",
+        "imageUrl": "https://i.imgur.com/zFdaIgH.png"
+    },
+    {
+        "infinitive": "draw",
+        "pastSimple": "drew",
+        "pastParticiple": "drawn",
+        "spanish": "dibujar",
+        "explanation": "Crear una imagen con lápices o bolígrafos.",
+        "imageUrl": "https://i.imgur.com/pNKu5z4.png"
+    },
+    {
+        "infinitive": "dream",
+        "pastSimple": "dreamt/dreamed",
+        "pastParticiple": "dreamt/dreamed",
+        "spanish": "soñar",
+        "explanation": "Experimentar imágenes o historias al dormir.",
+        "imageUrl": "https://i.imgur.com/UfOHHM7.png"
+    },
+    {
+        "infinitive": "drink",
+        "pastSimple": "drank",
+        "pastParticiple": "drunk",
+        "spanish": "beber",
+        "explanation": "Ingerir un líquido.",
+        "imageUrl": "https://i.imgur.com/kkxR0Lx.png"
+    },
+    {
+        "infinitive": "drive",
+        "pastSimple": "drove",
+        "pastParticiple": "driven",
+        "spanish": "conducir",
+        "explanation": "Manejar un vehículo como un coche.",
+        "imageUrl": "https://i.imgur.com/p0vqVE6.png"
+    },
+    {
+        "infinitive": "eat",
+        "pastSimple": "ate",
+        "pastParticiple": "eaten",
+        "spanish": "comer",
+        "explanation": "Ingerir alimentos sólidos.",
+        "imageUrl": "https://i.imgur.com/kMI5sM8.png"
+    },
+    {
+        "infinitive": "fall",
+        "pastSimple": "fell",
+        "pastParticiple": "fallen",
+        "spanish": "caer",
+        "explanation": "Moverse hacia abajo por la gravedad.",
+        "imageUrl": "https://i.imgur.com/3NkaF2C.png"
+    },
+    {
+        "infinitive": "feed",
+        "pastSimple": "fed",
+        "pastParticiple": "fed",
+        "spanish": "alimentar",
+        "explanation": "Dar comida a una persona o animal.",
+        "imageUrl": "https://i.imgur.com/fWJ2NEZ.png"
+    },
+    {
+        "infinitive": "feel",
+        "pastSimple": "felt",
+        "pastParticiple": "felt",
+        "spanish": "sentir",
+        "explanation": "Experimentar una emoción o sensación física.",
+        "imageUrl": "https://i.imgur.com/iIpEyWk.png"
+    },
+    {
+        "infinitive": "fight",
+        "pastSimple": "fought",
+        "pastParticiple": "fought",
+        "spanish": "pelear",
+        "explanation": "Luchar físicamente o discutir fuertemente.",
+        "imageUrl": "https://i.imgur.com/BH1zqeH.png"
+    },
+    {
+        "infinitive": "find",
+        "pastSimple": "found",
+        "pastParticiple": "found",
+        "spanish": "encontrar",
+        "explanation": "Descubrir algo o a alguien que buscabas.",
+        "imageUrl": "https://i.imgur.com/o1hiY8j.png"
+    },
+    {
+        "infinitive": "flee",
+        "pastSimple": "fled",
+        "pastParticiple": "fled",
+        "spanish": "huir",
+        "explanation": "Escapar de un lugar o situación de peligro.",
+        "imageUrl": "https://i.imgur.com/3DvnmCi.png"
+    },
+    {
+        "infinitive": "fly",
+        "pastSimple": "flew",
+        "pastParticiple": "flown",
+        "spanish": "volar",
+        "explanation": "Moverse por el aire, como un pájaro o un avión.",
+        "imageUrl": "https://i.imgur.com/D94Kx7C.png"
+    }
+]
