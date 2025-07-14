@@ -274,17 +274,6 @@ function shuffleArray(array) {
 }
 
 
-function createQuestionDeck(verbs, attemptsPer) {
-    const deck = [];
-    verbs.forEach(verb => {
-        for (let i = 0; i < attemptsPer; i++) {
-            deck.push(verb);
-        }
-    });
-    shuffleArray(deck);
-    return deck;
-}
-
 function startMainSession() {
     isReinforcementSession = false;
     sessionStats = {};
@@ -307,6 +296,7 @@ function startMainSession() {
 function startReinforcementSession() {
     isReinforcementSession = true;
     
+    // Obtener verbos con problemas del sessionStats
     const redZoneVerbs = Object.values(sessionStats).filter(stat => {
         const percentage = stat.attempts > 0 ? 100 - Math.round((stat.errors / stat.attempts) * 100) : 100;
         return percentage <= 50;
@@ -317,21 +307,60 @@ function startReinforcementSession() {
         return percentage > 50 && percentage <= 80;
     });
 
-    const redDeck = createQuestionDeck(redZoneVerbs, REINFORCE_ATTEMPTS_RED);
-    const yellowDeck = createQuestionDeck(yellowZoneVerbs, REINFORCE_ATTEMPTS_YELLOW);
+    // AQUÍ ESTÁ EL PROBLEMA - Crear deck de ejercicios mezclados para refuerzo
+    const redDeck = createMixedReinforcementDeck(redZoneVerbs, REINFORCE_ATTEMPTS_RED);
+    const yellowDeck = createMixedReinforcementDeck(yellowZoneVerbs, REINFORCE_ATTEMPTS_YELLOW);
     
     questionDeck = [...redDeck, ...yellowDeck];
     shuffleArray(questionDeck);
 
+    if (questionDeck.length === 0) {
+        // Si no hay preguntas de refuerzo, volver al inicio
+        alert('¡Excelente! No hay verbos que necesiten refuerzo.');
+        goToStartScreen();
+        return;
+    }
+
     currentQuestionIndex = 0;
     
-    sessionTitleEl.textContent = "Sesión de Refuerzo";
+    sessionTitleEl.textContent = `Sesión de Refuerzo (${questionDeck.length} preguntas)`;
     summaryScreen.classList.add('hidden');
     practiceScreen.classList.remove('hidden');
 
     setupNextQuestion();
 }
-
+function createMixedReinforcementDeck(verbs, attemptsPer) {
+    const deck = [];
+    verbs.forEach(verbStat => {
+        // Crear objeto verbo limpio desde las estadísticas
+        const cleanVerb = {
+            infinitive: verbStat.infinitive,
+            pastSimple: verbStat.pastSimple,
+            pastParticiple: verbStat.pastParticiple,
+            spanish: verbStat.spanish,
+            explanation: verbStat.explanation,
+            imageUrl: verbStat.imageUrl
+        };
+        
+        for (let i = 0; i < attemptsPer; i++) {
+            // 50% ejercicios de escribir formas
+            if (i < Math.floor(attemptsPer / 2)) {
+                deck.push({
+                    type: EXERCISE_TYPES.WRITE_FORMS,
+                    verb: cleanVerb
+                });
+            } 
+            // 50% ejercicios de traducción
+            else {
+                deck.push({
+                    type: EXERCISE_TYPES.TRANSLATE_TO_SPANISH,
+                    verb: cleanVerb
+                });
+            }
+        }
+    });
+    return deck;
+}
 function goToStartScreen() {
     summaryScreen.classList.add('hidden');
     practiceScreen.classList.add('hidden');
@@ -342,6 +371,8 @@ function goToStartScreen() {
 function setupNextQuestion() {
     if (currentQuestionIndex >= questionDeck.length) {
         if(isReinforcementSession) {
+            // Mostrar mensaje de refuerzo completado
+            showReinforcementCompletedMessage();
             goToStartScreen();
         } else {
             showSummary();
@@ -350,10 +381,21 @@ function setupNextQuestion() {
     }
     
     const currentQuestion = questionDeck[currentQuestionIndex];
+    
+    // Verificar que la pregunta tiene la estructura correcta
+    if (!currentQuestion || !currentQuestion.verb || !currentQuestion.type) {
+        console.error('❌ Pregunta mal formada:', currentQuestion);
+        currentQuestionIndex++;
+        setupNextQuestion();
+        return;
+    }
+    
     currentVerb = currentQuestion.verb;
     const exerciseType = currentQuestion.type;
     currentQuestionIndex++;
 
+    // Reset del estado de corrección
+    isCorrectionMode = false;
     // Reset UI común
     progressTrackerEl.textContent = `Pregunta ${currentQuestionIndex} / ${questionDeck.length}`;
     verbImageEl.src = currentVerb.imageUrl || '';
@@ -369,13 +411,42 @@ function setupNextQuestion() {
     // Ocultar ambas interfaces
     document.getElementById('verb-inputs').classList.add('hidden');
     translationExercise.classList.add('hidden');
+    document.getElementById('verb-display').classList.remove('hidden'); // Asegurar que esté visible
 
     // Configurar según el tipo de ejercicio
     if (exerciseType === EXERCISE_TYPES.WRITE_FORMS) {
         setupWriteFormsExercise();
     } else if (exerciseType === EXERCISE_TYPES.TRANSLATE_TO_SPANISH) {
         setupTranslationExercise();
+    } else {
+        console.error('❌ Tipo de ejercicio desconocido:', exerciseType);
+        setupNextQuestion(); // Saltar a la siguiente pregunta
     }
+    
+    console.log('✅ Pregunta configurada:', {
+        index: currentQuestionIndex,
+        total: questionDeck.length,
+        type: exerciseType,
+        verb: currentVerb.infinitive,
+        isReinforcement: isReinforcementSession
+    });
+}
+function showReinforcementCompletedMessage() {
+    const notification = document.createElement('div');
+    notification.className = 'fixed top-4 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+    notification.innerHTML = `
+        <div class="flex items-center gap-2">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+            </svg>
+            <span>¡Refuerzo completado! Muy buen trabajo.</span>
+        </div>
+    `;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.remove();
+    }, 3000);
 }
 function setupWriteFormsExercise() {
     // Mostrar interfaz de escribir formas
@@ -574,11 +645,14 @@ function handleTranslationCorrection() {
 function updateSessionStats(isCorrect) {
     if (!isReinforcementSession) {
         const statEntry = sessionStats[currentVerb.infinitive];
-        statEntry.attempts++;
-        if (!isCorrect) {
-            statEntry.errors++;
+        if (statEntry) {
+            statEntry.attempts++;
+            if (!isCorrect) {
+                statEntry.errors++;
+            }
         }
     }
+    // En sesión de refuerzo no actualizamos estadísticas
 }
 function handleCorrectAnswer() {
     feedbackMessageEl.textContent = '¡Correcto!';
@@ -587,8 +661,8 @@ function handleCorrectAnswer() {
     checkBtn.disabled = true;
     nextBtn.disabled = false;
     
-    // Deshabilitar todos los inputs visibles
-    inputs.forEach(input => {
+    // Deshabilitar todos los inputs activos
+    [infinitiveInput, pastSimpleInput, pastParticipleInput, spanishTranslationInput].forEach(input => {
         if (!input.closest('.hidden')) {
             input.disabled = true;
         }
