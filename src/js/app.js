@@ -1,9 +1,10 @@
-import {ALL_VERBS, DAILY_VERBS, generateDailyVerbs, checkDailyUpdate,getDebugInfo} from './verbs/verbs.js';
+import {DAILY_VERBS, generateDailyVerbs, checkDailyUpdate,getDebugInfo} from './verbs/verbs.js';
 // --- Constantes de la Sesión ---
-const VERBS_PER_DAY = 5;
-const ATTEMPTS_PER_VERB = 4;
+let ATTEMPTS_PER_VERB = 4; // Cambiar de const a let
 const REINFORCE_ATTEMPTS_RED = 3;
 const REINFORCE_ATTEMPTS_YELLOW = 2;
+const MIN_ATTEMPTS = 2;
+const MAX_ATTEMPTS = 8;
 let dailyVerbs = [...DAILY_VERBS]; // Copia de los verbos diarios actuales
 
 
@@ -40,11 +41,30 @@ const exitModal = document.getElementById('exit-modal');
 const confirmExitBtn = document.getElementById('confirm-exit-btn');
 const cancelExitBtn = document.getElementById('cancel-exit-btn');
 const fullscreenBtn = document.getElementById('fullscreen-btn');
-const fullscreenEnterIcon = document.getElementById('fullscreen-enter-icon');
-const fullscreenExitIcon = document.getElementById('fullscreen-exit-icon');
+
+// Añadir nuevos elementos DOM después de los existentes
+const translationExercise = document.getElementById('translation-exercise');
+const englishVerbDisplay = document.getElementById('english-verb-display');
+const infinitiveDisplay = document.getElementById('infinitive-display');
+const pastSimpleDisplay = document.getElementById('past-simple-display');
+const pastParticipleDisplay = document.getElementById('past-participle-display');
+const spanishTranslationInput = document.getElementById('spanish-translation');
+const correctTranslationEl = document.getElementById('correct-translation');
+const decreaseAttemptsBtn = document.getElementById('decrease-attempts-btn');
+const increaseAttemptsBtn = document.getElementById('increase-attempts-btn');
+const attemptsDisplay = document.getElementById('attempts-display');
+const attemptsProgress = document.getElementById('attempts-progress');
+const totalQuestionsEl = document.getElementById('total-questions');
+const sessionQuestionsCount = document.getElementById('session-questions-count');
+
+
 
 const inputs = [infinitiveInput, pastSimpleInput, pastParticipleInput];
 
+const EXERCISE_TYPES = {
+    WRITE_FORMS: 'write_forms',
+    TRANSLATE_TO_SPANISH: 'translate_to_spanish'
+};
 // --- Estado de la Aplicación ---
 let sessionStats = {};
 let currentVerb = null;
@@ -55,7 +75,29 @@ let isReinforcementSession = false;
 
 
 // --- Lógica Principal ---
-
+function createMixedQuestionDeck(verbs, attemptsPer) {
+    const deck = [];
+    verbs.forEach(verb => {
+        for (let i = 0; i < attemptsPer; i++) {
+            // 50% ejercicios de escribir formas (tu ejercicio actual)
+            if (i < Math.floor(attemptsPer / 2)) {
+                deck.push({
+                    type: EXERCISE_TYPES.WRITE_FORMS,
+                    verb: verb
+                });
+            } 
+            // 50% ejercicios de traducción
+            else {
+                deck.push({
+                    type: EXERCISE_TYPES.TRANSLATE_TO_SPANISH,
+                    verb: verb
+                });
+            }
+        }
+    });
+    shuffleArray(deck);
+    return deck;
+}
 // VERBOS DIARIOS
 function displayDailyVerbs() {
     // Verificar si es un nuevo día y actualizar automáticamente
@@ -98,6 +140,81 @@ function displayDailyVerbs() {
         `;
         dailyVerbsListEl.appendChild(li);
     });
+}
+// --- Funciones para manejar el control de intentos ---
+function updateAttemptsDisplay() {
+    attemptsDisplay.textContent = ATTEMPTS_PER_VERB;
+    
+    // Calcular total de preguntas
+    const totalQuestions = dailyVerbs.length * ATTEMPTS_PER_VERB;
+    totalQuestionsEl.textContent = `${totalQuestions} preguntas totales`;
+    sessionQuestionsCount.textContent = totalQuestions;
+    
+    // Actualizar barra de progreso (2-8 rango)
+    const progressPercent = ((ATTEMPTS_PER_VERB - MIN_ATTEMPTS) / (MAX_ATTEMPTS - MIN_ATTEMPTS)) * 100;
+    attemptsProgress.style.width = `${progressPercent}%`;
+    
+    // Actualizar estado de botones
+    decreaseAttemptsBtn.disabled = ATTEMPTS_PER_VERB <= MIN_ATTEMPTS;
+    increaseAttemptsBtn.disabled = ATTEMPTS_PER_VERB >= MAX_ATTEMPTS;
+    
+    // Guardar preferencia del usuario
+    localStorage.setItem('userAttemptsPerVerb', ATTEMPTS_PER_VERB.toString());
+    
+    console.log(`🎯 Intentos por verbo: ${ATTEMPTS_PER_VERB}, Total preguntas: ${totalQuestions}`);
+}
+function decreaseAttempts() {
+    if (ATTEMPTS_PER_VERB > MIN_ATTEMPTS) {
+        ATTEMPTS_PER_VERB--;
+        updateAttemptsDisplay();
+        showAttemptsChangeNotification('decrease');
+    }
+}
+
+function increaseAttempts() {
+    if (ATTEMPTS_PER_VERB < MAX_ATTEMPTS) {
+        ATTEMPTS_PER_VERB++;
+        updateAttemptsDisplay();
+        showAttemptsChangeNotification('increase');
+    }
+}
+function showAttemptsChangeNotification(type) {
+    const notification = document.createElement('div');
+    notification.className = 'fixed top-4 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 text-sm';
+    
+    const difficultyLevel = getDifficultyLevel(ATTEMPTS_PER_VERB);
+    const emoji = type === 'increase' ? '📈' : '📉';
+    
+    notification.innerHTML = `
+        <div class="flex items-center gap-2">
+            <span>${emoji}</span>
+            <span>${ATTEMPTS_PER_VERB} preguntas por verbo - ${difficultyLevel}</span>
+        </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Eliminar notificación después de 2 segundos
+    setTimeout(() => {
+        notification.remove();
+    }, 2000);
+}
+function getDifficultyLevel(attempts) {
+    if (attempts <= 3) return 'Fácil';
+    if (attempts <= 5) return 'Normal';
+    if (attempts <= 7) return 'Difícil';
+    return 'Experto';
+}
+
+function loadUserPreferences() {
+    const savedAttempts = localStorage.getItem('userAttemptsPerVerb');
+    if (savedAttempts) {
+        const attempts = parseInt(savedAttempts);
+        if (attempts >= MIN_ATTEMPTS && attempts <= MAX_ATTEMPTS) {
+            ATTEMPTS_PER_VERB = attempts;
+        }
+    }
+    updateAttemptsDisplay();
 }
 // --- Función para mostrar notificación de cambio de día ---
 function showDayChangeNotification() {
@@ -174,10 +291,12 @@ function startMainSession() {
     dailyVerbs.forEach(verb => {
         sessionStats[verb.infinitive] = { ...verb, errors: 0, attempts: 0 };
     });
-    questionDeck = createQuestionDeck(dailyVerbs, ATTEMPTS_PER_VERB);
+    
+    // Usar la variable ATTEMPTS_PER_VERB actual
+    questionDeck = createMixedQuestionDeck(dailyVerbs, ATTEMPTS_PER_VERB);
     currentQuestionIndex = 0;
     
-    sessionTitleEl.textContent = "Sesión Diaria";
+    sessionTitleEl.textContent = `Sesión Diaria (${ATTEMPTS_PER_VERB} por verbo)`;
     startScreen.classList.add('hidden');
     summaryScreen.classList.add('hidden');
     practiceScreen.classList.remove('hidden');
@@ -230,24 +349,43 @@ function setupNextQuestion() {
         return;
     }
     
-    currentVerb = questionDeck[currentQuestionIndex];
+    const currentQuestion = questionDeck[currentQuestionIndex];
+    currentVerb = currentQuestion.verb;
+    const exerciseType = currentQuestion.type;
     currentQuestionIndex++;
 
-    // Reset UI
+    // Reset UI común
     progressTrackerEl.textContent = `Pregunta ${currentQuestionIndex} / ${questionDeck.length}`;
     verbImageEl.src = currentVerb.imageUrl || '';
     verbImageEl.style.animation = 'none';
     verbImageEl.offsetHeight;
     verbImageEl.style.animation = null;
     
-    spanishVerbEl.textContent = currentVerb.spanish;
-    verbExplanationEl.textContent = currentVerb.explanation;
     feedbackMessageEl.classList.add('hidden');
     checkBtn.textContent = 'Revisar';
     checkBtn.disabled = false;
     nextBtn.disabled = true;
 
-    inputs.forEach(input => {
+    // Ocultar ambas interfaces
+    document.getElementById('verb-inputs').classList.add('hidden');
+    translationExercise.classList.add('hidden');
+
+    // Configurar según el tipo de ejercicio
+    if (exerciseType === EXERCISE_TYPES.WRITE_FORMS) {
+        setupWriteFormsExercise();
+    } else if (exerciseType === EXERCISE_TYPES.TRANSLATE_TO_SPANISH) {
+        setupTranslationExercise();
+    }
+}
+function setupWriteFormsExercise() {
+    // Mostrar interfaz de escribir formas
+    document.getElementById('verb-inputs').classList.remove('hidden');
+    
+    // Configurar como antes
+    spanishVerbEl.textContent = currentVerb.spanish;
+    verbExplanationEl.textContent = currentVerb.explanation;
+
+    [infinitiveInput, pastSimpleInput, pastParticipleInput].forEach(input => {
         input.value = '';
         input.disabled = false;
         input.classList.remove('correct', 'incorrect', 'correction-mode');
@@ -257,8 +395,88 @@ function setupNextQuestion() {
 
     infinitiveInput.focus();
 }
+function setupTranslationExercise() {
+    // Mostrar interfaz de traducción
+    translationExercise.classList.remove('hidden');
+    
+    // Ocultar el verb-display actual
+    document.getElementById('verb-display').classList.add('hidden');
+    
+    // Configurar displays
+    englishVerbDisplay.textContent = currentVerb.infinitive;
+    infinitiveDisplay.textContent = currentVerb.infinitive;
+    pastSimpleDisplay.textContent = currentVerb.pastSimple;
+    pastParticipleDisplay.textContent = currentVerb.pastParticiple;
+    
+    // Reset input
+    spanishTranslationInput.value = '';
+    spanishTranslationInput.disabled = false;
+    spanishTranslationInput.classList.remove('correct', 'incorrect', 'correction-mode');
+    correctTranslationEl.classList.add('hidden');
 
+    spanishTranslationInput.focus();
+}
+// Función simple y flexible para comparar español
+function isSpanishTranslationCorrect(userInput, correctSpanish) {
+    const normalizedUser = userInput.toLowerCase().trim();
+    const normalizedCorrect = correctSpanish.toLowerCase();
+    
+    // 1. Coincidencia exacta
+    if (normalizedUser === normalizedCorrect) {
+        return true;
+    }
+    
+    // 2. Remover acentos de ambos
+    const userNoAccents = removeAccents(normalizedUser);
+    const correctNoAccents = removeAccents(normalizedCorrect);
+    
+    if (userNoAccents === correctNoAccents) {
+        return true;
+    }
+    
+    // 3. Verificar si el usuario escribió la palabra principal
+    // "convertirse en" -> si escribes "convertirse" o "convertir" está bien
+    if (correctNoAccents.includes(userNoAccents) && userNoAccents.length >= 3) {
+        return true;
+    }
+    
+    // 4. Verificar variaciones comunes sin paréntesis
+    const correctWithoutParentheses = correctNoAccents.replace(/\([^)]*\)/g, '').trim();
+    if (userNoAccents === correctWithoutParentheses) {
+        return true;
+    }
+    
+    // 5. Verificar palabras clave principales
+    const mainWords = extractMainWords(correctNoAccents);
+    return mainWords.some(word => word === userNoAccents || userNoAccents.includes(word));
+}
+// Función auxiliar para remover acentos
+function removeAccents(text) {
+    return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+
+// Función auxiliar para extraer palabras principales
+function extractMainWords(text) {
+    // Remover paréntesis, artículos y preposiciones comunes
+    const cleaned = text
+        .replace(/\([^)]*\)/g, '') // Remover paréntesis
+        .replace(/\b(en|a|el|la|los|las|un|una|se)\b/g, '') // Remover palabras comunes
+        .trim();
+    
+    // Dividir en palabras y filtrar las que tengan al menos 3 caracteres
+    return cleaned.split(/\s+/).filter(word => word.length >= 3);
+}
 function checkAnswer() {
+    const currentQuestion = questionDeck[currentQuestionIndex - 1];
+    const exerciseType = currentQuestion.type;
+
+    if (exerciseType === EXERCISE_TYPES.WRITE_FORMS) {
+        checkWriteFormsAnswer();
+    } else if (exerciseType === EXERCISE_TYPES.TRANSLATE_TO_SPANISH) {
+        checkTranslationAnswer();
+    }
+}
+function checkWriteFormsAnswer() {
     if (isCorrectionMode) {
         handleCorrection();
         return;
@@ -286,28 +504,96 @@ function checkAnswer() {
     pastParticipleInput.classList.toggle('incorrect', !isParticipleCorrect);
     if (!isParticipleCorrect) allCorrect = false;
     
-    if (!isReinforcementSession) {
-        const statEntry = sessionStats[currentVerb.infinitive];
-        statEntry.attempts++;
-         if (!allCorrect) {
-            statEntry.errors++;
-        }
-    }
-   
+    updateSessionStats(allCorrect);
+    
     if (allCorrect) {
         handleCorrectAnswer();
     } else {
         handleIncorrectAnswer();
     }
 }
+function checkTranslationAnswer() {
+    if (isCorrectionMode) {
+        handleTranslationCorrection();
+        return;
+    }
 
+    const userTranslation = spanishTranslationInput.value.trim();
+    const correctTranslation = currentVerb.spanish;
+    
+    // Usar la nueva función simple
+    const isCorrect = isSpanishTranslationCorrect(userTranslation, correctTranslation);
+    
+    spanishTranslationInput.classList.toggle('correct', isCorrect);
+    spanishTranslationInput.classList.toggle('incorrect', !isCorrect);
+    
+    updateSessionStats(isCorrect);
+    
+    if (isCorrect) {
+        handleCorrectAnswer();
+    } else {
+        handleTranslationIncorrectAnswer();
+    }
+}
+function handleTranslationIncorrectAnswer() {
+    isCorrectionMode = true;
+    feedbackMessageEl.textContent = 'Incorrecto. Escribe la traducción correcta para continuar.';
+    feedbackMessageEl.classList.remove('hidden', 'bg-green-100', 'text-green-700');
+    feedbackMessageEl.classList.add('bg-red-100', 'text-red-700');
+    
+    checkBtn.textContent = 'Confirmar Corrección';
+    
+    correctTranslationEl.textContent = `Correcto: ${currentVerb.spanish}`;
+    correctTranslationEl.classList.remove('hidden');
+    
+    spanishTranslationInput.value = '';
+    spanishTranslationInput.classList.add('correction-mode');
+    spanishTranslationInput.focus();
+}
+function handleTranslationCorrection() {
+    const userTranslation = spanishTranslationInput.value.trim();
+    const correctTranslation = currentVerb.spanish;
+    
+    // Usar la nueva función simple
+    const isCorrect = isSpanishTranslationCorrect(userTranslation, correctTranslation);
+    
+    if (isCorrect) {
+        feedbackMessageEl.textContent = '¡Muy bien! Error corregido.';
+        feedbackMessageEl.classList.remove('bg-red-100', 'text-red-700');
+        feedbackMessageEl.classList.add('bg-blue-100', 'text-blue-700');
+        isCorrectionMode = false;
+        checkBtn.disabled = true;
+        checkBtn.textContent = 'Revisar';
+        nextBtn.disabled = false;
+        spanishTranslationInput.disabled = true;
+        nextBtn.focus();
+    } else {
+        feedbackMessageEl.textContent = 'Aún no es correcto. Intenta con una palabra principal.';
+    }
+}
+function updateSessionStats(isCorrect) {
+    if (!isReinforcementSession) {
+        const statEntry = sessionStats[currentVerb.infinitive];
+        statEntry.attempts++;
+        if (!isCorrect) {
+            statEntry.errors++;
+        }
+    }
+}
 function handleCorrectAnswer() {
     feedbackMessageEl.textContent = '¡Correcto!';
     feedbackMessageEl.classList.remove('hidden', 'bg-red-100', 'text-red-700', 'bg-blue-100', 'text-blue-700');
     feedbackMessageEl.classList.add('bg-green-100', 'text-green-700');
     checkBtn.disabled = true;
     nextBtn.disabled = false;
-    inputs.forEach(input => input.disabled = true);
+    
+    // Deshabilitar todos los inputs visibles
+    inputs.forEach(input => {
+        if (!input.closest('.hidden')) {
+            input.disabled = true;
+        }
+    });
+    
     nextBtn.focus();
 }
 
@@ -571,6 +857,9 @@ function updateFullscreenIcons(isFullscreen) {
         exitIcon.classList.add('hidden');
     }
 }
+// --- Event Listeners para los nuevos botones ---
+decreaseAttemptsBtn.addEventListener('click', decreaseAttempts);
+increaseAttemptsBtn.addEventListener('click', increaseAttempts);
 
 // --- Event Listeners ---
 startSessionBtn.addEventListener('click', startMainSession);
@@ -586,6 +875,17 @@ cancelExitBtn.addEventListener('click', () => exitModal.classList.add('hidden'))
 confirmExitBtn.addEventListener('click', () => {
     exitModal.classList.add('hidden');
     goToStartScreen();
+});
+
+spanishTranslationInput.addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        if (!checkBtn.disabled) {
+            checkBtn.click();
+        } else if (!nextBtn.disabled) {
+            nextBtn.click();
+        }
+    }
 });
 
 fullscreenBtn.addEventListener('click', toggleFullScreen);
@@ -640,10 +940,15 @@ document.addEventListener('touchend', function(event) {
 }, false);
 // --- Inicialización ---
 window.onload = function() {
+    loadUserPreferences(); // Cargar preferencias antes de setup
     setupDailyVerbs();
     
     // Mostrar info de debug en consola
     console.log('🔍 Verbos Debug Info:', getDebugInfo());
+    console.log('🎯 Configuración:', { 
+        attemptsPerVerb: ATTEMPTS_PER_VERB, 
+        totalQuestions: dailyVerbs.length * ATTEMPTS_PER_VERB 
+    });
     
     // Verificar cambio de día cada 5 minutos
     setInterval(() => {
@@ -651,6 +956,7 @@ window.onload = function() {
         if (JSON.stringify(updatedVerbs) !== JSON.stringify(dailyVerbs)) {
             dailyVerbs = [...updatedVerbs];
             displayDailyVerbs();
+            updateAttemptsDisplay(); // Actualizar conteo de preguntas
             showDayChangeNotification();
             console.log('🔍 Verbos actualizados:', getDebugInfo());
         }

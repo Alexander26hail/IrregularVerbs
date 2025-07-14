@@ -28,20 +28,58 @@
                 <ul id="daily-verbs-list" class="bg-slate-50 rounded-lg p-4 mb-6 text-slate-800 text-left space-y-2">
                     <!-- La lista de verbos se insertará aquí -->
                 </ul>
-                <div class="space-y-4">
-                    <button id="start-session-btn" class="w-full bg-indigo-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 btn-primary text-lg">
-                        Comenzar Sesión (20 preguntas)
-                    </button>
-                   
-                    <button id="refresh-verbs-btn" class="flex-1 bg-emerald-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 text-sm">
-                        🔄 Refrescar
-                    </button>
+                <!-- En la pantalla de inicio, después de la lista de verbos y antes de los botones -->
+            <div class="space-y-4">
+                <!-- Nuevo control para número de preguntas -->
+                <div class="bg-slate-50 rounded-lg p-4 border border-slate-200">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-sm font-medium text-slate-700">Preguntas por verbo:</span>
+                        <span id="attempts-display" class="text-lg font-bold text-indigo-600">4</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <button id="decrease-attempts-btn" class="w-10 h-10 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold rounded-full flex items-center justify-center transition-colors">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                        </button>
+                        
+                        <div class="flex-1 bg-white rounded-lg p-3">
+                            <div class="flex justify-between text-xs text-slate-500 mb-1">
+                                <span>Fácil</span>
+                                <span>Normal</span>
+                                <span>Difícil</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-200 rounded-full relative">
+                                <div id="attempts-progress" class="h-2 bg-indigo-500 rounded-full transition-all duration-300" style="width: 50%"></div>
+                            </div>
+                            <div class="text-center mt-2">
+                                <span id="total-questions" class="text-sm font-semibold text-slate-600">20 preguntas totales</span>
+                            </div>
+                        </div>
+                        
+                        <button id="increase-attempts-btn" class="w-10 h-10 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold rounded-full flex items-center justify-center transition-colors">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
+
+                <button id="start-session-btn" class="w-full bg-indigo-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 btn-primary text-lg">
+                    Comenzar Sesión (<span id="session-questions-count">20</span> preguntas)
+                </button>
+            
+                <button id="refresh-verbs-btn" class="flex-1 bg-emerald-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 text-sm">
+                    🔄 Refrescar
+                </button>
+            </div>
             </div>
         </div>
 
         <!-- Pantalla de Práctica -->
         <div id="practice-screen" class="hidden">
+            
             <div class="bg-white rounded-2xl card-shadow overflow-hidden relative">
                  <button id="exit-session-btn" title="Volver al inicio" class="absolute top-4 left-4 text-slate-400 hover:text-slate-600 transition-colors p-2 rounded-full hover:bg-slate-100">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
@@ -62,7 +100,38 @@
                         <p id="spanish-verb" class="text-3xl font-bold text-indigo-600"></p>
                         <p id="verb-explanation" class="text-slate-500 text-sm mt-2 italic px-4"></p>
                     </div>
-
+                    <!-- Interfaz para ejercicio de traducción -->
+                    <div id="translation-exercise" class="space-y-4 hidden">
+                        <div class="text-center mb-6">
+                            <p class="text-lg text-slate-600 mb-2">Traduce este verbo al español:</p>
+                            <div class="bg-indigo-50 rounded-lg p-6">
+                                <p id="english-verb-display" class="text-4xl font-bold text-indigo-600 mb-3"></p>
+                                <div class="flex flex-wrap justify-center gap-2 text-sm text-slate-600">
+                                    <span id="infinitive-display" class="bg-white px-3 py-1 rounded-full"></span>
+                                    <span class="text-slate-400">•</span>
+                                    <span id="past-simple-display" class="bg-white px-3 py-1 rounded-full"></span>
+                                    <span class="text-slate-400">•</span>
+                                    <span id="past-participle-display" class="bg-white px-3 py-1 rounded-full"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label for="spanish-translation" class="block text-sm font-medium text-slate-700 mb-1">
+                                Traducción en español:
+                            </label>
+                            <input 
+                                type="text" 
+                                id="spanish-translation" 
+                                class="input-field w-full px-4 py-3 text-lg border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 text-center" 
+                                placeholder="Escribe la traducción..."
+                                autocomplete="off" 
+                                autocorrect="off" 
+                                autocapitalize="none"
+                            >
+                            <p id="correct-translation" class="text-sm text-green-600 mt-1 font-semibold hidden"></p>
+                        </div>
+                    </div>
                     <div id="verb-inputs" class="space-y-4">
                         <div>
                             <label for="infinitive" class="block text-sm font-medium text-slate-700 mb-1">Infinitive (Infinitivo)</label>

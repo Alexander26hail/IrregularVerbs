@@ -133,3 +133,42 @@ body {
         height: 18px;
     }
 }
+
+/* Estilos para el control de intentos */
+#attempts-progress {
+    transition: width 0.3s ease;
+}
+
+#decrease-attempts-btn:disabled,
+#increase-attempts-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#decrease-attempts-btn:disabled:hover,
+#increase-attempts-btn:disabled:hover {
+    background-color: #e2e8f0; /* No cambiar color cuando está deshabilitado */
+    transform: none;
+}
+
+/* Animación suave para los cambios */
+#attempts-display, #total-questions, #session-questions-count {
+    transition: all 0.2s ease;
+}
+
+/* Responsive para el control de intentos */
+@media (max-width: 640px) {
+    .flex.items-center.gap-4 {
+        gap: 0.75rem;
+    }
+    
+    #decrease-attempts-btn, #increase-attempts-btn {
+        width: 2.25rem;
+        height: 2.25rem;
+    }
+    
+    #decrease-attempts-btn svg, #increase-attempts-btn svg {
+        width: 14px;
+        height: 14px;
+    }
+}
