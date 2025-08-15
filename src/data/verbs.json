@@ -657,5 +657,473 @@
         "explanation": "Interpretar el significado de un texto escrito.",
         "imageUrl": "https://i.imgur.com/6LUasdA.png",
         "prompimagen": "Una persona leyendo un libro cómodamente en un sillón acogedor junto a una chimenea."
+    },
+    {
+        "infinitive": "ride",
+        "pastSimple": "rode",
+        "pastParticiple": "ridden",
+        "spanish": "montar/cabalgar",
+        "explanation": "Montar en un animal, bicicleta o motocicleta.",
+        "imageUrl": "https://i.imgur.com/1YktxIE.png",
+        "prompimagen": "Una persona montando a caballo por un sendero panorámico de montaña."
+    },
+    {
+        "infinitive": "ring",
+        "pastSimple": "rang",
+        "pastParticiple": "rung",
+        "spanish": "sonar/llamar",
+        "explanation": "Hacer un sonido (un timbre o teléfono); llamar por teléfono.",
+        "imageUrl": "https://i.imgur.com/1Q8EB7V.png",
+        "prompimagen": "Un teléfono antiguo sonando sobre una mesa, vibrando ligeramente."
+    },
+    {
+        "infinitive": "rise",
+        "pastSimple": "rose",
+        "pastParticiple": "risen",
+        "spanish": "levantarse/subir",
+        "explanation": "Moverse hacia arriba; aumentar.",
+        "imageUrl": "https://i.imgur.com/gWxsF9Z.png",
+        "prompimagen": "El sol saliendo por el horizonte del océano, proyectando una luz dorada. esperanzador, nuevo comienzo."
+    },
+    {
+        "infinitive": "run",
+        "pastSimple": "ran",
+        "pastParticiple": "run",
+        "spanish": "correr",
+        "explanation": "Moverse rápidamente con las piernas.",
+        "imageUrl": "https://i.imgur.com/5uFH0E5.png",
+        "prompimagen": "Un atleta corriendo en una pista, capturado con desenfoque de movimiento para mostrar velocidad."
+    },
+    {
+        "infinitive": "say",
+        "pastSimple": "said",
+        "pastParticiple": "said",
+        "spanish": "decir",
+        "explanation": "Expresar algo con palabras.",
+        "imageUrl": "https://i.imgur.com/B2xfytH.png",
+        "prompimagen": "Primer plano de la boca de una persona mientras habla, con ondas sonoras abstractas saliendo."
+    },
+    {
+        "infinitive": "see",
+        "pastSimple": "saw",
+        "pastParticiple": "seen",
+        "spanish": "ver",
+        "explanation": "Percibir con los ojos.",
+        "imageUrl": "https://i.imgur.com/daPn6sh.png",
+        "prompimagen": "Un ojo bien abierto con el reflejo de un hermoso paisaje en el iris. Detallado, perceptivo."
+    },
+    {
+        "infinitive": "seek",
+        "pastSimple": "sought",
+        "pastParticiple": "sought",
+        "spanish": "buscar",
+        "explanation": "Intentar encontrar o conseguir algo.",
+        "imageUrl": "https://i.imgur.com/4iIzFTy.jpeg",
+        "prompimagen": "Un buscador de tesoros mirando un mapa antiguo con una lupa en un entorno selvático."
+    },
+    {
+        "infinitive": "sell",
+        "pastSimple": "sold",
+        "pastParticiple": "sold",
+        "spanish": "vender",
+        "explanation": "Dar algo a cambio de dinero.",
+        "imageUrl": "https://i.imgur.com/vxUaD6m.png",
+        "prompimagen": "Un vendedor ambulante entregando una fruta a un cliente desde su colorido puesto de mercado."
+    },
+    {
+        "infinitive": "send",
+        "pastSimple": "sent",
+        "pastParticiple": "sent",
+        "spanish": "enviar",
+        "explanation": "Hacer que algo llegue a un destino (una carta, un paquete).",
+        "imageUrl": "https://i.imgur.com/ea41SVG.png",
+        "prompimagen": "Un avión de papel volando por el aire desde una mano hacia otra."
+    },
+    {
+        "infinitive": "set",
+        "pastSimple": "set",
+        "pastParticiple": "set",
+        "spanish": "poner/colocar",
+        "explanation": "Poner algo en un lugar; establecer una regla; el sol se pone.",
+        "imageUrl": "https://i.imgur.com/w1ckGqt.png",
+        "prompimagen": "Una persona poniendo una mesa formal para cenar. También, un sol poniéndose en el horizonte."
+    },
+    {
+        "infinitive": "sew",
+        "pastSimple": "sewed",
+        "pastParticiple": "sewn/sewed",
+        "spanish": "coser",
+        "explanation": "Unir telas con hilo y aguja.",
+        "imageUrl": "https://i.imgur.com/CtAY2WX.png",
+        "prompimagen": "Primer plano de unas manos cosiendo un trozo de tela con aguja e hilo. Detallado, artesanal."
+    },
+    {
+        "infinitive": "shake",
+        "pastSimple": "shook",
+        "pastParticiple": "shaken",
+        "spanish": "agitar/sacudir",
+        "explanation": "Mover algo o a alguien rápidamente de un lado a otro.",
+        "imageUrl": "https://i.imgur.com/E7nJkDp.png",
+        "prompimagen": "Un barman agitando enérgicamente una coctelera. Dinámico, enérgico."
+    },
+    {
+        "infinitive": "shine",
+        "pastSimple": "shone",
+        "pastParticiple": "shone",
+        "spanish": "brillar",
+        "explanation": "Emitir o reflejar luz.",
+        "imageUrl": "https://i.imgur.com/Be7jzxx.png",
+        "prompimagen": "Un diamante brillando intensamente, con rayos de luz y destellos emanando de él."
+    },
+    {
+        "infinitive": "shoot",
+        "pastSimple": "shot",
+        "pastParticiple": "shot",
+        "spanish": "disparar",
+        "explanation": "Lanzar un proyectil con un arma; tomar una foto.",
+        "imageUrl": "https://i.imgur.com/Njtur3J.png",
+        "prompimagen": "Un arquero soltando una flecha de un arco, apuntando a un objetivo. Enfocado, preciso."
+    },
+    {
+        "infinitive": "show",
+        "pastSimple": "showed",
+        "pastParticiple": "shown/showed",
+        "spanish": "mostrar",
+        "explanation": "Dejar que alguien vea algo.",
+        "imageUrl": "https://i.imgur.com/pL3ABA7.png",
+        "prompimagen": "Un guía de museo señalando una pintura famosa para mostrarla a un grupo de visitantes."
+    },
+    {
+        "infinitive": "shrink",
+        "pastSimple": "shrank",
+        "pastParticiple": "shrunk",
+        "spanish": "encoger(se)",
+        "explanation": "Hacerse más pequeño en tamaño.",
+        "imageUrl": "https://i.imgur.com/xdH1l47.png",
+        "prompimagen": "Un suéter de lana grande junto a una versión diminuta y encogida del mismo después de haber sido lavado."
+    },
+    {
+        "infinitive": "shut",
+        "pastSimple": "shut",
+        "pastParticiple": "shut",
+        "spanish": "cerrar",
+        "explanation": "Mover algo a una posición cerrada (una puerta, una ventana).",
+        "imageUrl": "https://i.imgur.com/EHF8Z6S.png",
+        "prompimagen": "Una persona cerrando una pesada y vieja puerta de madera con un golpe sordo."
+    },
+    {
+        "infinitive": "sing",
+        "pastSimple": "sang",
+        "pastParticiple": "sung",
+        "spanish": "cantar",
+        "explanation": "Producir sonidos musicales con la voz.",
+        "imageUrl": "https://i.imgur.com/iXQZ6Il.png",
+        "prompimagen": "Un cantante en un escenario, sosteniendo un micrófono, con focos iluminándolo."
+    },
+    {
+        "infinitive": "sink",
+        "pastSimple": "sank",
+        "pastParticiple": "sunk",
+        "spanish": "hundir(se)",
+        "explanation": "Irse hacia el fondo de un líquido, como el agua.",
+        "imageUrl": "https://i.imgur.com/ZAHHgdH.png",
+        "prompimagen": "Un barco antiguo hundiéndose en el océano, con su mástil desapareciendo bajo las olas."
+    },
+    {
+        "infinitive": "sit",
+        "pastSimple": "sat",
+        "pastParticiple": "sat",
+        "spanish": "sentarse",
+        "explanation": "Estar en una posición con el peso sobre los glúteos.",
+        "imageUrl": "https://i.imgur.com/SL6DJbY.jpeg",
+        "prompimagen": "Una persona sentada en un banco del parque, alimentando a las palomas."
+    },
+    {
+        "infinitive": "sleep",
+        "pastSimple": "slept",
+        "pastParticiple": "slept",
+        "spanish": "dormir",
+        "explanation": "Estar en el estado de descanso del cuerpo y la mente.",
+        "imageUrl": "https://i.imgur.com/VNgxqkJ.png",
+        "prompimagen": "Un bebé durmiendo pacíficamente en una cuna. Calmo, sereno."
+    },
+    {
+        "infinitive": "slide",
+        "pastSimple": "slid",
+        "pastParticiple": "slid",
+        "spanish": "deslizar(se)",
+        "explanation": "Moverse suavemente sobre una superficie.",
+        "imageUrl": "https://i.imgur.com/dv9uXE7.png",
+        "prompimagen": "Un niño deslizándose por un tobogán de un parque infantil con una expresión de alegría."
+    },
+    {
+        "infinitive": "speak",
+        "pastSimple": "spoke",
+        "pastParticiple": "spoken",
+        "spanish": "hablar",
+        "explanation": "Decir palabras; conversar.",
+        "imageUrl": "https://i.imgur.com/nG62XW3.jpeg",
+        "prompimagen": "Un político hablando en un podio ante una gran multitud. Público, formal."
+    },
+    {
+        "infinitive": "spend",
+        "pastSimple": "spent",
+        "pastParticiple": "spent",
+        "spanish": "gastar/pasar (tiempo)",
+        "explanation": "Usar dinero para comprar algo; usar el tiempo en una actividad.",
+        "imageUrl": "https://i.imgur.com/XC4cJF6.png",
+        "prompimagen": "La esfera de un reloj con las manecillas girando rápidamente, disolviéndose en dinero que se gasta."
+    },
+    {
+        "infinitive": "spill",
+        "pastSimple": "spilt/spilled",
+        "pastParticiple": "spilt/spilled",
+        "spanish": "derramar",
+        "explanation": "Dejar que un líquido se caiga de su contenedor por accidente.",
+        "imageUrl": "https://i.imgur.com/ex8NsN0.png",
+        "prompimagen": "Un vaso de leche volcándose sobre una mesa, con el líquido blanco derramándose."
+    },
+    {
+        "infinitive": "spin",
+        "pastSimple": "spun",
+        "pastParticiple": "spun",
+        "spanish": "girar",
+        "explanation": "Rotar rápidamente sobre un eje.",
+        "imageUrl": "https://i.imgur.com/A7axP4v.png",
+        "prompimagen": "Una peonza girando sobre una superficie de madera, creando un torbellino de color."
+    },
+    {
+        "infinitive": "split",
+        "pastSimple": "split",
+        "pastParticiple": "split",
+        "spanish": "dividir/partir(se)",
+        "explanation": "Dividir algo en dos o más partes.",
+        "imageUrl": "https://i.imgur.com/V8nW6uX.png",
+        "prompimagen": "Una persona partiendo un tronco de leña con un hacha. Acción poderosa y decisiva."
+    },
+    {
+        "infinitive": "spread",
+        "pastSimple": "spread",
+        "pastParticiple": "spread",
+        "spanish": "extender/untar",
+        "explanation": "Cubrir una superficie con algo; difundirse.",
+        "imageUrl": "https://i.imgur.com/zZRZKJG.png",
+        "prompimagen": "Una mano untando mantequilla en una tostada con un cuchillo."
+    },
+    {
+        "infinitive": "spring",
+        "pastSimple": "sprang",
+        "pastParticiple": "sprung",
+        "spanish": "saltar/brotar",
+        "explanation": "Saltar de repente; aparecer o crecer rápidamente.",
+        "imageUrl": "https://i.imgur.com/Nwmrjmp.png",
+        "prompimagen": "Un tigre saltando desde su escondite en la hierba alta. Poderoso, repentino."
+    },
+    {
+        "infinitive": "stand",
+        "pastSimple": "stood",
+        "pastParticiple": "stood",
+        "spanish": "estar de pie",
+        "explanation": "Sostenerse sobre los pies en posición vertical.",
+        "imageUrl": "https://i.imgur.com/8w4Qrdz.png",
+        "prompimagen": "La silueta de una persona de pie en un acantilado, mirando un vasto valle."
+    },
+    {
+        "infinitive": "steal",
+        "pastSimple": "stole",
+        "pastParticiple": "stolen",
+        "spanish": "robar",
+        "explanation": "Tomar algo que no te pertenece sin permiso.",
+        "imageUrl": "https://i.imgur.com/kqQ2r78.png",
+        "prompimagen": "Un ladrón con máscara caminando de puntillas con una bolsa de dinero."
+    },
+    {
+        "infinitive": "stick",
+        "pastSimple": "stuck",
+        "pastParticiple": "stuck",
+        "spanish": "pegar/atascarse",
+        "explanation": "Adherir algo a una superficie; no poder moverse.",
+        "imageUrl": "https://i.imgur.com/fLy3R1x.png",
+        "prompimagen": "Un trozo de cinta adhesiva pegando una nota a un refrigerador. También, un coche atascado en el barro."
+    },
+    {
+        "infinitive": "sting",
+        "pastSimple": "stung",
+        "pastParticiple": "stung",
+        "spanish": "picar",
+        "explanation": "Causar una herida punzante y dolorosa (un insecto).",
+        "imageUrl": "https://i.imgur.com/62a7dzk.png",
+        "prompimagen": "Una persona reaccionando a la picadura de una abeja en su brazo."
+    },
+    {
+        "infinitive": "stink",
+        "pastSimple": "stank",
+        "pastParticiple": "stunk",
+        "spanish": "apestar",
+        "explanation": "Tener un olor muy malo.",
+        "imageUrl": "https://i.imgur.com/wMrqXT7.png",
+        "prompimagen": "Una nube de gas verdoso y maloliente saliendo de un cubo de basura, estilo caricatura."
+    },
+    {
+        "infinitive": "strike",
+        "pastSimple": "struck",
+        "pastParticiple": "struck",
+        "spanish": "golpear/declarar huelga",
+        "explanation": "Golpear con fuerza; un rayo cae; los trabajadores dejan de trabajar.",
+        "imageUrl": "https://i.imgur.com/Uw6q4vB.jpeg",
+        "prompimagen": "Un dramático rayo golpeando un árbol durante una tormenta."
+    },
+    {
+        "infinitive": "swear",
+        "pastSimple": "swore",
+        "pastParticiple": "sworn",
+        "spanish": "jurar/maldecir",
+        "explanation": "Hacer una promesa solemne; usar lenguaje ofensivo.",
+        "imageUrl": "https://i.imgur.com/6LbiTTO.png",
+        "prompimagen": "Una persona con la mano sobre un libro sagrado en un tribunal, haciendo una promesa solemne."
+    },
+    {
+        "infinitive": "sweep",
+        "pastSimple": "swept",
+        "pastParticiple": "swept",
+        "spanish": "barrer",
+        "explanation": "Limpiar el suelo con una escoba.",
+        "imageUrl": "https://i.imgur.com/JbbAfAI.jpeg",
+        "prompimagen": "Una persona barriendo hojas de otoño de un porche con una escoba."
+    },
+    {
+        "infinitive": "swell",
+        "pastSimple": "swelled",
+        "pastParticiple": "swollen",
+        "spanish": "hincharse",
+        "explanation": "Aumentar de tamaño por acumulación de líquido.",
+        "imageUrl": "https://i.imgur.com/SYHMCdO.png",
+        "prompimagen": "Un tobillo torcido que está visiblemente hinchado en comparación con el otro tobillo."
+    },
+    {
+        "infinitive": "swim",
+        "pastSimple": "swam",
+        "pastParticiple": "swum",
+        "spanish": "nadar",
+        "explanation": "Moverse en el agua usando brazos y piernas.",
+        "imageUrl": "https://i.imgur.com/T53fIFp.png",
+        "prompimagen": "Un nadador haciendo el estilo libre en una piscina de agua azul clara."
+    },
+    {
+        "infinitive": "swing",
+        "pastSimple": "swung",
+        "pastParticiple": "swung",
+        "spanish": "columpiarse/balancear",
+        "explanation": "Moverse hacia adelante y hacia atrás desde un punto fijo.",
+        "imageUrl": "https://i.imgur.com/WdRcQxz.png",
+        "prompimagen": "Un niño en un columpio, volando alto en el aire en el punto máximo de su movimiento."
+    },
+    {
+        "infinitive": "take",
+        "pastSimple": "took",
+        "pastParticiple": "taken",
+        "spanish": "tomar/llevar",
+        "explanation": "Agarrar algo; llevar algo o a alguien de un lugar a otro.",
+        "imageUrl": "https://i.imgur.com/5YB81EF.png",
+        "prompimagen": "Una mano extendiéndose para tomar una manzana de la rama de un árbol."
+    },
+    {
+        "infinitive": "teach",
+        "pastSimple": "taught",
+        "pastParticiple": "taught",
+        "spanish": "enseñar",
+        "explanation": "Dar conocimiento o instrucción a alguien.",
+        "imageUrl": "https://i.imgur.com/9EuEOt8.png",
+        "prompimagen": "Un profesor escribiendo una fórmula matemática en una pizarra frente a una clase."
+    },
+    {
+        "infinitive": "tear",
+        "pastSimple": "tore",
+        "pastParticiple": "torn",
+        "spanish": "rasgar",
+        "explanation": "Romper papel, tela, etc., tirando de él.",
+        "imageUrl": "https://i.imgur.com/SgtZfe9.png",
+        "prompimagen": "Manos rasgando un trozo de papel por la mitad."
+    },
+    {
+        "infinitive": "tell",
+        "pastSimple": "told",
+        "pastParticiple": "told",
+        "spanish": "decir/contar",
+        "explanation": "Comunicar información a alguien; narrar una historia.",
+        "imageUrl": "https://i.imgur.com/LCNpszr.png",
+        "prompimagen": "Un padre contándole un cuento a su hijo, que escucha atentamente."
+    },
+    {
+        "infinitive": "think",
+        "pastSimple": "thought",
+        "pastParticiple": "thought",
+        "spanish": "pensar",
+        "explanation": "Usar la mente para formar ideas o tomar decisiones.",
+        "imageUrl": "https://i.imgur.com/ODTJZAc.png",
+        "prompimagen": "Una persona sentada en una pose pensativa con un dedo en la barbilla, con engranajes girando sobre su cabeza."
+    },
+    {
+        "infinitive": "throw",
+        "pastSimple": "threw",
+        "pastParticiple": "thrown",
+        "spanish": "lanzar/tirar",
+        "explanation": "Impulsar algo por el aire con la mano.",
+        "imageUrl": "https://i.imgur.com/or2crnO.png",
+        "prompimagen": "Una persona lanzando un frisbee en un parque en un día soleado."
+    },
+    {
+        "infinitive": "understand",
+        "pastSimple": "understood",
+        "pastParticiple": "understood",
+        "spanish": "entender/comprender",
+        "explanation": "Percibir el significado de algo.",
+        "imageUrl": "https://i.imgur.com/pzc8M20.png",
+        "prompimagen": "Dos cabezas de silueta una frente a la otra, con una pieza de rompecabezas de una encajando perfectamente en la otra."
+    },
+    {
+        "infinitive": "wake",
+        "pastSimple": "woke",
+        "pastParticiple": "woken",
+        "spanish": "despertar(se)",
+        "explanation": "Dejar de dormir (similar a 'awake').",
+        "imageUrl": "https://i.imgur.com/FeUD0yn.jpeg",
+        "prompimagen": "Una persona estirándose y bostezando en la cama al despertar por la mañana."
+    },
+    {
+        "infinitive": "wear",
+        "pastSimple": "wore",
+        "pastParticiple": "worn",
+        "spanish": "llevar puesto/usar",
+        "explanation": "Tener ropa, joyas o gafas puestas en el cuerpo.",
+        "imageUrl": "https://i.imgur.com/pYYXqcz.png",
+        "prompimagen": "Un maniquí en el escaparate de una tienda vistiendo un abrigo y sombrero nuevos y elegantes."
+    },
+    {
+        "infinitive": "win",
+        "pastSimple": "won",
+        "pastParticiple": "won",
+        "spanish": "ganar",
+        "explanation": "Ser el mejor en una competencia o juego.",
+        "imageUrl": "https://i.imgur.com/x6i0j8r.png",
+        "prompimagen": "Un atleta cruzando la línea de meta en primer lugar y rompiendo la cinta, con los brazos levantados en señal de victoria."
+    },
+    {
+        "infinitive": "wind",
+        "pastSimple": "wound",
+        "pastParticiple": "wound",
+        "spanish": "dar cuerda/enrollar",
+        "explanation": "Enrollar algo alrededor de otra cosa; girar una manivela.",
+        "imageUrl": "https://i.imgur.com/cfDuwHm.png",
+        "prompimagen": "Una mano dando cuerda a la corona de un viejo reloj mecánico."
+    },
+    {
+        "infinitive": "write",
+        "pastSimple": "wrote",
+        "pastParticiple": "written",
+        "spanish": "escribir",
+        "explanation": "Formar letras o palabras en una superficie con un instrumento.",
+        "imageUrl": "https://i.imgur.com/aRb4eNo.png",
+        "prompimagen": "Una pluma estilográfica escribiendo en cursiva sobre un trozo de papel pergamino."
     }
 ]
