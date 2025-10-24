@@ -101,7 +101,15 @@ const practiceSessionManager = new PracticeSessionManager({
     pastSimpleDisplay,
     pastParticipleDisplay,
     spanishTranslationInput,
-    correctTranslationEl
+    correctTranslationEl,
+    matchingExercise: document.getElementById('matching-exercise'),
+    matchingVerbInfinitive: document.getElementById('matching-verb-infinitive'),
+    englishWordsContainer: document.getElementById('english-words'),
+    spanishWordsContainer: document.getElementById('spanish-words'),
+    matchingFeedback: document.getElementById('matching-feedback'),
+    matchingProgress: document.getElementById('matching-progress'),
+    correctMatches: document.getElementById('correct-matches'),
+    totalMatches: document.getElementById('total-matches')
 });
 
 const summaryManager = new SummaryManager({
@@ -110,6 +118,25 @@ const summaryManager = new SummaryManager({
 });
 
 // --- Funciones principales ---
+function checkAnswer() {
+    const currentQuestion = questionDeck[currentQuestionIndex - 1];
+    const exerciseType = currentQuestion.type;
+    let result;
+    if (exerciseType === EXERCISE_TYPES.WRITE_FORMS) {
+        result = practiceSessionManager.checkWriteFormsAnswer(currentVerb, isCorrectionMode);
+    } else if (exerciseType === EXERCISE_TYPES.TRANSLATE_TO_SPANISH) {
+        result = practiceSessionManager.checkTranslationAnswer(currentVerb, isCorrectionMode);
+    } else if (exerciseType === EXERCISE_TYPES.MATCH_TRANSLATION) {
+        result = practiceSessionManager.checkMatchingAnswer();
+    } else {
+        console.error('Tipo desconocido:', exerciseType);
+        return;
+    }
+    if (result) {
+        updateSessionStats(result.isCorrect);
+        isCorrectionMode = result.isCorrectionMode;
+    }
+}
 function displayDailyVerbs() {
     dailyVerbs = startScreenManager.displayDailyVerbs(dailyVerbs);
 }
@@ -250,22 +277,7 @@ function setupNextQuestion() {
     isCorrectionMode = result.isCorrectionMode;
 }
 
-function checkAnswer() {
-    const currentQuestion = questionDeck[currentQuestionIndex - 1];
-    const exerciseType = currentQuestion.type;
 
-    let result;
-    if (exerciseType === EXERCISE_TYPES.WRITE_FORMS) {
-        result = practiceSessionManager.checkWriteFormsAnswer(currentVerb, isCorrectionMode);
-    } else if (exerciseType === EXERCISE_TYPES.TRANSLATE_TO_SPANISH) {
-        result = practiceSessionManager.checkTranslationAnswer(currentVerb, isCorrectionMode);
-    }
-    
-    if (result) {
-        updateSessionStats(result.isCorrect);
-        isCorrectionMode = result.isCorrectionMode;
-    }
-}
 
 function updateSessionStats(isCorrect) {
     if (!isReinforcementSession) {

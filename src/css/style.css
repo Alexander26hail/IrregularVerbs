@@ -39,6 +39,51 @@ body {
 #verb-image, #exit-modal {
     animation: fadeIn 0.5s ease-in-out;
 }
+/* Estilos para el ejercicio de matching */
+.matching-word {
+    padding: 0.75rem 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 0.5rem;
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    font-weight: 500;
+}
+
+.matching-word:hover {
+    border-color: #3b82f6;
+    background: #eff6ff;
+    transform: translateY(-1px);
+}
+
+.matching-word.selected {
+    border-color: #3b82f6;
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.matching-word.matched {
+    border-color: #22c55e;
+    background: #f0fdf4;
+    color: #15803d;
+    cursor: default;
+    transform: none;
+}
+.matching-word.matched:hover {
+    transform: none;
+}
+
+.matching-connection {
+    animation: matchSuccess 0.5s ease;
+}
+
+@keyframes matchSuccess {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
 @keyframes fadeIn {
     from { opacity: 0; transform: scale(0.95); }
     to { opacity: 1; transform: scale(1); }
@@ -87,7 +132,7 @@ body {
 /* Mejorar visibilidad del botón en fullscreen */
 .mobile-fullscreen #fullscreen-btn {
     background-color: rgba(255, 255, 255, 0.95) !important;
-    backdrop-filter: blur(8px) !important;
+    
     border: 1px solid rgba(148, 163, 184, 0.3) !important;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1) !important;
 }
@@ -99,6 +144,7 @@ body {
     z-index: 10;
 }
 
+
 /* En móviles, hacer el botón más grande y visible */
 @media (max-width: 640px) {
     #fullscreen-btn {
@@ -106,7 +152,6 @@ body {
         right: 0.5rem;
         padding: 0.75rem;
         background-color: rgba(255, 255, 255, 0.9);
-        backdrop-filter: blur(4px);
         border: 1px solid rgba(148, 163, 184, 0.2);
     }
     
@@ -118,6 +163,8 @@ body {
         width: 20px;
         height: 20px;
     }
+    #verb-inputs { padding-bottom: 0.5rem; }
+    #verb-inputs input { font-size: 0.9rem; }
 }
 
 /* Para pantallas muy pequeñas */

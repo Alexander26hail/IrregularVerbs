@@ -13,7 +13,8 @@ export const SESSION_CONFIG = {
 
 export const EXERCISE_TYPES = {
     WRITE_FORMS: 'write_forms',
-    TRANSLATE_TO_SPANISH: 'translate_to_spanish'
+    TRANSLATE_TO_SPANISH: 'translate_to_spanish',
+    MATCH_TRANSLATION: 'match_translation' 
 };
 
 export const DIFFICULTY_LEVELS = {

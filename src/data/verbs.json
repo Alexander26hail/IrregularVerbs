@@ -1,17 +1,21 @@
 [
     {
         "infinitive": "arise",
-        "pastSimple": "arose", 
+        "pastSimple": "arose",
         "pastParticiple": "arisen",
         "spanish": "surgir",
+        "SpanishPast": "surgió",
+        "SpanishPastParticiple": "surgido",
         "explanation": "Aparecer un problema o una oportunidad.",
         "imageUrl": "https://i.imgur.com/GvjYkQj.png"
     },
     {
         "infinitive": "awake",
         "pastSimple": "awoke",
-        "pastParticiple": "awoken", 
+        "pastParticiple": "awoken",
         "spanish": "despertar(se)",
+        "SpanishPast": "despertó",
+        "SpanishPastParticiple": "despertado",
         "explanation": "Dejar de dormir o hacer que alguien lo haga.",
         "imageUrl": "https://i.imgur.com/6e8GV0g.png"
     },
@@ -19,7 +23,9 @@
         "infinitive": "be",
         "pastSimple": "was/were",
         "pastParticiple": "been",
-        "spanish": "ser/estar", 
+        "spanish": "ser/estar",
+        "SpanishPast": "fue/estuvo",
+        "SpanishPastParticiple": "sido/estado",
         "explanation": "Indica existencia, estado o identidad.",
         "imageUrl": "https://i.imgur.com/041TSxr.png"
     },
@@ -28,14 +34,18 @@
         "pastSimple": "bore",
         "pastParticiple": "born/borne",
         "spanish": "soportar",
+        "SpanishPast": "soportó",
+        "SpanishPastParticiple": "soportado/nacido",
         "explanation": "Aguantar algo pesado o difícil; dar a luz.",
         "imageUrl": "https://i.imgur.com/7zprI00.png"
     },
     {
         "infinitive": "beat",
-        "pastSimple": "beat", 
+        "pastSimple": "beat",
         "pastParticiple": "beaten",
         "spanish": "golpear",
+        "SpanishPast": "golpeó",
+        "SpanishPastParticiple": "golpeado",
         "explanation": "Ganarle a alguien; golpear rítmicamente (un tambor).",
         "imageUrl": "https://i.imgur.com/qQQb5RQ.png"
     },
@@ -43,7 +53,9 @@
         "infinitive": "become",
         "pastSimple": "became",
         "pastParticiple": "become",
-        "spanish": "convertirse en", 
+        "spanish": "convertirse en",
+        "SpanishPast": "se convirtió",
+        "SpanishPastParticiple": "convertido",
         "explanation": "Llegar a ser algo diferente; transformarse.",
         "imageUrl": "https://i.imgur.com/4u5p2qT.png"
     },
@@ -52,14 +64,18 @@
         "pastSimple": "began",
         "pastParticiple": "begun",
         "spanish": "empezar",
+        "SpanishPast": "empezó",
+        "SpanishPastParticiple": "empezado",
         "explanation": "Iniciar o comenzar una acción.",
         "imageUrl": "https://i.imgur.com/Q3ZDHjz.png"
     },
     {
         "infinitive": "bend",
         "pastSimple": "bent",
-        "pastParticiple": "bent", 
+        "pastParticiple": "bent",
         "spanish": "doblar(se)",
+        "SpanishPast": "dobló",
+        "SpanishPastParticiple": "doblado",
         "explanation": "Curvar algo recto o a sí mismo.",
         "imageUrl": "https://www.yogaclassplan.com/wp-content/uploads/2021/06/standing-half-forward-bend.jpg"
     },
@@ -68,6 +84,8 @@
         "pastSimple": "bet",
         "pastParticiple": "bet",
         "spanish": "apostar",
+        "SpanishPast": "apostó",
+        "SpanishPastParticiple": "apostado",
         "explanation": "Arriesgar dinero en el resultado de algo.",
         "imageUrl": "https://i.imgur.com/Q6D6aOK.png"
     },
@@ -76,6 +94,8 @@
         "pastSimple": "bound",
         "pastParticiple": "bound",
         "spanish": "atar",
+        "SpanishPast": "ató",
+        "SpanishPastParticiple": "atado",
         "explanation": "Unir o sujetar algo con cuerdas; encuadernar.",
         "imageUrl": "https://i.imgur.com/UUxnTFh.png"
     },
@@ -84,14 +104,18 @@
         "pastSimple": "bit",
         "pastParticiple": "bitten",
         "spanish": "morder",
+        "SpanishPast": "mordió",
+        "SpanishPastParticiple": "mordido",
         "explanation": "Usar los dientes para cortar algo.",
         "imageUrl": "https://i.imgur.com/B2x2Mse.png"
     },
     {
         "infinitive": "bleed",
-        "pastSimple": "bled", 
+        "pastSimple": "bled",
         "pastParticiple": "bled",
         "spanish": "sangrar",
+        "SpanishPast": "sangró",
+        "SpanishPastParticiple": "sangrado",
         "explanation": "Perder sangre por una herida.",
         "imageUrl": "https://i.imgur.com/T0X8T1q.png"
     },
@@ -100,6 +124,8 @@
         "pastSimple": "blew",
         "pastParticiple": "blown",
         "spanish": "soplar",
+        "SpanishPast": "sopló",
+        "SpanishPastParticiple": "soplado",
         "explanation": "Mover el aire con la boca (velas, un globo).",
         "imageUrl": "https://i.imgur.com/v6LZ5lo.png"
     },
@@ -108,6 +134,8 @@
         "pastSimple": "broke",
         "pastParticiple": "broken",
         "spanish": "romper",
+        "SpanishPast": "rompió",
+        "SpanishPastParticiple": "roto",
         "explanation": "Hacer que algo se separe en pedazos.",
         "imageUrl": "https://i.imgur.com/gltSzEK.png"
     },
@@ -116,6 +144,8 @@
         "pastSimple": "bred",
         "pastParticiple": "bred",
         "spanish": "criar",
+        "SpanishPast": "crió",
+        "SpanishPastParticiple": "criado",
         "explanation": "Cuidar animales para que se reproduzcan.",
         "imageUrl": "https://i.imgur.com/EVUOMIl.png"
     },
@@ -124,6 +154,8 @@
         "pastSimple": "brought",
         "pastParticiple": "brought",
         "spanish": "traer",
+        "SpanishPast": "trajo",
+        "SpanishPastParticiple": "traído",
         "explanation": "Llevar algo o a alguien a un lugar.",
         "imageUrl": "https://i.imgur.com/yIfEhrk.png"
     },
@@ -132,6 +164,8 @@
         "pastSimple": "broadcast",
         "pastParticiple": "broadcast",
         "spanish": "transmitir",
+        "SpanishPast": "transmitió",
+        "SpanishPastParticiple": "transmitido",
         "explanation": "Emitir un programa de radio o televisión.",
         "imageUrl": "https://i.imgur.com/cbBlz59.png"
     },
@@ -140,14 +174,18 @@
         "pastSimple": "built",
         "pastParticiple": "built",
         "spanish": "construir",
+        "SpanishPast": "construyó",
+        "SpanishPastParticiple": "construido",
         "explanation": "Crear una estructura como una casa o un edificio.",
         "imageUrl": "https://i.imgur.com/io1nz1P.png"
     },
     {
-        "infinitive": "burn", 
+        "infinitive": "burn",
         "pastSimple": "burnt/burned",
         "pastParticiple": "burnt/burned",
         "spanish": "quemar",
+        "SpanishPast": "quemó",
+        "SpanishPastParticiple": "quemado",
         "explanation": "Dañar algo con fuego o calor.",
         "imageUrl": "https://i.imgur.com/rTRFrdc.png"
     },
@@ -156,6 +194,8 @@
         "pastSimple": "burst",
         "pastParticiple": "burst",
         "spanish": "reventar",
+        "SpanishPast": "reventó",
+        "SpanishPastParticiple": "reventado",
         "explanation": "Romperse o explotar de repente.",
         "imageUrl": "https://i.imgur.com/2XfIFqR.png"
     },
@@ -164,6 +204,8 @@
         "pastSimple": "bought",
         "pastParticiple": "bought",
         "spanish": "comprar",
+        "SpanishPast": "compró",
+        "SpanishPastParticiple": "comprado",
         "explanation": "Obtener algo a cambio de dinero.",
         "imageUrl": "https://i.imgur.com/lAQTFfM.png"
     },
@@ -172,6 +214,8 @@
         "pastSimple": "cast",
         "pastParticiple": "cast",
         "spanish": "lanzar",
+        "SpanishPast": "lanzó",
+        "SpanishPastParticiple": "lanzado",
         "explanation": "Tirar algo con fuerza; seleccionar actores.",
         "imageUrl": "https://i.imgur.com/BeMrCHV.png"
     },
@@ -180,6 +224,8 @@
         "pastSimple": "caught",
         "pastParticiple": "caught",
         "spanish": "atrapar",
+        "SpanishPast": "atrapó",
+        "SpanishPastParticiple": "atrapado",
         "explanation": "Agarrar algo que se mueve, como una pelota.",
         "imageUrl": "https://i.imgur.com/YsSDGel.png"
     },
@@ -188,6 +234,8 @@
         "pastSimple": "chose",
         "pastParticiple": "chosen",
         "spanish": "elegir",
+        "SpanishPast": "eligió",
+        "SpanishPastParticiple": "elegido",
         "explanation": "Seleccionar una opción entre varias.",
         "imageUrl": "https://i.imgur.com/umc87Pv.png"
     },
@@ -196,6 +244,8 @@
         "pastSimple": "clung",
         "pastParticiple": "clung",
         "spanish": "aferrarse",
+        "SpanishPast": "se aferró",
+        "SpanishPastParticiple": "aferrado",
         "explanation": "Sujetarse a algo o alguien con fuerza.",
         "imageUrl": "https://i.imgur.com/oVzNF1S.png"
     },
@@ -204,6 +254,8 @@
         "pastSimple": "came",
         "pastParticiple": "come",
         "spanish": "venir",
+        "SpanishPast": "vino",
+        "SpanishPastParticiple": "venido",
         "explanation": "Moverse hacia el lugar donde está el hablante.",
         "imageUrl": "https://i.imgur.com/sBYpwGH.png"
     },
@@ -212,6 +264,8 @@
         "pastSimple": "cost",
         "pastParticiple": "cost",
         "spanish": "costar",
+        "SpanishPast": "costó",
+        "SpanishPastParticiple": "costado",
         "explanation": "Tener un precio determinado.",
         "imageUrl": "https://i.imgur.com/L3Lx1jo.png"
     },
@@ -220,6 +274,8 @@
         "pastSimple": "crept",
         "pastParticiple": "crept",
         "spanish": "arrastrarse",
+        "SpanishPast": "se arrastró",
+        "SpanishPastParticiple": "arrastrado",
         "explanation": "Moverse sigilosamente y en silencio.",
         "imageUrl": "https://i.imgur.com/OVo2YgL.png"
     },
@@ -228,6 +284,8 @@
         "pastSimple": "cut",
         "pastParticiple": "cut",
         "spanish": "cortar",
+        "SpanishPast": "cortó",
+        "SpanishPastParticiple": "cortado",
         "explanation": "Dividir algo usando un objeto afilado.",
         "imageUrl": "https://i.imgur.com/yuO7RLE.png"
     },
@@ -236,6 +294,8 @@
         "pastSimple": "dealt",
         "pastParticiple": "dealt",
         "spanish": "tratar",
+        "SpanishPast": "trató",
+        "SpanishPastParticiple": "tratado",
         "explanation": "Ocuparse de un problema; repartir cartas.",
         "imageUrl": "https://i.imgur.com/KJ7Fslr.png"
     },
@@ -244,6 +304,8 @@
         "pastSimple": "dug",
         "pastParticiple": "dug",
         "spanish": "cavar",
+        "SpanishPast": "cavó",
+        "SpanishPastParticiple": "cavado",
         "explanation": "Hacer un hoyo en la tierra.",
         "imageUrl": "https://i.imgur.com/HKKcGay.png"
     },
@@ -252,6 +314,8 @@
         "pastSimple": "did",
         "pastParticiple": "done",
         "spanish": "hacer",
+        "SpanishPast": "hizo",
+        "SpanishPastParticiple": "hecho",
         "explanation": "Realizar una actividad o tarea.",
         "imageUrl": "https://i.imgur.com/zFdaIgH.png"
     },
@@ -260,6 +324,8 @@
         "pastSimple": "drew",
         "pastParticiple": "drawn",
         "spanish": "dibujar",
+        "SpanishPast": "dibujó",
+        "SpanishPastParticiple": "dibujado",
         "explanation": "Crear una imagen con lápices o bolígrafos.",
         "imageUrl": "https://i.imgur.com/pNKu5z4.png"
     },
@@ -268,6 +334,8 @@
         "pastSimple": "dreamt/dreamed",
         "pastParticiple": "dreamt/dreamed",
         "spanish": "soñar",
+        "SpanishPast": "soñó",
+        "SpanishPastParticiple": "soñado",
         "explanation": "Experimentar imágenes o historias al dormir.",
         "imageUrl": "https://i.imgur.com/UfOHHM7.png"
     },
@@ -276,6 +344,8 @@
         "pastSimple": "drank",
         "pastParticiple": "drunk",
         "spanish": "beber",
+        "SpanishPast": "bebió",
+        "SpanishPastParticiple": "bebido",
         "explanation": "Ingerir un líquido.",
         "imageUrl": "https://i.imgur.com/kkxR0Lx.png"
     },
@@ -284,6 +354,8 @@
         "pastSimple": "drove",
         "pastParticiple": "driven",
         "spanish": "conducir",
+        "SpanishPast": "condujo",
+        "SpanishPastParticiple": "conducido",
         "explanation": "Manejar un vehículo como un coche.",
         "imageUrl": "https://i.imgur.com/p0vqVE6.png"
     },
@@ -292,6 +364,8 @@
         "pastSimple": "ate",
         "pastParticiple": "eaten",
         "spanish": "comer",
+        "SpanishPast": "comió",
+        "SpanishPastParticiple": "comido",
         "explanation": "Ingerir alimentos sólidos.",
         "imageUrl": "https://i.imgur.com/kMI5sM8.png"
     },
@@ -300,6 +374,8 @@
         "pastSimple": "fell",
         "pastParticiple": "fallen",
         "spanish": "caer",
+        "SpanishPast": "cayó",
+        "SpanishPastParticiple": "caído",
         "explanation": "Moverse hacia abajo por la gravedad.",
         "imageUrl": "https://i.imgur.com/3NkaF2C.png"
     },
@@ -308,6 +384,8 @@
         "pastSimple": "fed",
         "pastParticiple": "fed",
         "spanish": "alimentar",
+        "SpanishPast": "alimentó",
+        "SpanishPastParticiple": "alimentado",
         "explanation": "Dar comida a una persona o animal.",
         "imageUrl": "https://i.imgur.com/fWJ2NEZ.png"
     },
@@ -316,6 +394,8 @@
         "pastSimple": "felt",
         "pastParticiple": "felt",
         "spanish": "sentir",
+        "SpanishPast": "sintió",
+        "SpanishPastParticiple": "sentido",
         "explanation": "Experimentar una emoción o sensación física.",
         "imageUrl": "https://i.imgur.com/iIpEyWk.png"
     },
@@ -324,6 +404,8 @@
         "pastSimple": "fought",
         "pastParticiple": "fought",
         "spanish": "pelear",
+        "SpanishPast": "peleó",
+        "SpanishPastParticiple": "peleado",
         "explanation": "Luchar físicamente o discutir fuertemente.",
         "imageUrl": "https://i.imgur.com/BH1zqeH.png"
     },
@@ -332,6 +414,8 @@
         "pastSimple": "found",
         "pastParticiple": "found",
         "spanish": "encontrar",
+        "SpanishPast": "encontró",
+        "SpanishPastParticiple": "encontrado",
         "explanation": "Descubrir algo o a alguien que buscabas.",
         "imageUrl": "https://i.imgur.com/o1hiY8j.png"
     },
@@ -340,6 +424,8 @@
         "pastSimple": "fled",
         "pastParticiple": "fled",
         "spanish": "huir",
+        "SpanishPast": "huyó",
+        "SpanishPastParticiple": "huido",
         "explanation": "Escapar de un lugar o situación de peligro.",
         "imageUrl": "https://i.imgur.com/3DvnmCi.png"
     },
@@ -348,15 +434,18 @@
         "pastSimple": "flew",
         "pastParticiple": "flown",
         "spanish": "volar",
+        "SpanishPast": "voló",
+        "SpanishPastParticiple": "volado",
         "explanation": "Moverse por el aire, como un pájaro o un avión.",
         "imageUrl": "https://i.imgur.com/D94Kx7C.png"
-
     },
     {
         "infinitive": "forbid",
         "pastSimple": "forbade",
         "pastParticiple": "forbidden",
         "spanish": "prohibir",
+        "SpanishPast": "prohibió",
+        "SpanishPastParticiple": "prohibido",
         "explanation": "Impedir o no permitir que se haga algo.",
         "imageUrl": "https://i.imgur.com/YcPCnUz.jpeg",
         "prompimagen": "Una mano levantada en gesto de 'alto' frente a una señal de prohibido, como 'Prohibido el paso'. Autoritario, claro."
@@ -366,6 +455,8 @@
         "pastSimple": "forgot",
         "pastParticiple": "forgotten",
         "spanish": "olvidar",
+        "SpanishPast": "olvidó",
+        "SpanishPastParticiple": "olvidado",
         "explanation": "No poder recordar algo.",
         "imageUrl": "https://i.imgur.com/3YGbs7V.jpeg",
         "prompimagen": "La cabeza de una persona disolviéndose en piezas de rompecabezas dispersas, simbolizando la pérdida de memoria. Abstracto, conceptual."
@@ -375,6 +466,8 @@
         "pastSimple": "forgave",
         "pastParticiple": "forgiven",
         "spanish": "perdonar",
+        "SpanishPast": "perdonó",
+        "SpanishPastParticiple": "perdonado",
         "explanation": "Dejar de sentir enojo o rencor hacia alguien.",
         "imageUrl": "https://i.imgur.com/jrHgdXH.jpeg",
         "prompimagen": "Dos manos estrechándose, una de las cuales libera un pájaro al aire. Simbólico de dejar ir y hacer las paces."
@@ -384,6 +477,8 @@
         "pastSimple": "froze",
         "pastParticiple": "frozen",
         "spanish": "congelar(se)",
+        "SpanishPast": "congeló",
+        "SpanishPastParticiple": "congelado",
         "explanation": "Convertirse en hielo por el frío; quedarse inmóvil.",
         "imageUrl": "https://i.imgur.com/qE8KPWE.jpeg",
         "prompimagen": "Una hoja delicada cubierta de intrincados cristales de hielo en una fría mañana de invierno. Fotografía macro, hermoso detalle."
@@ -393,6 +488,8 @@
         "pastSimple": "got",
         "pastParticiple": "got/gotten",
         "spanish": "conseguir/obtener",
+        "SpanishPast": "consiguió/obtuvo",
+        "SpanishPastParticiple": "conseguido/obtenido",
         "explanation": "Recibir, comprar o llegar a un estado o lugar.",
         "imageUrl": "https://i.imgur.com/B5IoQWb.jpeg",
         "prompimagen": "Una persona alcanzando la cima de una montaña y levantando los brazos en señal de triunfo."
@@ -402,6 +499,8 @@
         "pastSimple": "gave",
         "pastParticiple": "given",
         "spanish": "dar",
+        "SpanishPast": "dio",
+        "SpanishPastParticiple": "dado",
         "explanation": "Entregar algo a alguien sin esperar nada a cambio.",
         "imageUrl": "https://i.imgur.com/I7PI4WL.png",
         "prompimagen": "Un par de manos entregando cuidadosamente un regalo envuelto a otro par de manos. Cálido, generoso."
@@ -411,6 +510,8 @@
         "pastSimple": "went",
         "pastParticiple": "gone",
         "spanish": "ir",
+        "SpanishPast": "fue",
+        "SpanishPastParticiple": "ido",
         "explanation": "Moverse de un lugar a otro, alejándose.",
         "imageUrl": "https://i.imgur.com/IMGPvV0.jpeg",
         "prompimagen": "Una persona con una mochila caminando por una carretera larga y vacía que se extiende hasta el horizonte."
@@ -420,6 +521,8 @@
         "pastSimple": "ground",
         "pastParticiple": "ground",
         "spanish": "moler",
+        "SpanishPast": "molió",
+        "SpanishPastParticiple": "molido",
         "explanation": "Reducir algo a polvo o partículas pequeñas.",
         "imageUrl": "https://i.imgur.com/uzJqsZN.jpeg",
         "prompimagen": "Un mortero de piedra tradicional moliendo granos de café o especias. Escena rústica y aromática."
@@ -429,6 +532,8 @@
         "pastSimple": "grew",
         "pastParticiple": "grown",
         "spanish": "crecer",
+        "SpanishPast": "creció",
+        "SpanishPastParticiple": "crecido",
         "explanation": "Aumentar de tamaño o desarrollarse.",
         "imageUrl": "https://i.imgur.com/jB0sb7Y.jpeg",
         "prompimagen": "Imagen tipo time-lapse que muestra una pequeña plántula convirtiéndose en una planta completa. Ilustra el crecimiento y la vida."
@@ -438,6 +543,8 @@
         "pastSimple": "hung",
         "pastParticiple": "hung",
         "spanish": "colgar",
+        "SpanishPast": "colgó",
+        "SpanishPastParticiple": "colgado",
         "explanation": "Suspender algo desde un punto, sin que toque el suelo.",
         "imageUrl": "https://i.imgur.com/yaLBqM0.jpeg",
         "prompimagen": "Ropa de colores colgada en un tendedero, ondeando suavemente con la brisa en un día soleado."
@@ -447,6 +554,8 @@
         "pastSimple": "had",
         "pastParticiple": "had",
         "spanish": "tener",
+        "SpanishPast": "tuvo",
+        "SpanishPastParticiple": "tenido",
         "explanation": "Indica posesión, propiedad o experiencia.",
         "imageUrl": "https://i.imgur.com/CAfV9bG.png",
         "prompimagen": "Una persona sosteniendo una llave en la palma de su mano, simbolizando propiedad o posesión."
@@ -456,6 +565,8 @@
         "pastSimple": "heard",
         "pastParticiple": "heard",
         "spanish": "oír",
+        "SpanishPast": "oyó",
+        "SpanishPastParticiple": "oído",
         "explanation": "Percibir sonidos con el oído.",
         "imageUrl": "https://i.imgur.com/huzMikt.png",
         "prompimagen": "Primer plano de un oído humano con ondas sonoras visibles fluyendo hacia él. Conceptual, minimalista."
@@ -465,6 +576,8 @@
         "pastSimple": "hid",
         "pastParticiple": "hidden",
         "spanish": "esconder(se)",
+        "SpanishPast": "escondió",
+        "SpanishPastParticiple": "escondido",
         "explanation": "Poner algo o a alguien donde no se pueda ver.",
         "imageUrl": "https://i.imgur.com/U50J63h.png",
         "prompimagen": "Un niño asomándose desde detrás de un gran árbol durante un juego de escondite. Juguetón, inocente."
@@ -474,6 +587,8 @@
         "pastSimple": "hit",
         "pastParticiple": "hit",
         "spanish": "golpear",
+        "SpanishPast": "golpeó",
+        "SpanishPastParticiple": "golpeado",
         "explanation": "Dar un golpe a algo o a alguien.",
         "imageUrl": "https://i.imgur.com/yWLinvE.png",
         "prompimagen": "Un bate de béisbol golpeando una pelota en el momento del impacto, con líneas de movimiento. Dinámico, potente."
@@ -483,6 +598,8 @@
         "pastSimple": "held",
         "pastParticiple": "held",
         "spanish": "sostener",
+        "SpanishPast": "sostuvo",
+        "SpanishPastParticiple": "sostenido",
         "explanation": "Mantener algo en las manos o los brazos.",
         "imageUrl": "https://i.imgur.com/uOUJxsC.png",
         "prompimagen": "Un par de manos en cuenco sosteniendo un nido de pájaro pequeño y frágil con huevos. Cuidadoso, protector."
@@ -492,6 +609,8 @@
         "pastSimple": "hurt",
         "pastParticiple": "hurt",
         "spanish": "herir/doler",
+        "SpanishPast": "hirió/dolió",
+        "SpanishPastParticiple": "herido/dolido",
         "explanation": "Causar dolor físico o emocional.",
         "imageUrl": "https://i.imgur.com/sICGbNN.png",
         "prompimagen": "Una persona con una venda en la rodilla, con aspecto triste. Simple, transmite dolor."
@@ -501,6 +620,8 @@
         "pastSimple": "kept",
         "pastParticiple": "kept",
         "spanish": "guardar/mantener",
+        "SpanishPast": "guardó/mantuvo",
+        "SpanishPastParticiple": "guardado/mantenido",
         "explanation": "Continuar teniendo algo; conservar.",
         "imageUrl": "https://i.imgur.com/TftybEq.png",
         "prompimagen": "Una persona metiendo una moneda en una alcancía, simbolizando el ahorro y la conservación."
@@ -510,6 +631,8 @@
         "pastSimple": "knelt/kneeled",
         "pastParticiple": "knelt/kneeled",
         "spanish": "arrodillarse",
+        "SpanishPast": "se arrodilló",
+        "SpanishPastParticiple": "arrodillado",
         "explanation": "Ponerse de rodillas.",
         "imageUrl": "https://i.imgur.com/E7zpFMH.png",
         "prompimagen": "Un caballero arrodillado ante un rey o una reina. Ceremonial, respetuoso."
@@ -519,6 +642,8 @@
         "pastSimple": "knew",
         "pastParticiple": "known",
         "spanish": "saber/conocer",
+        "SpanishPast": "supo/conoció",
+        "SpanishPastParticiple": "sabido/conocido",
         "explanation": "Tener información o conocimiento sobre algo.",
         "imageUrl": "https://i.imgur.com/HdqTpLL.png",
         "prompimagen": "La silueta de una cabeza humana con una bombilla brillante en su interior, representando el conocimiento y las ideas."
@@ -528,6 +653,8 @@
         "pastSimple": "laid",
         "pastParticiple": "laid",
         "spanish": "poner/colocar",
+        "SpanishPast": "puso/colocó",
+        "SpanishPastParticiple": "puesto/colocado",
         "explanation": "Colocar algo en una superficie, usualmente con cuidado.",
         "imageUrl": "https://i.imgur.com/J6gE93u.png",
         "prompimagen": "Una persona colocando cuidadosamente una nueva baldosa en un suelo. Preciso, constructivo."
@@ -537,6 +664,8 @@
         "pastSimple": "led",
         "pastParticiple": "led",
         "spanish": "guiar/liderar",
+        "SpanishPast": "guió/lideró",
+        "SpanishPastParticiple": "guiado/liderado",
         "explanation": "Ir delante para mostrar el camino; ser el líder.",
         "imageUrl": "https://i.imgur.com/23MQxGu.png",
         "prompimagen": "El perro guía de un equipo de trineo guiando a los demás a través de la nieve. Liderazgo, trabajo en equipo."
@@ -546,6 +675,8 @@
         "pastSimple": "learnt/learned",
         "pastParticiple": "learnt/learned",
         "spanish": "aprender",
+        "SpanishPast": "aprendió",
+        "SpanishPastParticiple": "aprendido",
         "explanation": "Adquirir conocimiento o habilidad.",
         "imageUrl": "https://i.imgur.com/1WmoJ9j.png",
         "prompimagen": "Un estudiante sentado en un escritorio, con un libro abierto y una mirada de concentración y descubrimiento."
@@ -555,6 +686,8 @@
         "pastSimple": "left",
         "pastParticiple": "left",
         "spanish": "irse/dejar",
+        "SpanishPast": "se fue/dejó",
+        "SpanishPastParticiple": "ido/dejado",
         "explanation": "Abandonar un lugar; olvidar o dejar algo atrás.",
         "imageUrl": "https://i.imgur.com/jpoj9B5.png",
         "prompimagen": "Huellas en la arena que se alejan del espectador hacia el océano al atardecer."
@@ -564,6 +697,8 @@
         "pastSimple": "lent",
         "pastParticiple": "lent",
         "spanish": "prestar",
+        "SpanishPast": "prestó",
+        "SpanishPastParticiple": "prestado",
         "explanation": "Dar algo a alguien para que lo use y luego lo devuelva.",
         "imageUrl": "https://i.imgur.com/Q1fQrVt.png",
         "prompimagen": "Una mano dando un libro a otra mano sobre un mostrador de biblioteca. Cooperativo."
@@ -573,6 +708,8 @@
         "pastSimple": "let",
         "pastParticiple": "let",
         "spanish": "permitir/dejar",
+        "SpanishPast": "permitió/dejó",
+        "SpanishPastParticiple": "permitido/dejado",
         "explanation": "Permitir que algo suceda o que alguien haga algo.",
         "imageUrl": "https://i.imgur.com/em3Tic7.png",
         "prompimagen": "Una mano abriendo una jaula para dejar volar a un pájaro. Simbólico de libertad y permiso."
@@ -582,6 +719,8 @@
         "pastSimple": "lay",
         "pastParticiple": "lain",
         "spanish": "yacer/tumbarse",
+        "SpanishPast": "yació/se tumbó",
+        "SpanishPastParticiple": "yacido/tumbado",
         "explanation": "Estar en una posición horizontal, descansando.",
         "imageUrl": "https://i.imgur.com/HukWV95.png",
         "prompimagen": "Una persona tumbada en una hamaca entre dos palmeras en una playa tropical. Relajante, pacífico."
@@ -591,6 +730,8 @@
         "pastSimple": "lit/lighted",
         "pastParticiple": "lit/lighted",
         "spanish": "encender/iluminar",
+        "SpanishPast": "encendió/iluminó",
+        "SpanishPastParticiple": "encendido/iluminado",
         "explanation": "Producir luz; prender fuego a algo.",
         "imageUrl": "https://i.imgur.com/sRcpVEz.png",
         "prompimagen": "Una mano encendiendo una cerilla, con la llama cobrando vida en una habitación oscura."
@@ -600,6 +741,8 @@
         "pastSimple": "lost",
         "pastParticiple": "lost",
         "spanish": "perder",
+        "SpanishPast": "perdió",
+        "SpanishPastParticiple": "perdido",
         "explanation": "No poder encontrar algo; ser derrotado en un juego.",
         "imageUrl": "https://i.imgur.com/wWdmeub.png",
         "prompimagen": "Una persona mirando una cartera vacía y abierta con expresión triste. Transmite pérdida."
@@ -609,6 +752,8 @@
         "pastSimple": "made",
         "pastParticiple": "made",
         "spanish": "hacer/fabricar",
+        "SpanishPast": "hizo/fabricó",
+        "SpanishPastParticiple": "hecho/fabricado",
         "explanation": "Crear o producir algo.",
         "imageUrl": "https://i.imgur.com/9V5k0IA.png",
         "prompimagen": "Las manos de un alfarero dando forma a un jarrón en un torno de alfarería. Creativo, concentrado."
@@ -618,6 +763,8 @@
         "pastSimple": "meant",
         "pastParticiple": "meant",
         "spanish": "significar/querer decir",
+        "SpanishPast": "significó/quiso decir",
+        "SpanishPastParticiple": "significado/querido decir",
         "explanation": "Tener un significado; tener una intención.",
         "imageUrl": "https://i.imgur.com/qrXdxcc.png",
         "prompimagen": "Dos personas en conversación, con una burbuja de diálogo que contiene un corazón entre ellas para mostrar el significado."
@@ -627,6 +774,8 @@
         "pastSimple": "met",
         "pastParticiple": "met",
         "spanish": "conocer/encontrarse",
+        "SpanishPast": "conoció/se encontró",
+        "SpanishPastParticiple": "conocido/encontrado",
         "explanation": "Encontrarse con alguien por primera vez o por acuerdo.",
         "imageUrl": "https://i.imgur.com/TbNmLWJ.png",
         "prompimagen": "Las siluetas de dos personas dándose la mano frente a un sol poniente. Acuerdo, conexión."
@@ -636,6 +785,8 @@
         "pastSimple": "paid",
         "pastParticiple": "paid",
         "spanish": "pagar",
+        "SpanishPast": "pagó",
+        "SpanishPastParticiple": "pagado",
         "explanation": "Dar dinero a cambio de un producto o servicio.",
         "imageUrl": "https://i.imgur.com/UZ14Onw.png",
         "prompimagen": "Primer plano de una mano insertando una tarjeta de crédito en un terminal de pago."
@@ -645,6 +796,8 @@
         "pastSimple": "put",
         "pastParticiple": "put",
         "spanish": "poner",
+        "SpanishPast": "puso",
+        "SpanishPastParticiple": "puesto",
         "explanation": "Colocar algo en un lugar determinado.",
         "imageUrl": "https://i.imgur.com/S2NYjBF.png",
         "prompimagen": "Una mano poniendo una carta en un buzón rojo. Acción simple."
@@ -654,6 +807,8 @@
         "pastSimple": "read",
         "pastParticiple": "read",
         "spanish": "leer",
+        "SpanishPast": "leyó",
+        "SpanishPastParticiple": "leído",
         "explanation": "Interpretar el significado de un texto escrito.",
         "imageUrl": "https://i.imgur.com/6LUasdA.png",
         "prompimagen": "Una persona leyendo un libro cómodamente en un sillón acogedor junto a una chimenea."
@@ -663,6 +818,8 @@
         "pastSimple": "rode",
         "pastParticiple": "ridden",
         "spanish": "montar/cabalgar",
+        "SpanishPast": "montó/cabalgó",
+        "SpanishPastParticiple": "montado/cabalgado",
         "explanation": "Montar en un animal, bicicleta o motocicleta.",
         "imageUrl": "https://i.imgur.com/1YktxIE.png",
         "prompimagen": "Una persona montando a caballo por un sendero panorámico de montaña."
@@ -672,6 +829,8 @@
         "pastSimple": "rang",
         "pastParticiple": "rung",
         "spanish": "sonar/llamar",
+        "SpanishPast": "sonó/llamó",
+        "SpanishPastParticiple": "sonado/llamado",
         "explanation": "Hacer un sonido (un timbre o teléfono); llamar por teléfono.",
         "imageUrl": "https://i.imgur.com/1Q8EB7V.png",
         "prompimagen": "Un teléfono antiguo sonando sobre una mesa, vibrando ligeramente."
@@ -681,6 +840,8 @@
         "pastSimple": "rose",
         "pastParticiple": "risen",
         "spanish": "levantarse/subir",
+        "SpanishPast": "se levantó/subió",
+        "SpanishPastParticiple": "levantado/subido",
         "explanation": "Moverse hacia arriba; aumentar.",
         "imageUrl": "https://i.imgur.com/gWxsF9Z.png",
         "prompimagen": "El sol saliendo por el horizonte del océano, proyectando una luz dorada. esperanzador, nuevo comienzo."
@@ -690,6 +851,8 @@
         "pastSimple": "ran",
         "pastParticiple": "run",
         "spanish": "correr",
+        "SpanishPast": "corrió",
+        "SpanishPastParticiple": "corrido",
         "explanation": "Moverse rápidamente con las piernas.",
         "imageUrl": "https://i.imgur.com/5uFH0E5.png",
         "prompimagen": "Un atleta corriendo en una pista, capturado con desenfoque de movimiento para mostrar velocidad."
@@ -699,6 +862,8 @@
         "pastSimple": "said",
         "pastParticiple": "said",
         "spanish": "decir",
+        "SpanishPast": "dijo",
+        "SpanishPastParticiple": "dicho",
         "explanation": "Expresar algo con palabras.",
         "imageUrl": "https://i.imgur.com/B2xfytH.png",
         "prompimagen": "Primer plano de la boca de una persona mientras habla, con ondas sonoras abstractas saliendo."
@@ -708,6 +873,8 @@
         "pastSimple": "saw",
         "pastParticiple": "seen",
         "spanish": "ver",
+        "SpanishPast": "vio",
+        "SpanishPastParticiple": "visto",
         "explanation": "Percibir con los ojos.",
         "imageUrl": "https://i.imgur.com/daPn6sh.png",
         "prompimagen": "Un ojo bien abierto con el reflejo de un hermoso paisaje en el iris. Detallado, perceptivo."
@@ -717,6 +884,8 @@
         "pastSimple": "sought",
         "pastParticiple": "sought",
         "spanish": "buscar",
+        "SpanishPast": "buscó",
+        "SpanishPastParticiple": "buscado",
         "explanation": "Intentar encontrar o conseguir algo.",
         "imageUrl": "https://i.imgur.com/4iIzFTy.jpeg",
         "prompimagen": "Un buscador de tesoros mirando un mapa antiguo con una lupa en un entorno selvático."
@@ -726,6 +895,8 @@
         "pastSimple": "sold",
         "pastParticiple": "sold",
         "spanish": "vender",
+        "SpanishPast": "vendió",
+        "SpanishPastParticiple": "vendido",
         "explanation": "Dar algo a cambio de dinero.",
         "imageUrl": "https://i.imgur.com/vxUaD6m.png",
         "prompimagen": "Un vendedor ambulante entregando una fruta a un cliente desde su colorido puesto de mercado."
@@ -735,6 +906,8 @@
         "pastSimple": "sent",
         "pastParticiple": "sent",
         "spanish": "enviar",
+        "SpanishPast": "envió",
+        "SpanishPastParticiple": "enviado",
         "explanation": "Hacer que algo llegue a un destino (una carta, un paquete).",
         "imageUrl": "https://i.imgur.com/ea41SVG.png",
         "prompimagen": "Un avión de papel volando por el aire desde una mano hacia otra."
@@ -744,6 +917,8 @@
         "pastSimple": "set",
         "pastParticiple": "set",
         "spanish": "poner/colocar",
+        "SpanishPast": "puso/colocó",
+        "SpanishPastParticiple": "puesto/colocado",
         "explanation": "Poner algo en un lugar; establecer una regla; el sol se pone.",
         "imageUrl": "https://i.imgur.com/w1ckGqt.png",
         "prompimagen": "Una persona poniendo una mesa formal para cenar. También, un sol poniéndose en el horizonte."
@@ -753,6 +928,8 @@
         "pastSimple": "sewed",
         "pastParticiple": "sewn/sewed",
         "spanish": "coser",
+        "SpanishPast": "cosió",
+        "SpanishPastParticiple": "cosido",
         "explanation": "Unir telas con hilo y aguja.",
         "imageUrl": "https://i.imgur.com/CtAY2WX.png",
         "prompimagen": "Primer plano de unas manos cosiendo un trozo de tela con aguja e hilo. Detallado, artesanal."
@@ -762,6 +939,8 @@
         "pastSimple": "shook",
         "pastParticiple": "shaken",
         "spanish": "agitar/sacudir",
+        "SpanishPast": "agitó/sacudió",
+        "SpanishPastParticiple": "agitado/sacudido",
         "explanation": "Mover algo o a alguien rápidamente de un lado a otro.",
         "imageUrl": "https://i.imgur.com/E7nJkDp.png",
         "prompimagen": "Un barman agitando enérgicamente una coctelera. Dinámico, enérgico."
@@ -771,6 +950,8 @@
         "pastSimple": "shone",
         "pastParticiple": "shone",
         "spanish": "brillar",
+        "SpanishPast": "brilló",
+        "SpanishPastParticiple": "brillado",
         "explanation": "Emitir o reflejar luz.",
         "imageUrl": "https://i.imgur.com/Be7jzxx.png",
         "prompimagen": "Un diamante brillando intensamente, con rayos de luz y destellos emanando de él."
@@ -780,6 +961,8 @@
         "pastSimple": "shot",
         "pastParticiple": "shot",
         "spanish": "disparar",
+        "SpanishPast": "disparó",
+        "SpanishPastParticiple": "disparado",
         "explanation": "Lanzar un proyectil con un arma; tomar una foto.",
         "imageUrl": "https://i.imgur.com/Njtur3J.png",
         "prompimagen": "Un arquero soltando una flecha de un arco, apuntando a un objetivo. Enfocado, preciso."
@@ -789,6 +972,8 @@
         "pastSimple": "showed",
         "pastParticiple": "shown/showed",
         "spanish": "mostrar",
+        "SpanishPast": "mostró",
+        "SpanishPastParticiple": "mostrado",
         "explanation": "Dejar que alguien vea algo.",
         "imageUrl": "https://i.imgur.com/pL3ABA7.png",
         "prompimagen": "Un guía de museo señalando una pintura famosa para mostrarla a un grupo de visitantes."
@@ -798,6 +983,8 @@
         "pastSimple": "shrank",
         "pastParticiple": "shrunk",
         "spanish": "encoger(se)",
+        "SpanishPast": "encogió",
+        "SpanishPastParticiple": "encogido",
         "explanation": "Hacerse más pequeño en tamaño.",
         "imageUrl": "https://i.imgur.com/xdH1l47.png",
         "prompimagen": "Un suéter de lana grande junto a una versión diminuta y encogida del mismo después de haber sido lavado."
@@ -807,6 +994,8 @@
         "pastSimple": "shut",
         "pastParticiple": "shut",
         "spanish": "cerrar",
+        "SpanishPast": "cerró",
+        "SpanishPastParticiple": "cerrado",
         "explanation": "Mover algo a una posición cerrada (una puerta, una ventana).",
         "imageUrl": "https://i.imgur.com/EHF8Z6S.png",
         "prompimagen": "Una persona cerrando una pesada y vieja puerta de madera con un golpe sordo."
@@ -816,6 +1005,8 @@
         "pastSimple": "sang",
         "pastParticiple": "sung",
         "spanish": "cantar",
+        "SpanishPast": "cantó",
+        "SpanishPastParticiple": "cantado",
         "explanation": "Producir sonidos musicales con la voz.",
         "imageUrl": "https://i.imgur.com/iXQZ6Il.png",
         "prompimagen": "Un cantante en un escenario, sosteniendo un micrófono, con focos iluminándolo."
@@ -825,6 +1016,8 @@
         "pastSimple": "sank",
         "pastParticiple": "sunk",
         "spanish": "hundir(se)",
+        "SpanishPast": "hundió",
+        "SpanishPastParticiple": "hundido",
         "explanation": "Irse hacia el fondo de un líquido, como el agua.",
         "imageUrl": "https://i.imgur.com/ZAHHgdH.png",
         "prompimagen": "Un barco antiguo hundiéndose en el océano, con su mástil desapareciendo bajo las olas."
@@ -834,6 +1027,8 @@
         "pastSimple": "sat",
         "pastParticiple": "sat",
         "spanish": "sentarse",
+        "SpanishPast": "se sentó",
+        "SpanishPastParticiple": "sentado",
         "explanation": "Estar en una posición con el peso sobre los glúteos.",
         "imageUrl": "https://i.imgur.com/SL6DJbY.jpeg",
         "prompimagen": "Una persona sentada en un banco del parque, alimentando a las palomas."
@@ -843,6 +1038,8 @@
         "pastSimple": "slept",
         "pastParticiple": "slept",
         "spanish": "dormir",
+        "SpanishPast": "durmió",
+        "SpanishPastParticiple": "dormido",
         "explanation": "Estar en el estado de descanso del cuerpo y la mente.",
         "imageUrl": "https://i.imgur.com/VNgxqkJ.png",
         "prompimagen": "Un bebé durmiendo pacíficamente en una cuna. Calmo, sereno."
@@ -852,6 +1049,8 @@
         "pastSimple": "slid",
         "pastParticiple": "slid",
         "spanish": "deslizar(se)",
+        "SpanishPast": "deslizó",
+        "SpanishPastParticiple": "deslizado",
         "explanation": "Moverse suavemente sobre una superficie.",
         "imageUrl": "https://i.imgur.com/dv9uXE7.png",
         "prompimagen": "Un niño deslizándose por un tobogán de un parque infantil con una expresión de alegría."
@@ -861,6 +1060,8 @@
         "pastSimple": "spoke",
         "pastParticiple": "spoken",
         "spanish": "hablar",
+        "SpanishPast": "habló",
+        "SpanishPastParticiple": "hablado",
         "explanation": "Decir palabras; conversar.",
         "imageUrl": "https://i.imgur.com/nG62XW3.jpeg",
         "prompimagen": "Un político hablando en un podio ante una gran multitud. Público, formal."
@@ -870,6 +1071,8 @@
         "pastSimple": "spent",
         "pastParticiple": "spent",
         "spanish": "gastar/pasar (tiempo)",
+        "SpanishPast": "gastó/pasó",
+        "SpanishPastParticiple": "gastado/pasado",
         "explanation": "Usar dinero para comprar algo; usar el tiempo en una actividad.",
         "imageUrl": "https://i.imgur.com/XC4cJF6.png",
         "prompimagen": "La esfera de un reloj con las manecillas girando rápidamente, disolviéndose en dinero que se gasta."
@@ -879,6 +1082,8 @@
         "pastSimple": "spilt/spilled",
         "pastParticiple": "spilt/spilled",
         "spanish": "derramar",
+        "SpanishPast": "derramó",
+        "SpanishPastParticiple": "derramado",
         "explanation": "Dejar que un líquido se caiga de su contenedor por accidente.",
         "imageUrl": "https://i.imgur.com/ex8NsN0.png",
         "prompimagen": "Un vaso de leche volcándose sobre una mesa, con el líquido blanco derramándose."
@@ -888,6 +1093,8 @@
         "pastSimple": "spun",
         "pastParticiple": "spun",
         "spanish": "girar",
+        "SpanishPast": "giró",
+        "SpanishPastParticiple": "girado",
         "explanation": "Rotar rápidamente sobre un eje.",
         "imageUrl": "https://i.imgur.com/A7axP4v.png",
         "prompimagen": "Una peonza girando sobre una superficie de madera, creando un torbellino de color."
@@ -897,6 +1104,8 @@
         "pastSimple": "split",
         "pastParticiple": "split",
         "spanish": "dividir/partir(se)",
+        "SpanishPast": "dividió/partió",
+        "SpanishPastParticiple": "dividido/partido",
         "explanation": "Dividir algo en dos o más partes.",
         "imageUrl": "https://i.imgur.com/V8nW6uX.png",
         "prompimagen": "Una persona partiendo un tronco de leña con un hacha. Acción poderosa y decisiva."
@@ -906,6 +1115,8 @@
         "pastSimple": "spread",
         "pastParticiple": "spread",
         "spanish": "extender/untar",
+        "SpanishPast": "extendió/untó",
+        "SpanishPastParticiple": "extendido/untado",
         "explanation": "Cubrir una superficie con algo; difundirse.",
         "imageUrl": "https://i.imgur.com/zZRZKJG.png",
         "prompimagen": "Una mano untando mantequilla en una tostada con un cuchillo."
@@ -915,6 +1126,8 @@
         "pastSimple": "sprang",
         "pastParticiple": "sprung",
         "spanish": "saltar/brotar",
+        "SpanishPast": "saltó/brotó",
+        "SpanishPastParticiple": "saltado/brotado",
         "explanation": "Saltar de repente; aparecer o crecer rápidamente.",
         "imageUrl": "https://i.imgur.com/Nwmrjmp.png",
         "prompimagen": "Un tigre saltando desde su escondite en la hierba alta. Poderoso, repentino."
@@ -924,6 +1137,8 @@
         "pastSimple": "stood",
         "pastParticiple": "stood",
         "spanish": "estar de pie",
+        "SpanishPast": "estuvo de pie",
+        "SpanishPastParticiple": "estado de pie",
         "explanation": "Sostenerse sobre los pies en posición vertical.",
         "imageUrl": "https://i.imgur.com/8w4Qrdz.png",
         "prompimagen": "La silueta de una persona de pie en un acantilado, mirando un vasto valle."
@@ -933,6 +1148,8 @@
         "pastSimple": "stole",
         "pastParticiple": "stolen",
         "spanish": "robar",
+        "SpanishPast": "robó",
+        "SpanishPastParticiple": "robado",
         "explanation": "Tomar algo que no te pertenece sin permiso.",
         "imageUrl": "https://i.imgur.com/kqQ2r78.png",
         "prompimagen": "Un ladrón con máscara caminando de puntillas con una bolsa de dinero."
@@ -942,6 +1159,8 @@
         "pastSimple": "stuck",
         "pastParticiple": "stuck",
         "spanish": "pegar/atascarse",
+        "SpanishPast": "pegó/atascó",
+        "SpanishPastParticiple": "pegado/atascado",
         "explanation": "Adherir algo a una superficie; no poder moverse.",
         "imageUrl": "https://i.imgur.com/fLy3R1x.png",
         "prompimagen": "Un trozo de cinta adhesiva pegando una nota a un refrigerador. También, un coche atascado en el barro."
@@ -951,6 +1170,8 @@
         "pastSimple": "stung",
         "pastParticiple": "stung",
         "spanish": "picar",
+        "SpanishPast": "picó",
+        "SpanishPastParticiple": "picado",
         "explanation": "Causar una herida punzante y dolorosa (un insecto).",
         "imageUrl": "https://i.imgur.com/62a7dzk.png",
         "prompimagen": "Una persona reaccionando a la picadura de una abeja en su brazo."
@@ -960,6 +1181,8 @@
         "pastSimple": "stank",
         "pastParticiple": "stunk",
         "spanish": "apestar",
+        "SpanishPast": "apestó",
+        "SpanishPastParticiple": "apestado",
         "explanation": "Tener un olor muy malo.",
         "imageUrl": "https://i.imgur.com/wMrqXT7.png",
         "prompimagen": "Una nube de gas verdoso y maloliente saliendo de un cubo de basura, estilo caricatura."
@@ -969,6 +1192,8 @@
         "pastSimple": "struck",
         "pastParticiple": "struck",
         "spanish": "golpear/declarar huelga",
+        "SpanishPast": "golpeó",
+        "SpanishPastParticiple": "golpeado",
         "explanation": "Golpear con fuerza; un rayo cae; los trabajadores dejan de trabajar.",
         "imageUrl": "https://i.imgur.com/Uw6q4vB.jpeg",
         "prompimagen": "Un dramático rayo golpeando un árbol durante una tormenta."
@@ -978,6 +1203,8 @@
         "pastSimple": "swore",
         "pastParticiple": "sworn",
         "spanish": "jurar/maldecir",
+        "SpanishPast": "juró/maldijo",
+        "SpanishPastParticiple": "jurado/maldecido",
         "explanation": "Hacer una promesa solemne; usar lenguaje ofensivo.",
         "imageUrl": "https://i.imgur.com/6LbiTTO.png",
         "prompimagen": "Una persona con la mano sobre un libro sagrado en un tribunal, haciendo una promesa solemne."
@@ -987,6 +1214,8 @@
         "pastSimple": "swept",
         "pastParticiple": "swept",
         "spanish": "barrer",
+        "SpanishPast": "barrió",
+        "SpanishPastParticiple": "barrido",
         "explanation": "Limpiar el suelo con una escoba.",
         "imageUrl": "https://i.imgur.com/JbbAfAI.jpeg",
         "prompimagen": "Una persona barriendo hojas de otoño de un porche con una escoba."
@@ -996,6 +1225,8 @@
         "pastSimple": "swelled",
         "pastParticiple": "swollen",
         "spanish": "hincharse",
+        "SpanishPast": "se hinchó",
+        "SpanishPastParticiple": "hinchado",
         "explanation": "Aumentar de tamaño por acumulación de líquido.",
         "imageUrl": "https://i.imgur.com/SYHMCdO.png",
         "prompimagen": "Un tobillo torcido que está visiblemente hinchado en comparación con el otro tobillo."
@@ -1005,6 +1236,8 @@
         "pastSimple": "swam",
         "pastParticiple": "swum",
         "spanish": "nadar",
+        "SpanishPast": "nadó",
+        "SpanishPastParticiple": "nadado",
         "explanation": "Moverse en el agua usando brazos y piernas.",
         "imageUrl": "https://i.imgur.com/T53fIFp.png",
         "prompimagen": "Un nadador haciendo el estilo libre en una piscina de agua azul clara."
@@ -1014,6 +1247,8 @@
         "pastSimple": "swung",
         "pastParticiple": "swung",
         "spanish": "columpiarse/balancear",
+        "SpanishPast": "se columpió/balanceó",
+        "SpanishPastParticiple": "columpiado/balanceado",
         "explanation": "Moverse hacia adelante y hacia atrás desde un punto fijo.",
         "imageUrl": "https://i.imgur.com/WdRcQxz.png",
         "prompimagen": "Un niño en un columpio, volando alto en el aire en el punto máximo de su movimiento."
@@ -1023,6 +1258,8 @@
         "pastSimple": "took",
         "pastParticiple": "taken",
         "spanish": "tomar/llevar",
+        "SpanishPast": "tomó/llevó",
+        "SpanishPastParticiple": "tomado/llevado",
         "explanation": "Agarrar algo; llevar algo o a alguien de un lugar a otro.",
         "imageUrl": "https://i.imgur.com/5YB81EF.png",
         "prompimagen": "Una mano extendiéndose para tomar una manzana de la rama de un árbol."
@@ -1032,6 +1269,8 @@
         "pastSimple": "taught",
         "pastParticiple": "taught",
         "spanish": "enseñar",
+        "SpanishPast": "enseñó",
+        "SpanishPastParticiple": "enseñado",
         "explanation": "Dar conocimiento o instrucción a alguien.",
         "imageUrl": "https://i.imgur.com/9EuEOt8.png",
         "prompimagen": "Un profesor escribiendo una fórmula matemática en una pizarra frente a una clase."
@@ -1041,6 +1280,8 @@
         "pastSimple": "tore",
         "pastParticiple": "torn",
         "spanish": "rasgar",
+        "SpanishPast": "rasgó",
+        "SpanishPastParticiple": "rasgado",
         "explanation": "Romper papel, tela, etc., tirando de él.",
         "imageUrl": "https://i.imgur.com/SgtZfe9.png",
         "prompimagen": "Manos rasgando un trozo de papel por la mitad."
@@ -1050,6 +1291,8 @@
         "pastSimple": "told",
         "pastParticiple": "told",
         "spanish": "decir/contar",
+        "SpanishPast": "dijo/contó",
+        "SpanishPastParticiple": "dicho/contado",
         "explanation": "Comunicar información a alguien; narrar una historia.",
         "imageUrl": "https://i.imgur.com/LCNpszr.png",
         "prompimagen": "Un padre contándole un cuento a su hijo, que escucha atentamente."
@@ -1059,6 +1302,8 @@
         "pastSimple": "thought",
         "pastParticiple": "thought",
         "spanish": "pensar",
+        "SpanishPast": "pensó",
+        "SpanishPastParticiple": "pensado",
         "explanation": "Usar la mente para formar ideas o tomar decisiones.",
         "imageUrl": "https://i.imgur.com/ODTJZAc.png",
         "prompimagen": "Una persona sentada en una pose pensativa con un dedo en la barbilla, con engranajes girando sobre su cabeza."
@@ -1068,6 +1313,8 @@
         "pastSimple": "threw",
         "pastParticiple": "thrown",
         "spanish": "lanzar/tirar",
+        "SpanishPast": "lanzó/tiró",
+        "SpanishPastParticiple": "lanzado/tirado",
         "explanation": "Impulsar algo por el aire con la mano.",
         "imageUrl": "https://i.imgur.com/or2crnO.png",
         "prompimagen": "Una persona lanzando un frisbee en un parque en un día soleado."
@@ -1077,6 +1324,8 @@
         "pastSimple": "understood",
         "pastParticiple": "understood",
         "spanish": "entender/comprender",
+        "SpanishPast": "entendió/comprendió",
+        "SpanishPastParticiple": "entendido/comprendido",
         "explanation": "Percibir el significado de algo.",
         "imageUrl": "https://i.imgur.com/pzc8M20.png",
         "prompimagen": "Dos cabezas de silueta una frente a la otra, con una pieza de rompecabezas de una encajando perfectamente en la otra."
@@ -1086,6 +1335,8 @@
         "pastSimple": "woke",
         "pastParticiple": "woken",
         "spanish": "despertar(se)",
+        "SpanishPast": "despertó",
+        "SpanishPastParticiple": "despertado",
         "explanation": "Dejar de dormir (similar a 'awake').",
         "imageUrl": "https://i.imgur.com/FeUD0yn.jpeg",
         "prompimagen": "Una persona estirándose y bostezando en la cama al despertar por la mañana."
@@ -1095,6 +1346,8 @@
         "pastSimple": "wore",
         "pastParticiple": "worn",
         "spanish": "llevar puesto/usar",
+        "SpanishPast": "llevó puesto/usó",
+        "SpanishPastParticiple": "llevado puesto/usado",
         "explanation": "Tener ropa, joyas o gafas puestas en el cuerpo.",
         "imageUrl": "https://i.imgur.com/pYYXqcz.png",
         "prompimagen": "Un maniquí en el escaparate de una tienda vistiendo un abrigo y sombrero nuevos y elegantes."
@@ -1104,6 +1357,8 @@
         "pastSimple": "won",
         "pastParticiple": "won",
         "spanish": "ganar",
+        "SpanishPast": "ganó",
+        "SpanishPastParticiple": "ganado",
         "explanation": "Ser el mejor en una competencia o juego.",
         "imageUrl": "https://i.imgur.com/x6i0j8r.png",
         "prompimagen": "Un atleta cruzando la línea de meta en primer lugar y rompiendo la cinta, con los brazos levantados en señal de victoria."
@@ -1113,6 +1368,8 @@
         "pastSimple": "wound",
         "pastParticiple": "wound",
         "spanish": "dar cuerda/enrollar",
+        "SpanishPast": "dio cuerda/enrolló",
+        "SpanishPastParticiple": "dado cuerda/enrollado",
         "explanation": "Enrollar algo alrededor de otra cosa; girar una manivela.",
         "imageUrl": "https://i.imgur.com/cfDuwHm.png",
         "prompimagen": "Una mano dando cuerda a la corona de un viejo reloj mecánico."
@@ -1122,6 +1379,8 @@
         "pastSimple": "wrote",
         "pastParticiple": "written",
         "spanish": "escribir",
+        "SpanishPast": "escribió",
+        "SpanishPastParticiple": "escrito",
         "explanation": "Formar letras o palabras en una superficie con un instrumento.",
         "imageUrl": "https://i.imgur.com/aRb4eNo.png",
         "prompimagen": "Una pluma estilográfica escribiendo en cursiva sobre un trozo de papel pergamino."

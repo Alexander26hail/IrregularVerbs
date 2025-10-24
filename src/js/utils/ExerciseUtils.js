@@ -2,7 +2,8 @@
 
 export const EXERCISE_TYPES = {
     WRITE_FORMS: 'write_forms',
-    TRANSLATE_TO_SPANISH: 'translate_to_spanish'
+    TRANSLATE_TO_SPANISH: 'translate_to_spanish',
+    MATCH_TRANSLATION: 'match_translation'
 };
 
 export function shuffleArray(array) {
@@ -14,25 +15,42 @@ export function shuffleArray(array) {
 
 export function createMixedQuestionDeck(verbs, attemptsPer) {
     const deck = [];
+    
     verbs.forEach(verb => {
-        for (let i = 0; i < attemptsPer; i++) {
-            // 50% ejercicios de escribir formas (tu ejercicio actual)
-            if (i < Math.floor(attemptsPer / 2)) {
-                deck.push({
-                    type: EXERCISE_TYPES.WRITE_FORMS,
-                    verb: verb
-                });
-            } 
-            // 50% ejercicios de traducción
-            else {
-                deck.push({
-                    type: EXERCISE_TYPES.TRANSLATE_TO_SPANISH,
-                    verb: verb
-                });
+        const typesForVerb = [];
+
+        if (attemptsPer >= 3) {
+            // Garantizar 1 de cada tipo
+            typesForVerb.push(
+                EXERCISE_TYPES.WRITE_FORMS,
+                EXERCISE_TYPES.TRANSLATE_TO_SPANISH,
+                EXERCISE_TYPES.MATCH_TRANSLATION
+            );
+            // Los restantes totalmente aleatorios
+            for (let i = 3; i < attemptsPer; i++) {
+                const r = Math.random();
+                if (r < 1/3) typesForVerb.push(EXERCISE_TYPES.WRITE_FORMS);
+                else if (r < 2/3) typesForVerb.push(EXERCISE_TYPES.TRANSLATE_TO_SPANISH);
+                else typesForVerb.push(EXERCISE_TYPES.MATCH_TRANSLATION);
+            }
+        } else {
+            // attemptsPer = 1 o 2: ciclar para variedad
+            const cycle = [
+                EXERCISE_TYPES.WRITE_FORMS,
+                EXERCISE_TYPES.TRANSLATE_TO_SPANISH,
+                EXERCISE_TYPES.MATCH_TRANSLATION
+            ];
+            for (let i = 0; i < attemptsPer; i++) {
+                typesForVerb.push(cycle[i % cycle.length]);
             }
         }
+
+        typesForVerb.forEach(type => {
+            deck.push({ type, verb });
+        });
     });
-    shuffleArray(deck);
+
+    shuffleArray(deck); // muta in-place
     return deck;
 }
 

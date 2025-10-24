@@ -1,5 +1,6 @@
 // src/js/components/PracticeSessionManager.js
 import { EXERCISE_TYPES, isSpanishTranslationCorrect } from '../utils/ExerciseUtils.js';
+import { createMatchingPairs, shuffleArray, checkMatch } from '../utils/MatchingUtils.js';
 
 export class PracticeSessionManager {
     constructor(elements) {
@@ -24,78 +25,227 @@ export class PracticeSessionManager {
         this.pastParticipleDisplay = elements.pastParticipleDisplay;
         this.spanishTranslationInput = elements.spanishTranslationInput;
         this.correctTranslationEl = elements.correctTranslationEl;
+        this.matchingExercise = elements.matchingExercise;
+        this.matchingVerbInfinitive = elements.matchingVerbInfinitive;
+        this.englishWordsContainer = elements.englishWordsContainer;
+        this.spanishWordsContainer = elements.spanishWordsContainer;
+        this.matchingFeedback = elements.matchingFeedback;
+        this.matchingProgress = elements.matchingProgress;
+        this.correctMatches = elements.correctMatches;
+        this.totalMatches = elements.totalMatches;
         this.inputs = [this.infinitiveInput, this.pastSimpleInput, this.pastParticipleInput];
+        this.selectedEnglish = null;
+        this.selectedSpanish = null;
+        this.matches = [];
+        this.matchingPairs = null;
+
     }
 
     setupNextQuestion(currentQuestion, currentQuestionIndex, questionDeck, currentVerb) {
-        // Verificar que la pregunta tiene la estructura correcta
-        if (!currentQuestion || !currentQuestion.verb || !currentQuestion.type) {
-            console.error('❌ Pregunta mal formada:', currentQuestion);
-            return { skip: true };
-        }
+    // Extraer el tipo de ejercicio y el verbo del currentQuestion
+    const exerciseType = currentQuestion.type;
+    currentVerb = currentQuestion.verb;
+    const isCorrectionMode = false;
+
+    this.nextBtn.disabled = true;
+
+    document.getElementById('verb-inputs').classList.add('hidden');
+    this.translationExercise.classList.add('hidden');
+    this.matchingExercise.classList.add('hidden');
+    document.getElementById('verb-display').classList.remove('hidden');
+
+    // Configurar según el tipo de ejercicio
+    if (exerciseType === EXERCISE_TYPES.WRITE_FORMS) {
+        this.setupWriteFormsExercise(currentVerb);
+    } else if (exerciseType === EXERCISE_TYPES.TRANSLATE_TO_SPANISH) {
+        this.setupTranslationExercise(currentVerb);
+    } else if (exerciseType === EXERCISE_TYPES.MATCH_TRANSLATION) {
+        this.setupMatchingExercise(currentVerb);
+    } else {
+        console.error('❌ Tipo de ejercicio desconocido:', exerciseType);
+        return { skip: true };
+    }
+    
+    // Configurar el progreso y la imagen (común para todos los ejercicios)
+    this.progressTrackerEl.textContent = `${currentQuestionIndex} / ${questionDeck.length}`;
+    this.verbImageEl.src = currentVerb.imageUrl || 'https://placehold.co/400x400/e2e8f0/475569?text=Imagen+no+disponible';
+    this.verbImageEl.alt = `Representación visual de ${currentVerb.infinitive}`;
+    this.spanishVerbEl.textContent = currentVerb.spanish;
+    this.verbExplanationEl.textContent = currentVerb.explanation || '';
+    
+    // Reset feedback y botones
+    this.feedbackMessageEl.classList.add('hidden');
+    this.checkBtn.disabled = false;
+    this.checkBtn.textContent = 'Revisar';
+    this.nextBtn.disabled = true;
+    
+    console.log('✅ Pregunta configurada:', {
+        index: currentQuestionIndex,
+        total: questionDeck.length,
+        type: exerciseType,
+        verb: currentVerb.infinitive,
+        isReinforcement: false
+    });
+
+    return { currentVerb, isCorrectionMode };
+}
+
+    setupMatchingExercise(currentVerb) {
+        // Mostrar interfaz de matching
+        this.matchingExercise.classList.remove('hidden');
+        document.getElementById('verb-display').classList.add('hidden');
         
-        currentVerb = currentQuestion.verb;
-        const exerciseType = currentQuestion.type;
-
-        // Reset del estado de corrección
-        const isCorrectionMode = false;
-        // Reset UI común
-        this.progressTrackerEl.textContent = `Pregunta ${currentQuestionIndex} / ${questionDeck.length}`;
-        this.verbImageEl.src = currentVerb.imageUrl || '';
-        this.verbImageEl.style.animation = 'none';
-        this.verbImageEl.offsetHeight;
-        this.verbImageEl.style.animation = null;
+        // Reset estado
+        this.selectedEnglish = null;
+        this.selectedSpanish = null;
+        this.matches = [];
         
-        this.feedbackMessageEl.classList.add('hidden');
-        this.checkBtn.textContent = 'Revisar';
-        this.checkBtn.disabled = false;
-        this.nextBtn.disabled = true;
-
-        // Ocultar ambas interfaces
-        document.getElementById('verb-inputs').classList.add('hidden');
-        this.translationExercise.classList.add('hidden');
-        document.getElementById('verb-display').classList.remove('hidden'); // Asegurar que esté visible
-
-        // Configurar según el tipo de ejercicio
-        if (exerciseType === EXERCISE_TYPES.WRITE_FORMS) {
-            this.setupWriteFormsExercise(currentVerb);
-        } else if (exerciseType === EXERCISE_TYPES.TRANSLATE_TO_SPANISH) {
-            this.setupTranslationExercise(currentVerb);
+        // Configurar verbo
+        this.matchingVerbInfinitive.textContent = currentVerb.infinitive;
+        
+        // Crear pares de matching
+        this.matchingPairs = createMatchingPairs(currentVerb);
+        
+        // Mezclar las palabras españolas para mayor dificultad
+        const shuffledSpanish = shuffleArray(this.matchingPairs.spanishWords);
+        
+        // Limpiar contenedores
+        this.englishWordsContainer.innerHTML = '';
+        this.spanishWordsContainer.innerHTML = '';
+        
+        // Crear elementos ingleses
+        this.matchingPairs.englishWords.forEach((word, index) => {
+            const wordEl = this.createMatchingWordElement(word, 'english', index);
+            this.englishWordsContainer.appendChild(wordEl);
+        });
+        
+        // Crear elementos españoles (mezclados)
+        shuffledSpanish.forEach((word, index) => {
+            const wordEl = this.createMatchingWordElement(word, 'spanish', index);
+            this.spanishWordsContainer.appendChild(wordEl);
+        });
+        
+        // Configurar progreso
+        this.totalMatches.textContent = '3';
+        this.correctMatches.textContent = '0';
+        this.matchingProgress.classList.remove('hidden');
+        this.matchingFeedback.classList.add('hidden');
+        
+        // Habilitar botón check (se deshabilitará hasta que haya matches)
+        this.checkBtn.disabled = true;
+        this.checkBtn.textContent = 'Completar Matching';
+    }
+    createMatchingWordElement(word, side, index) {
+        const wordEl = document.createElement('div');
+        wordEl.className = 'matching-word';
+        wordEl.textContent = word.text;
+        wordEl.dataset.type = word.type;
+        wordEl.dataset.match = word.match;
+        wordEl.dataset.side = side;
+        wordEl.dataset.index = index;
+        
+        wordEl.addEventListener('click', () => this.handleWordClick(wordEl, word, side));
+        
+        return wordEl;
+    }
+    handleWordClick(element, word, side) {
+        // No hacer nada si ya está matched
+        if (element.classList.contains('matched')) return;
+        
+        if (side === 'english') {
+            // Deseleccionar inglés anterior si existe
+            if (this.selectedEnglish) {
+                this.selectedEnglish.element.classList.remove('selected');
+            }
+            
+            this.selectedEnglish = { element, word };
+            element.classList.add('selected');
         } else {
-            console.error('❌ Tipo de ejercicio desconocido:', exerciseType);
-            return { skip: true };
+            // Deseleccionar español anterior si existe
+            if (this.selectedSpanish) {
+                this.selectedSpanish.element.classList.remove('selected');
+            }
+            
+            this.selectedSpanish = { element, word };
+            element.classList.add('selected');
         }
         
-        console.log('✅ Pregunta configurada:', {
-            index: currentQuestionIndex,
-            total: questionDeck.length,
-            type: exerciseType,
-            verb: currentVerb.infinitive,
-            isReinforcement: false
-        });
-
-        return { currentVerb, isCorrectionMode };
+        // Verificar si tenemos una pareja seleccionada
+        if (this.selectedEnglish && this.selectedSpanish) {
+            this.tryMatch();
+        }
     }
 
-    setupWriteFormsExercise(currentVerb) {
-        // Mostrar interfaz de escribir formas
-        document.getElementById('verb-inputs').classList.remove('hidden');
+    tryMatch() {
+        const isMatch = checkMatch(this.selectedEnglish.word, this.selectedSpanish.word);
         
-        // Configurar como antes
-        this.spanishVerbEl.textContent = currentVerb.spanish;
-        this.verbExplanationEl.textContent = currentVerb.explanation;
-
-        [this.infinitiveInput, this.pastSimpleInput, this.pastParticipleInput].forEach(input => {
-            input.value = '';
-            input.disabled = false;
-            input.classList.remove('correct', 'incorrect', 'correction-mode');
-        });
-        
-        [this.correctInfinitiveEl, this.correctPastSimpleEl, this.correctPastParticipleEl].forEach(el => el.classList.add('hidden'));
-
-        this.infinitiveInput.focus();
+        if (isMatch) {
+            // Match correcto
+            this.selectedEnglish.element.classList.remove('selected');
+            this.selectedEnglish.element.classList.add('matched', 'matching-connection');
+            this.selectedSpanish.element.classList.remove('selected');
+            this.selectedSpanish.element.classList.add('matched', 'matching-connection');
+            
+            // Agregar a matches
+            this.matches.push({
+                english: this.selectedEnglish.word,
+                spanish: this.selectedSpanish.word
+            });
+            
+            // Actualizar progreso
+            this.correctMatches.textContent = this.matches.length.toString();
+            
+            // Reset selección
+            this.selectedEnglish = null;
+            this.selectedSpanish = null;
+            
+            // Verificar si completamos todos los matches
+            if (this.matches.length === 3) {
+                this.handleMatchingComplete();
+            }
+        } else {
+            // Match incorrecto - mostrar feedback temporal
+            this.showMatchingFeedback('❌ No coinciden. Intenta de nuevo.', 'bg-red-100 text-red-700');
+            
+            // Remover selección después de un momento
+            setTimeout(() => {
+                if (this.selectedEnglish) {
+                    this.selectedEnglish.element.classList.remove('selected');
+                    this.selectedEnglish = null;
+                }
+                if (this.selectedSpanish) {
+                    this.selectedSpanish.element.classList.remove('selected');
+                    this.selectedSpanish = null;
+                }
+            }, 1000);
+        }
     }
 
+    handleMatchingComplete() {
+        this.showMatchingFeedback('🎉 ¡Excelente! Todos los matches correctos.', 'bg-green-100 text-green-700');
+        this.checkBtn.disabled = false;
+        this.nextBtn.disabled = false;
+        this.checkBtn.textContent = 'Continuar';
+        this.nextBtn.focus();
+    }
+
+    showMatchingFeedback(message, classes) {
+        this.matchingFeedback.textContent = message;
+        this.matchingFeedback.className = `text-center text-lg font-medium p-3 rounded-lg ${classes}`;
+        this.matchingFeedback.classList.remove('hidden');
+        
+        // Auto-ocultar feedback después de 3 segundos si no es el final
+        if (!message.includes('Excelente')) {
+            setTimeout(() => {
+                this.matchingFeedback.classList.add('hidden');
+            }, 3000);
+        }
+    }
+
+    checkMatchingAnswer() {
+        // Para el matching, cuando llegan aquí ya está todo completo
+        return this.handleCorrectAnswer();
+    }
     setupTranslationExercise(currentVerb) {
         // Mostrar interfaz de traducción
         this.translationExercise.classList.remove('hidden');
@@ -117,6 +267,25 @@ export class PracticeSessionManager {
 
         this.spanishTranslationInput.focus();
     }
+    setupWriteFormsExercise(currentVerb) {
+    // Mostrar interfaz de inputs
+    document.getElementById('verb-inputs').classList.remove('hidden');
+    
+    // Reset inputs
+    this.inputs.forEach(input => {
+        input.value = '';
+        input.disabled = false;
+        input.classList.remove('correct', 'incorrect', 'correction-mode');
+    });
+    
+    // Ocultar textos de corrección
+    this.correctInfinitiveEl.classList.add('hidden');
+    this.correctPastSimpleEl.classList.add('hidden');
+    this.correctPastParticipleEl.classList.add('hidden');
+    
+    // Focus en el primer input
+    this.infinitiveInput.focus();
+}
 
     checkWriteFormsAnswer(currentVerb, isCorrectionMode) {
         if (isCorrectionMode) {
