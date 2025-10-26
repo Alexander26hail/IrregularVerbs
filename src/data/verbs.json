@@ -20,16 +20,6 @@
         "imageUrl": "https://i.imgur.com/6e8GV0g.png"
     },
     {
-        "infinitive": "be",
-        "pastSimple": "was/were",
-        "pastParticiple": "been",
-        "spanish": "ser/estar",
-        "SpanishPast": "fue/estuvo",
-        "SpanishPastParticiple": "sido/estado",
-        "explanation": "Indica existencia, estado o identidad.",
-        "imageUrl": "https://i.imgur.com/041TSxr.png"
-    },
-    {
         "infinitive": "bear",
         "pastSimple": "bore",
         "pastParticiple": "born/borne",
@@ -48,26 +38,6 @@
         "SpanishPastParticiple": "golpeado",
         "explanation": "Ganarle a alguien; golpear rítmicamente (un tambor).",
         "imageUrl": "https://i.imgur.com/qQQb5RQ.png"
-    },
-    {
-        "infinitive": "become",
-        "pastSimple": "became",
-        "pastParticiple": "become",
-        "spanish": "convertirse en",
-        "SpanishPast": "se convirtió",
-        "SpanishPastParticiple": "convertido",
-        "explanation": "Llegar a ser algo diferente; transformarse.",
-        "imageUrl": "https://i.imgur.com/4u5p2qT.png"
-    },
-    {
-        "infinitive": "begin",
-        "pastSimple": "began",
-        "pastParticiple": "begun",
-        "spanish": "empezar",
-        "SpanishPast": "empezó",
-        "SpanishPastParticiple": "empezado",
-        "explanation": "Iniciar o comenzar una acción.",
-        "imageUrl": "https://i.imgur.com/Q3ZDHjz.png"
     },
     {
         "infinitive": "bend",
@@ -130,16 +100,6 @@
         "imageUrl": "https://i.imgur.com/v6LZ5lo.png"
     },
     {
-        "infinitive": "break",
-        "pastSimple": "broke",
-        "pastParticiple": "broken",
-        "spanish": "romper",
-        "SpanishPast": "rompió",
-        "SpanishPastParticiple": "roto",
-        "explanation": "Hacer que algo se separe en pedazos.",
-        "imageUrl": "https://i.imgur.com/gltSzEK.png"
-    },
-    {
         "infinitive": "breed",
         "pastSimple": "bred",
         "pastParticiple": "bred",
@@ -198,16 +158,6 @@
         "SpanishPastParticiple": "reventado",
         "explanation": "Romperse o explotar de repente.",
         "imageUrl": "https://i.imgur.com/2XfIFqR.png"
-    },
-    {
-        "infinitive": "buy",
-        "pastSimple": "bought",
-        "pastParticiple": "bought",
-        "spanish": "comprar",
-        "SpanishPast": "compró",
-        "SpanishPastParticiple": "comprado",
-        "explanation": "Obtener algo a cambio de dinero.",
-        "imageUrl": "https://i.imgur.com/lAQTFfM.png"
     },
     {
         "infinitive": "cast",
@@ -320,16 +270,6 @@
         "imageUrl": "https://i.imgur.com/zFdaIgH.png"
     },
     {
-        "infinitive": "draw",
-        "pastSimple": "drew",
-        "pastParticiple": "drawn",
-        "spanish": "dibujar",
-        "SpanishPast": "dibujó",
-        "SpanishPastParticiple": "dibujado",
-        "explanation": "Crear una imagen con lápices o bolígrafos.",
-        "imageUrl": "https://i.imgur.com/pNKu5z4.png"
-    },
-    {
         "infinitive": "dream",
         "pastSimple": "dreamt/dreamed",
         "pastParticiple": "dreamt/dreamed",
@@ -340,16 +280,6 @@
         "imageUrl": "https://i.imgur.com/UfOHHM7.png"
     },
     {
-        "infinitive": "drink",
-        "pastSimple": "drank",
-        "pastParticiple": "drunk",
-        "spanish": "beber",
-        "SpanishPast": "bebió",
-        "SpanishPastParticiple": "bebido",
-        "explanation": "Ingerir un líquido.",
-        "imageUrl": "https://i.imgur.com/kkxR0Lx.png"
-    },
-    {
         "infinitive": "drive",
         "pastSimple": "drove",
         "pastParticiple": "driven",
@@ -358,16 +288,6 @@
         "SpanishPastParticiple": "conducido",
         "explanation": "Manejar un vehículo como un coche.",
         "imageUrl": "https://i.imgur.com/p0vqVE6.png"
-    },
-    {
-        "infinitive": "eat",
-        "pastSimple": "ate",
-        "pastParticiple": "eaten",
-        "spanish": "comer",
-        "SpanishPast": "comió",
-        "SpanishPastParticiple": "comido",
-        "explanation": "Ingerir alimentos sólidos.",
-        "imageUrl": "https://i.imgur.com/kMI5sM8.png"
     },
     {
         "infinitive": "fall",
@@ -408,16 +328,6 @@
         "SpanishPastParticiple": "peleado",
         "explanation": "Luchar físicamente o discutir fuertemente.",
         "imageUrl": "https://i.imgur.com/BH1zqeH.png"
-    },
-    {
-        "infinitive": "find",
-        "pastSimple": "found",
-        "pastParticiple": "found",
-        "spanish": "encontrar",
-        "SpanishPast": "encontró",
-        "SpanishPastParticiple": "encontrado",
-        "explanation": "Descubrir algo o a alguien que buscabas.",
-        "imageUrl": "https://i.imgur.com/o1hiY8j.png"
     },
     {
         "infinitive": "flee",
@@ -550,17 +460,6 @@
         "prompimagen": "Ropa de colores colgada en un tendedero, ondeando suavemente con la brisa en un día soleado."
     },
     {
-        "infinitive": "have",
-        "pastSimple": "had",
-        "pastParticiple": "had",
-        "spanish": "tener",
-        "SpanishPast": "tuvo",
-        "SpanishPastParticiple": "tenido",
-        "explanation": "Indica posesión, propiedad o experiencia.",
-        "imageUrl": "https://i.imgur.com/CAfV9bG.png",
-        "prompimagen": "Una persona sosteniendo una llave en la palma de su mano, simbolizando propiedad o posesión."
-    },
-    {
         "infinitive": "hear",
         "pastSimple": "heard",
         "pastParticiple": "heard",
@@ -592,17 +491,6 @@
         "explanation": "Dar un golpe a algo o a alguien.",
         "imageUrl": "https://i.imgur.com/yWLinvE.png",
         "prompimagen": "Un bate de béisbol golpeando una pelota en el momento del impacto, con líneas de movimiento. Dinámico, potente."
-    },
-    {
-        "infinitive": "hold",
-        "pastSimple": "held",
-        "pastParticiple": "held",
-        "spanish": "sostener",
-        "SpanishPast": "sostuvo",
-        "SpanishPastParticiple": "sostenido",
-        "explanation": "Mantener algo en las manos o los brazos.",
-        "imageUrl": "https://i.imgur.com/uOUJxsC.png",
-        "prompimagen": "Un par de manos en cuenco sosteniendo un nido de pájaro pequeño y frágil con huevos. Cuidadoso, protector."
     },
     {
         "infinitive": "hurt",
@@ -637,17 +525,7 @@
         "imageUrl": "https://i.imgur.com/E7zpFMH.png",
         "prompimagen": "Un caballero arrodillado ante un rey o una reina. Ceremonial, respetuoso."
     },
-    {
-        "infinitive": "know",
-        "pastSimple": "knew",
-        "pastParticiple": "known",
-        "spanish": "saber/conocer",
-        "SpanishPast": "supo/conoció",
-        "SpanishPastParticiple": "sabido/conocido",
-        "explanation": "Tener información o conocimiento sobre algo.",
-        "imageUrl": "https://i.imgur.com/HdqTpLL.png",
-        "prompimagen": "La silueta de una cabeza humana con una bombilla brillante en su interior, representando el conocimiento y las ideas."
-    },
+
     {
         "infinitive": "lay",
         "pastSimple": "laid",
@@ -748,17 +626,6 @@
         "prompimagen": "Una persona mirando una cartera vacía y abierta con expresión triste. Transmite pérdida."
     },
     {
-        "infinitive": "make",
-        "pastSimple": "made",
-        "pastParticiple": "made",
-        "spanish": "hacer/fabricar",
-        "SpanishPast": "hizo/fabricó",
-        "SpanishPastParticiple": "hecho/fabricado",
-        "explanation": "Crear o producir algo.",
-        "imageUrl": "https://i.imgur.com/9V5k0IA.png",
-        "prompimagen": "Las manos de un alfarero dando forma a un jarrón en un torno de alfarería. Creativo, concentrado."
-    },
-    {
         "infinitive": "mean",
         "pastSimple": "meant",
         "pastParticiple": "meant",
@@ -779,17 +646,6 @@
         "explanation": "Encontrarse con alguien por primera vez o por acuerdo.",
         "imageUrl": "https://i.imgur.com/TbNmLWJ.png",
         "prompimagen": "Las siluetas de dos personas dándose la mano frente a un sol poniente. Acuerdo, conexión."
-    },
-    {
-        "infinitive": "pay",
-        "pastSimple": "paid",
-        "pastParticiple": "paid",
-        "spanish": "pagar",
-        "SpanishPast": "pagó",
-        "SpanishPastParticiple": "pagado",
-        "explanation": "Dar dinero a cambio de un producto o servicio.",
-        "imageUrl": "https://i.imgur.com/UZ14Onw.png",
-        "prompimagen": "Primer plano de una mano insertando una tarjeta de crédito en un terminal de pago."
     },
     {
         "infinitive": "put",
@@ -845,17 +701,6 @@
         "explanation": "Moverse hacia arriba; aumentar.",
         "imageUrl": "https://i.imgur.com/gWxsF9Z.png",
         "prompimagen": "El sol saliendo por el horizonte del océano, proyectando una luz dorada. esperanzador, nuevo comienzo."
-    },
-    {
-        "infinitive": "run",
-        "pastSimple": "ran",
-        "pastParticiple": "run",
-        "spanish": "correr",
-        "SpanishPast": "corrió",
-        "SpanishPastParticiple": "corrido",
-        "explanation": "Moverse rápidamente con las piernas.",
-        "imageUrl": "https://i.imgur.com/5uFH0E5.png",
-        "prompimagen": "Un atleta corriendo en una pista, capturado con desenfoque de movimiento para mostrar velocidad."
     },
     {
         "infinitive": "say",

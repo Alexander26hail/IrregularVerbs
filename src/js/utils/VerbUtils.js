@@ -24,17 +24,27 @@ async function loadVerbsFromJSON() {
 
 // --- Generador de números pseudoaleatorios con semilla ---
 function createSeededRandom(seed) {
-    let hash = 0;
+    // Usar un hash más robusto (MurmurHash3 simplificado)
+    let hash = 0x811c9dc5; // FNV offset basis
+    
     for (let i = 0; i < seed.length; i++) {
-        const char = seed.charCodeAt(i);
-        hash = ((hash << 5) - hash) + char;
-        hash = hash & hash;
+        hash ^= seed.charCodeAt(i);
+        hash = Math.imul(hash, 0x01000193); // FNV prime
     }
     
+    // Mezclar bits para mejor distribución
+    hash ^= hash >>> 16;
+    hash = Math.imul(hash, 0x21f0aaad);
+    hash ^= hash >>> 15;
+    hash = Math.imul(hash, 0x735a2d97);
+    hash ^= hash >>> 15;
+    
     let current = Math.abs(hash);
+    
+    // LCG con constantes de Park-Miller (mejor calidad que las anteriores)
     return function() {
-        current = (current * 1664525 + 1013904223) % Math.pow(2, 32);
-        return current / Math.pow(2, 32);
+        current = (current * 48271) % 2147483647;
+        return current / 2147483647;
     };
 }
 
@@ -93,8 +103,8 @@ function generateDailyVerbs(forceReset = false) {
     // Mezclar con la semilla del día de verbos
     const shuffledVerbs = deterministicShuffle(activeVerbs, verbDay);
     
-    // Tomar los primeros 5
-    const dailyVerbs = shuffledVerbs.slice(0, 5);
+    // Tomar los primeros 8
+    const dailyVerbs = shuffledVerbs.slice(0, 8);
     
     console.log('📚 Verbos generados:', dailyVerbs.map(v => v.infinitive));
     
