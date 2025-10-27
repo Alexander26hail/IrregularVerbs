@@ -62,7 +62,7 @@ function deterministicShuffle(array, seed) {
 }
 
 function getCurrentVerbDay() {
-    const today = new Date().toISOString().split('T')[0];
+    const today = getChileDate(); // Usar hora de Chile
     
     // Verificar si hay un override manual para hoy
     const manualOverride = localStorage.getItem(`verbDay-${today}`);
@@ -75,13 +75,14 @@ function getCurrentVerbDay() {
 }
 
 function forceNewVerbDay() {
-    const today = new Date().toISOString().split('T')[0];
+    const today = getChileDate(); // Usar hora de Chile
     const timestamp = Date.now().toString();
     const artificialDay = `${today}-${timestamp}`;
     localStorage.setItem(`verbDay-${today}`, artificialDay);
     console.log('🔄 Forzando nuevo día de verbos:', artificialDay);
     return artificialDay;
 }
+
 
 // --- Función principal para generar verbos diarios ---
 function generateDailyVerbs(forceReset = false) {
@@ -93,7 +94,7 @@ function generateDailyVerbs(forceReset = false) {
         verbDay = getCurrentVerbDay();
     }
     
-    console.log('📅 Día de verbos:', verbDay);
+    console.log('📅 Día de verbos (Chile):', verbDay);
     
     // Filtrar verbos activos
     const activeVerbs = ALL_VERBS.filter(verb => 
@@ -114,7 +115,7 @@ function generateDailyVerbs(forceReset = false) {
 // --- Función para limpiar verbos de días anteriores ---
 function cleanOldDailyVerbs() {
     const keys = Object.keys(localStorage);
-    const today = new Date().toISOString().split('T')[0];
+    const today = getChileDate(); // Usar hora de Chile
     
     keys.forEach(key => {
         if (key.startsWith('dailyVerbs-') || 
@@ -127,16 +128,18 @@ function cleanOldDailyVerbs() {
 
 // --- Función para verificar cambio de día ---
 function checkDailyUpdate() {
-    const today = new Date().toISOString().split('T')[0];
+    const today = getChileDate(); // Usar hora de Chile
     const lastCheck = localStorage.getItem('lastDailyCheck');
     
     if (lastCheck !== today) {
         // Nuevo día natural - limpiar overrides del día anterior
-        const yesterday = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString().split('T')[0];
-        localStorage.removeItem(`verbDay-${yesterday}`);
+        const yesterday = new Date(new Date(today).getTime() - 24 * 60 * 60 * 1000);
+        const yesterdayStr = yesterday.toISOString().split('T')[0];
+        localStorage.removeItem(`verbDay-${yesterdayStr}`);
         localStorage.setItem('lastDailyCheck', today);
         
-        console.log('🌅 Nuevo día detectado, limpiando datos antiguos...');
+        console.log('🌅 Nuevo día detectado (Chile):', today);
+        console.log('🧹 Limpiando datos antiguos...');
         cleanOldDailyVerbs();
     }
     
@@ -145,11 +148,12 @@ function checkDailyUpdate() {
 
 // --- Función para obtener info de debug ---
 function getDebugInfo() {
-    const today = new Date().toISOString().split('T')[0];
+    const today = getChileDate(); // Usar hora de Chile
     const verbDay = getCurrentVerbDay();
     
     return {
         today,
+        chileTime: new Date().toLocaleString('es-CL', { timeZone: 'America/Santiago' }),
         verbDay,
         isManualOverride: verbDay !== today,
         lastCheck: localStorage.getItem('lastDailyCheck'),
@@ -160,6 +164,12 @@ function getDebugInfo() {
 async function initializeVerbs() {
     await loadVerbsFromJSON(); // Cargar verbos del JSON
     return checkDailyUpdate();   // Generar verbos del día
+}
+function getChileDate() {
+    const now = new Date();
+    // Convertir a zona horaria de Chile (America/Santiago)
+    const chileTime = new Date(now.toLocaleString('en-US', { timeZone: 'America/Santiago' }));
+    return chileTime.toISOString().split('T')[0]; // Retorna YYYY-MM-DD
 }
 
 export { ALL_VERBS, generateDailyVerbs, checkDailyUpdate, getDebugInfo, initializeVerbs, loadVerbsFromJSON };
