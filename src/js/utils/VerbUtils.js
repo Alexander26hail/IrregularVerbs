@@ -103,8 +103,8 @@ function generateDailyVerbs(forceReset = false) {
     // Mezclar con la semilla del día de verbos
     const shuffledVerbs = deterministicShuffle(activeVerbs, verbDay);
     
-    // Tomar los primeros 8
-    const dailyVerbs = shuffledVerbs.slice(0, 8);
+    // Tomar los primeros 6
+    const dailyVerbs = shuffledVerbs.slice(0, 6);
     
     console.log('📚 Verbos generados:', dailyVerbs.map(v => v.infinitive));
     

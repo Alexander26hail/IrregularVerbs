@@ -37,7 +37,7 @@ export const LOCAL_STORAGE_KEYS = {
 };
 
 export const UI_CONFIG = {
-    DAILY_VERBS_COUNT: 8,
+    DAILY_VERBS_COUNT: 6,
     IMAGE_FALLBACK: 'https://placehold.co/400x400/e2e8f0/475569?text=Imagen+no+disponible',
     ANIMATION_DURATION: 500
 };
