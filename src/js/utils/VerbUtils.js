@@ -1,5 +1,18 @@
 // src/js/utils/VerbUtils.js
 let ALL_VERBS = [];
+const VERB_HISTORY_KEY = 'recent_verb_ids';
+const HISTORY_DAYS = 4;
+
+function getRecentVerbIds() {
+    const history = localStorage.getItem(VERB_HISTORY_KEY);
+    return history ? JSON.parse(history) : [];
+}
+
+function addToHistory(verbIds) {
+    const history = getRecentVerbIds();
+    const updated = [...verbIds, ...history].slice(0, HISTORY_DAYS * 6); 
+    localStorage.setItem(VERB_HISTORY_KEY, JSON.stringify(updated));
+}
 
 async function loadVerbsFromJSON() {
     try {
@@ -24,27 +37,23 @@ async function loadVerbsFromJSON() {
 
 // --- Generador de números pseudoaleatorios con semilla ---
 function createSeededRandom(seed) {
-    // Usar un hash más robusto (MurmurHash3 simplificado)
-    let hash = 0x811c9dc5; // FNV offset basis
-    
+    // SplitMix32 hash (mejor distribución que FNV-1a)
+    let h = 0;
     for (let i = 0; i < seed.length; i++) {
-        hash ^= seed.charCodeAt(i);
-        hash = Math.imul(hash, 0x01000193); // FNV prime
+        h = Math.imul(h ^ seed.charCodeAt(i), 0x85ebca6b);
+        h = Math.imul(h ^ (h >>> 13), 0xc2b2ae35);
     }
+    h ^= h >>> 16;
     
-    // Mezclar bits para mejor distribución
-    hash ^= hash >>> 16;
-    hash = Math.imul(hash, 0x21f0aaad);
-    hash ^= hash >>> 15;
-    hash = Math.imul(hash, 0x735a2d97);
-    hash ^= hash >>> 15;
+    let state = Math.abs(h) >>> 0;
     
-    let current = Math.abs(hash);
-    
-    // LCG con constantes de Park-Miller (mejor calidad que las anteriores)
+    // Mulberry32 (generador de alta calidad, período completo 2^32)
     return function() {
-        current = (current * 48271) % 2147483647;
-        return current / 2147483647;
+        state = Math.imul(state, 0x6c078965) + 1 | 0;
+        let t = state ^ (state >>> 15);
+        t = Math.imul(t, t | 1);
+        t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
     };
 }
 
@@ -101,14 +110,29 @@ function generateDailyVerbs(forceReset = false) {
         verb.imageUrl && !verb.imageUrl.includes('URL_AQUÍ')
     );
     
-    // Mezclar con la semilla del día de verbos
-    const shuffledVerbs = deterministicShuffle(activeVerbs, verbDay);
+    // Obtener verbos recientes
+    const recentIds = getRecentVerbIds();
     
-    // Tomar los primeros 6
-    const dailyVerbs = shuffledVerbs.slice(0, 6);
+    // Separar en frescos y recientes
+    const freshVerbs = activeVerbs.filter(v => !recentIds.includes(v.infinitive));
+    const recentVerbs = activeVerbs.filter(v => recentIds.includes(v.infinitive));
     
-    console.log('📚 Verbos generados:', dailyVerbs.map(v => v.infinitive));
+    // Mezclar con la semilla del día
+    const shuffledFresh = deterministicShuffle(freshVerbs, verbDay);
+    const shuffledRecent = deterministicShuffle(recentVerbs, verbDay + '-fallback');
     
+    // Priorizar frescos, completar con recientes si no hay suficientes
+    let dailyVerbs;
+    if (shuffledFresh.length >= 6) {
+        dailyVerbs = shuffledFresh.slice(0, 6);
+    } else {
+        dailyVerbs = [...shuffledFresh, ...shuffledRecent.slice(0, 6 - shuffledFresh.length)];
+    }
+    
+    // Guardar en historial
+    addToHistory(dailyVerbs.map(v => v.infinitive));
+    
+
     return dailyVerbs;
 }
 
@@ -166,10 +190,16 @@ async function initializeVerbs() {
     return checkDailyUpdate();   // Generar verbos del día
 }
 function getChileDate() {
-    const now = new Date();
-    // Convertir a zona horaria de Chile (America/Santiago)
-    const chileTime = new Date(now.toLocaleString('en-US', { timeZone: 'America/Santiago' }));
-    return chileTime.toISOString().split('T')[0]; // Retorna YYYY-MM-DD
+    // Obtener fecha y hora actual en zona horaria de Chile
+    const formatter = new Intl.DateTimeFormat('en-CA', { 
+        timeZone: 'America/Santiago',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+    });
+    
+    // Devuelve formato YYYY-MM-DD directamente
+    return formatter.format(new Date()).replace(/\//g, '-');
 }
 
 export { ALL_VERBS, generateDailyVerbs, checkDailyUpdate, getDebugInfo, initializeVerbs, loadVerbsFromJSON };
