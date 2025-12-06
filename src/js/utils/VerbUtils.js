@@ -2,7 +2,36 @@
 let ALL_VERBS = [];
 const VERB_HISTORY_KEY = 'recent_verb_ids';
 const HISTORY_DAYS = 4;
+const DAILY_VERBS_KEY = 'daily_verbs_cache';
 
+
+function getCachedDailyVerbs() {
+    const today = getChileDate();
+    const cache = localStorage.getItem(DAILY_VERBS_KEY);
+    
+    if (!cache) return null;
+    
+    try {
+        const { date, verbs } = JSON.parse(cache);
+        if (date === today) {
+            console.log('✅ Usando verbos cacheados del día:', today);
+            return verbs;
+        }
+    } catch (e) {
+        console.error('Error leyendo cache:', e);
+    }
+    
+    return null;
+}
+function cacheDailyVerbs(verbs) {
+    const today = getChileDate();
+    const cache = {
+        date: today,
+        verbs: verbs
+    };
+    localStorage.setItem(DAILY_VERBS_KEY, JSON.stringify(cache));
+    console.log('💾 Verbos del día guardados en cache:', today);
+}
 function getRecentVerbIds() {
     const history = localStorage.getItem(VERB_HISTORY_KEY);
     return history ? JSON.parse(history) : [];
@@ -95,6 +124,14 @@ function forceNewVerbDay() {
 
 // --- Función principal para generar verbos diarios ---
 function generateDailyVerbs(forceReset = false) {
+    // Si no forzamos reset, intentar usar cache
+    if (!forceReset) {
+        const cached = getCachedDailyVerbs();
+        if (cached) {
+            return cached;
+        }
+    }
+    
     let verbDay;
     
     if (forceReset) {
@@ -132,6 +169,11 @@ function generateDailyVerbs(forceReset = false) {
     // Guardar en historial
     addToHistory(dailyVerbs.map(v => v.infinitive));
     
+    // Cachear los verbos generados
+    cacheDailyVerbs(dailyVerbs);
+    
+    console.log('📚 Verbos generados:', dailyVerbs.map(v => v.infinitive));
+    console.log(`🔄 Frescos: ${shuffledFresh.length}, Recientes: ${recentVerbs.length}`);
 
     return dailyVerbs;
 }
@@ -139,7 +181,7 @@ function generateDailyVerbs(forceReset = false) {
 // --- Función para limpiar verbos de días anteriores ---
 function cleanOldDailyVerbs() {
     const keys = Object.keys(localStorage);
-    const today = getChileDate(); // Usar hora de Chile
+    const today = getChileDate();
     
     keys.forEach(key => {
         if (key.startsWith('dailyVerbs-') || 
@@ -148,6 +190,20 @@ function cleanOldDailyVerbs() {
             console.log('🧹 Limpiando:', key);
         }
     });
+    
+    // Limpiar cache si es de un día anterior
+    const cache = localStorage.getItem(DAILY_VERBS_KEY);
+    if (cache) {
+        try {
+            const { date } = JSON.parse(cache);
+            if (date !== today) {
+                localStorage.removeItem(DAILY_VERBS_KEY);
+                console.log('🧹 Cache de verbos antiguo eliminado');
+            }
+        } catch (e) {
+            localStorage.removeItem(DAILY_VERBS_KEY);
+        }
+    }
 }
 
 // --- Función para verificar cambio de día ---
